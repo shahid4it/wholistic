@@ -17,36 +17,57 @@ export default function FAQ() {
     },
   ];
   return (
-    <section className="questions">
-      <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <div className="list" role="list">
-              {faqs.map(({ q, a }, i) => (
-                <details key={i} className="item" role="listitem">
-                  <summary className="question">
-                    <span>{q}</span>
-                    <span className="icon" aria-hidden="true" />
-                  </summary>
-                  <div className="answer">
-                    <p>{a}</p>
-                  </div>
-                </details>
-              ))}
+    <section className="section faq">
+      <section className="section-content">
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <h3 className="section-title">Frequantly asked questions</h3>
             </div>
-          </div>
-          <div className="col-3 offset-1">
-            <div className="image-holder">
-              <Image
-                src="/images/image-faq.png"
-                width={600}
-                height={700}
-                alt="FAQ's"
-              />
+            <div className="col-3 offset-1">
+              <div className="section-content">
+                <p className="body-mid">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                  eleifend odio ut ante tristique, non pulvinar tellus tempor.
+                  In convallis accumsan ipsum. Nulla id lectus vitae nisl
+                  commodo molestie.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      <section className="questions">
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <div className="list" role="list">
+                {faqs.map(({ q, a }, i) => (
+                  <details key={i} className="item" role="listitem">
+                    <summary className="question">
+                      <span>{q}</span>
+                      <span className="icon" aria-hidden="true" />
+                    </summary>
+                    <div className="answer">
+                      <p>{a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+            <div className="col-3 offset-1">
+              <div className="image-holder">
+                <Image
+                  src="/images/image-faq.png"
+                  width={600}
+                  height={700}
+                  alt="FAQ's"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   );
 }

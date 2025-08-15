@@ -4,6 +4,7 @@ import Hero from "./components/hero";
 import Testimonials from "./components/testimonials";
 import FAQ from "./components/faq";
 import Readers from "./components/readers";
+import Subscribe from "./components/subscribe";
 
 export default function Home() {
   return (
@@ -57,7 +58,7 @@ export default function Home() {
       </section>
 
       {/* our Services */}
-      <section className="our-services">
+      <section className="section our-services">
         <div className="marquee">Our Services . Our Services</div>
         <section className="section-content">
           <div className="container">
@@ -163,6 +164,9 @@ export default function Home() {
       {/* FAQ */}
 
       <FAQ />
+
+      {/* Subscribe */}
+      <Subscribe />
     </section>
   );
 }

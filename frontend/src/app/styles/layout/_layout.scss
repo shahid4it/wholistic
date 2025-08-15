@@ -10,7 +10,7 @@
 }
 
 .section {
-    padding: scale(150) 0;
+    padding: scale(100) 0 scale(150);
 }
 
 
@@ -42,4 +42,5 @@
     white-space: nowrap;
     font-family: $swinton;
     margin-bottom: scale(100);
+    line-height: 1;
 }

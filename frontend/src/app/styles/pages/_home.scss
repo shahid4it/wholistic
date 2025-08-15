@@ -1,5 +1,5 @@
 .introduction {
-    padding: scale(150) 0;
+    padding: scale(150) 0 scale(100);
 }
 
 .introduction-below {
@@ -7,11 +7,14 @@
 
     .image-holder {
         width: 100%;
+        max-height: scale(725);
+        overflow: hidden;
+        border-radius: scale(12);
 
         img {
             width: 100%;
-            height: auto;
-            border-radius: scale(12);
+            height: 100%;
+            object-fit: cover;
         }
     }
 }
@@ -20,8 +23,6 @@
 
 .our-services {
 
-    padding: scale(150) 0;
-    border-radius: scale(150);
     background: $peach;
     // background: linear-gradient(180deg, #FFDCBD 0%, #FFCB91 100%);
 
@@ -32,7 +33,7 @@
 
         .services-image {
             width: 100%;
-            height: 100%;
+            height: 80vh;
             border-radius: scale(12);
             overflow: hidden;
 
@@ -66,7 +67,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        color: $coral;
+                        color: $burgundy;
                         transition: .35s;
 
                         .service-title {
@@ -82,12 +83,19 @@
                             .service-title {
                                 padding-left: scale(25);
                             }
+
+                            &:after {
+                                margin-right: scale(24);
+                            }
                         }
 
                         &:after {
                             content: counter(item, decimal-leading-zero);
                             font-size: scale(24);
                             font-family: "inter";
+                            color: $coral;
+                            transition: .35s;
+
                         }
                     }
                 }
@@ -95,16 +103,7 @@
 
 
         }
-
-
-
-
     }
-
-
-
-
-
 }
 
 
