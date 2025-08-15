@@ -1,0 +1,50 @@
+// Config
+$grid-columns: 8;
+$grid-gutter: scale(30);
+
+// Container
+.container {
+    padding-left: calc($grid-gutter / 2);
+    padding-right: calc($grid-gutter / 2);
+    box-sizing: border-box;
+}
+
+// Row
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * #{$grid-gutter} / 2);
+    margin-right: calc(-1 * #{$grid-gutter} / 2);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// Column Mixin
+@mixin make-col($size, $columns) {
+    flex: 0 0 percentage($size / $columns);
+    max-width: percentage($size / $columns);
+    padding-left: calc($grid-gutter / 2);
+    padding-right: calc($grid-gutter / 2);
+    box-sizing: border-box;
+}
+
+// Generate columns
+@for $i from 1 through $grid-columns {
+    .col-#{$i} {
+        @include make-col($i, $grid-columns);
+    }
+}
+
+// Generate offsets
+@for $i from 1 through ($grid-columns - 1) {
+    .offset-#{$i} {
+        margin-left: percentage($i / $grid-columns);
+    }
+}
+
+// Generate width
+@for $i from 1 through ($grid-columns - 1) {
+    .width-#{$i} {
+        width: percentage($i / $grid-columns);
+    }
+}

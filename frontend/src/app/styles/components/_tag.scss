@@ -1,0 +1,7 @@
+.tag {
+    padding: scale(8) scale(24);
+    background-color: $lightest-peach;
+    border-radius: 50px;
+    color: $coral;
+    font-size: clamp(12px, scale(12), 16px);
+}

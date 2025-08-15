@@ -1,0 +1,125 @@
+.introduction {
+    padding: scale(150) 0;
+}
+
+.introduction-below {
+    padding: scale(50) 0 scale(150);
+
+    .image-holder {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: scale(12);
+        }
+    }
+}
+
+// our Services
+
+.our-services {
+
+    padding: scale(150) 0;
+    border-radius: scale(150);
+    background: $peach;
+    // background: linear-gradient(180deg, #FFDCBD 0%, #FFCB91 100%);
+
+
+
+    .section-list {
+        margin-top: scale(150);
+
+        .services-image {
+            width: 100%;
+            height: 100%;
+            border-radius: scale(12);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+
+            }
+        }
+
+        .services-list {
+            height: 100%;
+
+            ul {
+                list-style: none;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                counter-reset: item; // start the counter
+
+                li {
+                    border-bottom: 1px solid rgba($white, .5);
+                    flex: 1;
+                    font-family: $swinton;
+                    font-weight: 500;
+                    counter-increment: item; // increment per li
+
+                    a {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        color: $coral;
+                        transition: .35s;
+
+                        .service-title {
+                            font-size: scale(48);
+                            transition: .35s;
+                            padding-left: 0;
+
+                        }
+
+                        &:hover {
+                            background: rgba(255, 255, 255, .1);
+
+                            .service-title {
+                                padding-left: scale(25);
+                            }
+                        }
+
+                        &:after {
+                            content: counter(item, decimal-leading-zero);
+                            font-size: scale(24);
+                            font-family: "inter";
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+// Our Readers
+
+.our-readers {
+    .marquee {
+        color: $peach;
+    }
+
+    .readers-list {
+        margin-top: scale(100);
+    }
+}
+
+
+// FAQ

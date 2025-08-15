@@ -1,0 +1,57 @@
+.reader {
+    $self: &;
+    background-color: $white;
+    padding: scale(24);
+    display: flex;
+    gap: scale(24);
+    box-shadow: 0 0 scale(20) rgba($burgundy, .1);
+    margin-bottom: scale(30);
+    border-radius: scale(12);
+
+    #{$self}__image {
+        width: scale(332);
+        aspect-ratio: .9;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    #{$self}__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .upper-content {
+            display: flex;
+            flex-direction: column;
+            gap: scale(16);
+
+            .name {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h3 {
+                    font-size: scale(40);
+                    color: $coral;
+                }
+            }
+
+            .rating {
+                font-size: 14px;
+                gap: 4px;
+                display: flex;
+            }
+
+            .tags {
+                display: flex;
+                gap: scale(4);
+                flex-wrap: wrap;
+
+            }
+        }
+    }
+}

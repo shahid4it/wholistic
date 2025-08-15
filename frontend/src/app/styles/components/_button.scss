@@ -1,0 +1,15 @@
+.button {
+    width: 100%;
+    background-color: $burgundy;
+    color: $lightest-peach;
+    padding: scale(16) scale(24);
+    text-align: center;
+    transition: background-color .35s;
+    border-radius: scale(8);
+    font-weight: 500;
+
+    &:hover {
+        // background-color: lighten($burgundy, 10%);
+        background-color: $coral;
+    }
+}

@@ -1,0 +1,45 @@
+.container {
+    margin: 0 scale(100);
+    box-sizing: border-box;
+    display: flex;
+    gap: 30px;
+
+    &-col {
+        flex-direction: column;
+    }
+}
+
+.section {
+    padding: scale(150) 0;
+}
+
+
+.add-testimonial {
+    padding: 150px 0;
+}
+
+.not-found {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+
+    a {
+        &:hover {
+            color: $orange;
+        }
+    }
+}
+
+
+.marquee {
+    width: 100%;
+    font-size: scale(220);
+    color: $lightest-peach;
+    font-weight: 200;
+    white-space: nowrap;
+    font-family: $swinton;
+    margin-bottom: scale(100);
+}

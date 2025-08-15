@@ -1,0 +1,79 @@
+.bar {
+    color: white;
+    position: absolute;
+    bottom: -35px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    overflow: hidden;
+    margin-top: 5px;
+    box-shadow: -2px 15px 15px rgba(0, 0, 0, 0.2);
+    gap: 50px;
+    background: $blue-dark;
+    transform: rotate(2deg);
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        animation: slide 35s linear infinite;
+    }
+
+    &.ticker {
+        background-color: $orange;
+        transform: none;
+        bottom: 0;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            animation: slideout 25s linear infinite;
+            font-size: scale(24);
+            font-weight: bold;
+            gap: 50px;
+
+            margin-left: -50px;
+            padding-left: 50px;
+
+            li {
+                white-space: nowrap;
+            }
+
+
+        }
+    }
+
+    @include sm {
+        width: 100%;
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideout {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

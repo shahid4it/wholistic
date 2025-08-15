@@ -1,0 +1,62 @@
+.header {
+    background: rgba($black, .8);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    color: $white;
+    z-index: 100;
+
+    .container {
+        justify-content: space-between;
+    }
+
+    .menu {
+        position: relative;
+    }
+
+    .header-left {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        align-items: center;
+
+
+    }
+
+    .marker {
+        position: absolute;
+        height: 80px;
+        border-radius: 100px;
+        transition: all 0.3s ease;
+        width: 0;
+        left: 0;
+        z-index: -1;
+
+        @include sm {
+            display: none;
+        }
+    }
+
+    @include sm {
+        width: 100vw;
+        margin-left: 0;
+        left: 0;
+        top: 0;
+        border-radius: 0;
+
+        .header-left {
+            .btn-home {
+                display: inline-block;
+                vertical-align: top;
+
+                img {
+                    height: 50px;
+                    margin-bottom: 0;
+                }
+            }
+
+        }
+    }
+}

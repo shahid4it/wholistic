@@ -1,0 +1,118 @@
+.questions {
+    margin-top: scale(100);
+
+    .list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item {
+        overflow: clip; // prevents summary border flicker
+        border-bottom: 1px solid $peach;
+
+        &:last-child {
+            border-bottom: 0;
+
+        }
+
+        &[open] {
+            .question {
+                color: $burgundy;
+                // background-color: #FCC4BB;
+                background: linear-gradient(90deg, #FCC4BB 0%, #FBD5CF 100%);
+            }
+
+            .icon {
+                transform: rotate(45deg);
+
+                &:after,
+                &::before {
+                    background-color: $white;
+                }
+            }
+
+            // + to ×
+            .answer {
+                grid-template-rows: 1fr;
+                opacity: 1;
+                background-color: rgba($white, .5);
+            }
+        }
+
+        .question {
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: scale(24);
+            list-style: none; // remove default disclosure marker
+            font-weight: 500;
+            font-family: $swinton;
+            font-size: scale(20);
+            background-color: $white;
+            transition: .35S;
+
+
+            // remove default triangle across browsers
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+            &:focus-visible {
+                outline: 2px solid #6ea8fe;
+                outline-offset: 2px;
+                border-radius: 12px;
+            }
+
+            .icon {
+                width: 22px;
+                height: 22px;
+                border-radius: 6px;
+                position: relative;
+                transition: transform 160ms ease;
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    inset: 50% auto auto 50%;
+                    width: 20px;
+                    height: 2px;
+                    transform: translate(-50%, -50%);
+                    background-color: $burgundy;
+                }
+
+                &::after {
+                    transform: translate(-50%, -50%) rotate(90deg);
+                }
+            }
+        }
+
+        .answer {
+            // smooth height animation using CSS grid trick
+
+            opacity: 0;
+
+            >* {
+                overflow: hidden; // needed for grid height animation
+            }
+
+            p {
+                padding: scale(24);
+                margin: 0;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    .image-holder {
+        width: 100%;
+        border-radius: scale(12);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

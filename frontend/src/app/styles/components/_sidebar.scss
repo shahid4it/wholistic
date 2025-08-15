@@ -1,0 +1,17 @@
+#sidebar{
+    width: clamp(200px, 20vw, 400px);
+    height: calc(100vh - 150px);
+    position: sticky;
+    top: 114px;
+    border-right: 1px solid $gray-light;
+
+    .left-nav{
+        .image-holder{
+            width: 100%;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

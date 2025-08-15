@@ -1,0 +1,150 @@
+.testimonial-slider {
+    $self: &;
+
+    .embla__container {
+        margin-top: 30px;
+        padding-bottom: 50px;
+
+
+        @include xs {
+            padding-bottom: 45px;
+        }
+    }
+
+    #{$self}__slide {
+        display: flex;
+        background: white;
+        border: 1px solid rgba($gray, .3);
+        padding: 40px;
+        flex-direction: column;
+        border-radius: 8px;
+        margin-right: 40px;
+        width: 350px;
+        flex-shrink: 0;
+
+
+        .upper-part {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+
+        &__name {
+            color: $gray;
+            font-size: 20px;
+
+            strong {}
+        }
+
+
+
+        &__content {
+            color: $gray;
+            font-size: 18px;
+
+        }
+
+    }
+
+    @include md {
+        #{$self}__slide {
+
+            .upper-part {
+                width: 300px;
+            }
+
+            &__name {
+                font-size: 16px;
+            }
+
+
+
+            &__content {
+                font-size: 13px;
+            }
+        }
+    }
+
+    @include xs {
+        #{$self}__slide {
+            width: 80%;
+
+            padding: 15px;
+            margin-right: 30px;
+            border-radius: 5px;
+
+            .upper-part {
+                width: 250px;
+                display: flex;
+                align-items: center;
+                padding-bottom: 20px;
+                flex-direction: column-reverse;
+            }
+
+            &__name {
+                font-size: 16px;
+            }
+
+            &__content {
+                font-size: 13px;
+            }
+        }
+    }
+
+}
+
+.embla__buttons {
+    right: 20px;
+
+    width: 180px;
+    top: 130px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    .embla__button {
+        position: static;
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        border-radius: 40px;
+        transform: none;
+        background-color: white;
+        border: 1px solid rgba($gray, .3);
+        font-size: 0;
+
+    }
+
+    @include md {
+        display: none;
+    }
+}
+
+
+
+.testimonials {
+    padding: scale(150) 0;
+    background: $peach;
+    height: 80vh;
+    width: 100%;
+    border-radius: scale(24);
+
+    .container {
+        flex-direction: column;
+    }
+
+    .testimonials-header {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        .testimonials__heading {
+            font-size: 72px;
+            // color: $blue;
+
+        }
+    }
+}
