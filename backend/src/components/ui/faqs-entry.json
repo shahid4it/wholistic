@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_ui_faqs_entries",
+  "info": {
+    "displayName": "Faqs Entry"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

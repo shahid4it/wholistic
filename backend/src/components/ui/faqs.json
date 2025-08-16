@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_ui_faqs",
+  "info": {
+    "displayName": "Faqs"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "faqs": {
+      "type": "component",
+      "component": "ui.faqs-entry",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

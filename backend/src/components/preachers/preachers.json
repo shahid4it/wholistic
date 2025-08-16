@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_preachers_preachers",
+  "info": {
+    "displayName": "Preachers"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "marquee": {
+      "type": "string"
+    },
+    "preachers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::preacher.preacher"
+    }
+  },
+  "config": {}
+}

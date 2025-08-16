@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blogs_related_articles",
+  "info": {
+    "displayName": "Related Articles"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
+    }
+  },
+  "config": {}
+}
