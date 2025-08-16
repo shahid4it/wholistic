@@ -35,6 +35,8 @@
 
 
 .marquee {
+    --speed: 20s;
+    /* lower = faster */
     width: 100%;
     font-size: scale(220);
     color: $lightest-peach;
@@ -43,4 +45,30 @@
     font-family: $swinton;
     margin-bottom: scale(100);
     line-height: 1;
+    // animation: marquee 20s linear infinite;
+
+    .marquee__inner {
+        display: inline-flex;
+        gap: var(--gap);
+        white-space: nowrap;
+        will-change: transform;
+        animation: marquee var(--speed) linear infinite;
+
+        >span {
+            display: inline-block;
+            padding: 0.75rem 0;
+            /* demo only */
+        }
+    }
+
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }

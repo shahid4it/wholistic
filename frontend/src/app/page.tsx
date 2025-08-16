@@ -59,7 +59,12 @@ export default function Home() {
 
       {/* our Services */}
       <section className="section our-services">
-        <div className="marquee">Our Services . Our Services</div>
+        <div className="marquee">
+          <div className="marquee__inner">
+            <span> . Our Services . Our Services</span>
+            <span> . Our Services . Our Services</span>
+          </div>
+        </div>
         <section className="section-content">
           <div className="container">
             <div className="row">
@@ -135,7 +140,12 @@ export default function Home() {
 
       {/* Our Readers */}
       <section className="section our-readers">
-        <div className="marquee">Our Healers . Our Readers</div>
+        <div className="marquee">
+          <div className="marquee__inner">
+            <span> . Our Healers . Our Readers</span>
+            <span> . Our Healers . Our Readers</span>
+          </div>
+        </div>
         <section className="section-content">
           <div className="container">
             <div className="row">
