@@ -16,10 +16,14 @@ h3 {
     }
 }
 
+p {
+    font-size: clamp(16px, scale(18), 20px);
+}
+
 .body-large {
     font-size: scale(48);
     font-weight: 300;
-    text-indent: 100px;
+    // text-indent: 100px;
     line-height: 1.5;
 }
 

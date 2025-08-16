@@ -7,6 +7,9 @@
     transition: background-color .35s;
     border-radius: scale(8);
     font-weight: 500;
+    font-size: clamp(16px, scale(18), 20px);
+    outline: 0;
+    border: 0;
 
     &:hover {
         // background-color: lighten($burgundy, 10%);

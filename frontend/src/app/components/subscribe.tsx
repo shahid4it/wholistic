@@ -26,7 +26,16 @@ export default function Subscribe() {
                 </p>
               </div>
               <div className="subscribe-form">
-                <label>Full Name</label>
+                <div className="input-field">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="Enter your name" />
+                </div>
+
+                <div className="input-field">
+                  <label>Email Address</label>
+                  <input type="text" placeholder="Enter your email address" />
+                </div>
+                <button className="button">Sign up</button>
               </div>
             </div>
           </div>
