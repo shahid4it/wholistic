@@ -1,6 +1,15 @@
+"use client";
 import Image from "next/image";
+import StringTune from "@fiddle-digital/string-tune";
+import { StringParallax } from "@fiddle-digital/string-tune";
+import { useEffect } from "react";
 
 export default function Subscribe() {
+  useEffect(() => {
+    const tune = StringTune.getInstance();
+    tune.use(StringParallax);
+    tune.start(60); // Start at 60 FPS (adjust as needed)
+  }, []);
   return (
     <section className="subscribe">
       <div className="container">
@@ -12,6 +21,8 @@ export default function Subscribe() {
                 width={900}
                 height={1000}
                 alt="Hero Background"
+                string="parallax"
+                string-parallax="1"
               />
             </div>
           </div>

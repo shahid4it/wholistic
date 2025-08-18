@@ -5,10 +5,11 @@
     #{$self}__image {
         width: calc(100% + scale(120));
         height: 100%;
+        overflow: hidden;
+        margin-left: scale(-120);
 
         img {
             width: 100%;
-            margin-left: scale(-120);
             height: auto;
             max-height: 90vh;
             object-fit: cover;
