@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "ui.banner",
+        "ui.intro",
+        "ui.section",
+        "ui.testimonials",
+        "ui.faqs",
+        "services.services",
+        "preachers.preachers",
+        "preachers.founders",
+        "blogs.related-articles"
+      ]
+    }
+  }
+}

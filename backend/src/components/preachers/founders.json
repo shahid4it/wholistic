@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_preachers_founders",
+  "info": {
+    "displayName": "Founders"
+  },
+  "options": {},
+  "attributes": {
+    "marquee": {
+      "type": "string"
+    },
+    "preachers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::preacher.preacher"
+    }
+  },
+  "config": {}
+}

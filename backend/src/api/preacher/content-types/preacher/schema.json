@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "preachers",
+  "info": {
+    "singularName": "preacher",
+    "pluralName": "preachers",
+    "displayName": "Preacher"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "profile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
