@@ -1,76 +1,70 @@
 .footer {
-    padding: scale(100) 0;
-    background-color: $barkest-burgundy;
-    color: $white;
+  padding: scale(100) 0;
+  background-color: $barkest-burgundy;
+  color: $white;
 
-    .container {
-        display: flex;
-        justify-content: space-between;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    }
+  .nav {
+    display: flex;
+    gap: 16px;
 
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: scale(16);
+      width: 12.5vw;
 
+      li {
+        a {
+          color: $white;
+          transition: 0.35s;
+          font-family: $swinton;
+          font-size: scale(22);
 
-    .nav {
-        display: flex;
-        gap: 16px;
-
-        ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: scale(16);
-            width: 12.5vw;
-
-            li {
-                a {
-                    color: $white;
-                    transition: .35s;
-                    font-family: $swinton;
-                    font-size: scale(22);
-
-                    &:hover {
-                        color: $coral;
-                    }
-                }
-            }
+          &:hover {
+            color: $coral;
+          }
         }
+      }
     }
+  }
 
-    .social {
-        justify-content: end;
-        text-align: right;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin-bottom: scale(32);
+  .social {
+    justify-content: flex-end;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: scale(32);
 
-        ul {
-            list-style: none;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 16px;
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
 
-            a {
-                svg {
-                    fill: $peach;
-                    transition: .35s;
-                }
-
-                &:hover {
-                    svg {
-                        fill: $white;
-                    }
-                }
-            }
+      a {
+        svg {
+          fill: $peach;
+          transition: 0.35s;
         }
+
+        &:hover {
+          svg {
+            fill: $white;
+          }
+        }
+      }
     }
+  }
 
-    .copyrights {
-        text-align: right;
-    }
-
-
-
+  .copyrights {
+    text-align: right;
+  }
 }

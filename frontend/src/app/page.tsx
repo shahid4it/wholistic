@@ -1,62 +1,33 @@
-import Image from "next/image";
-import Link from "next/link";
 import Hero from "./components/hero";
 import Testimonials from "./components/testimonials";
 import FAQ from "./components/faq";
-import Readers from "./components/readers";
-import Subscribe from "./components/subscribe";
 import Services from "./components/services";
 import Introduction from "./components/introduction";
+import { fetchStrapi } from "@/utils/strapi";
+import { HOME_QUERY } from "@/queries/home";
+import { Preachers } from "./components/preachers";
 
-export default function Home() {
+const COMP_MAP = {
+  ComponentUiBanner: Hero,
+  ComponentUiSection: Introduction,
+  ComponentServicesServices: Services,
+  ComponentPreachersPreachers: Preachers,
+  ComponentUiTestimonials: Testimonials,
+  ComponentUiFaqs: FAQ,
+};
+
+export default async function Home() {
+  const { sections } = await fetchStrapi({ query: HOME_QUERY, key: "home" })();
+
+  console.log(sections);
+
   return (
     <section className="home">
-      <Hero />
+      {sections.map(({ __typename: typename, ...props }, i) => {
+        const Comp = COMP_MAP[typename];
 
-      {/* Introduction */}
-      <Introduction />
-      {/* Our Services */}
-      <Services />
-
-      {/* Our Readers */}
-      <section className="section our-readers">
-        <div className="marquee">
-          <div className="marquee__inner">
-            <span> . Our Healers . Our Readers</span>
-            <span> . Our Healers . Our Readers</span>
-          </div>
-        </div>
-        <section className="section-content">
-          <div className="container">
-            <div className="row">
-              <div className="col-4">
-                <h3 className="section-title">Our Healers & Readers</h3>
-              </div>
-              <div className="col-3 ">
-                <div className="section-content">
-                  <p className="body-mid">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam eleifend odio ut ante tristique, non pulvinar tellus
-                    tempor. In convallis accumsan ipsum. Nulla id lectus vitae
-                    nisl commodo molestie.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Readers />
-      </section>
-      {/* Testimonials */}
-      <Testimonials />
-
-      {/* FAQ */}
-
-      <FAQ />
-
-      {/* Subscribe */}
-      <Subscribe />
+        return Comp && <Comp key={i} {...props} />;
+      })}
     </section>
   );
 }

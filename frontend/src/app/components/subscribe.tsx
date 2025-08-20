@@ -1,23 +1,24 @@
-"use client";
+import { fetchStrapi } from "@/utils/strapi";
 import Image from "next/image";
-import StringTune from "@fiddle-digital/string-tune";
-import { StringParallax } from "@fiddle-digital/string-tune";
-import { useEffect } from "react";
+import { NEWSLETTER_QUERY } from "@/queries/newsletter";
+import { NewsletterAnimation } from "./newsletter-animation";
+import { StrapiImage } from "./StrapiImage";
 
-export default function Subscribe() {
-  useEffect(() => {
-    const tune = StringTune.getInstance();
-    tune.use(StringParallax);
-    tune.start(60); // Start at 60 FPS (adjust as needed)
-  }, []);
+export default async function Subscribe() {
+  const data = await fetchStrapi({
+    query: NEWSLETTER_QUERY,
+    key: "newsletter",
+  })();
+
   return (
     <section className="subscribe">
+      <NewsletterAnimation />
       <div className="container">
         <div className="row">
           <div className="col-4">
             <div className="subscribe__image">
-              <Image
-                src="/images/subscribe.png"
+              <StrapiImage
+                src={data.image?.url}
                 width={900}
                 height={1000}
                 alt="Hero Background"

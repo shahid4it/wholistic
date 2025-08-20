@@ -37,6 +37,9 @@
         "preachers.founders",
         "blogs.related-articles"
       ]
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }

@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { fetchStrapi } from "@/utils/strapi";
+import { HEADER_QUERY } from "@/queries/header";
 
-export default function Header() {
+export default async function Header() {
+  const data = await fetchStrapi({ query: HEADER_QUERY, key: "header" })();
+
   return (
     <header className="header">
       <div className="container">
@@ -10,24 +14,11 @@ export default function Header() {
         <div className="headeer__right">
           <nav className="menu">
             <ul className="nav">
-              <li>
-                <Link href="/about">About Us</Link>
-              </li>
-              <li>
-                <Link href="#">Our Services</Link>
-              </li>
-              <li>
-                <Link href="#">Psychics</Link>
-              </li>
-              <li>
-                <Link href="#">Pricing</Link>
-              </li>
-              <li>
-                <Link href="#">Resources</Link>
-              </li>
-              <li>
-                <Link href="#">Contact Us</Link>
-              </li>
+              {data.links.map(({ title, href }) => (
+                <li>
+                  <Link href={href || "#"}>{title}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>

@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import { StrapiImage } from "./StrapiImage";
 
 const testimonials = [
   {
@@ -24,7 +25,10 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({
+  content = "",
+  background: image = { url: "" },
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const scrollPrev = useCallback(
@@ -39,8 +43,8 @@ export default function Testimonials() {
     <section className="container">
       <section className="testimonials">
         <div className="testimonials__bg">
-          <Image
-            src="/images/testimonials-bg.png"
+          <StrapiImage
+            src={image?.url}
             width={1200}
             height={700}
             alt="Hero Background"
@@ -50,11 +54,7 @@ export default function Testimonials() {
         </div>
 
         <div className="testimonials__header">
-          <h3>
-            We’re the psychic service millions of people trust. At California
-            Psychics you’ll always find the caring, thoughtful and confidential
-            insight you’re seeking.
-          </h3>
+          <h3>{content}</h3>
         </div>
 
         <div className="testimonial-slider">
@@ -116,9 +116,9 @@ export default function Testimonials() {
               >
                 <path
                   d="M23.0552 12.6904H2.05518M2.05518 12.6904L12.5552 2.19043M2.05518 12.6904L12.5552 23.1904"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
@@ -132,9 +132,9 @@ export default function Testimonials() {
               >
                 <path
                   d="M1.94482 12.6904L22.9448 12.6904M22.9448 12.6904L12.4448 23.1904M22.9448 12.6904L12.4448 2.19043"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>

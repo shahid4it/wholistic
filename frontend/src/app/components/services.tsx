@@ -1,29 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
+import { StrapiImage } from "./StrapiImage";
 
-export default function Services() {
+export default function Services({
+  title = "",
+  content = "",
+  marquee = "",
+  services = [],
+}) {
   return (
     <section className="section our-services">
       <div className="marquee">
         <div className="marquee__inner">
-          <span> . Our Services . Our Services</span>
-          <span> . Our Services . Our Services</span>
+          <span>{marquee}</span>
+          <span>{marquee}</span>
         </div>
       </div>
       <section className="section-content">
         <div className="container">
           <div className="row">
             <div className="col-4">
-              <h3 className="section-title">Our Services</h3>
+              <h3 className="section-title">{title}</h3>
             </div>
             <div className="col-3 ">
               <div className="services-list">
-                <p className="body-mid">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  eleifend odio ut ante tristique, non pulvinar tellus tempor.
-                  In convallis accumsan ipsum. Nulla id lectus vitae nisl
-                  commodo molestie.
-                </p>
+                <p className="body-mid">{content}</p>
               </div>
             </div>
           </div>
@@ -34,8 +35,8 @@ export default function Services() {
           <div className="row">
             <div className="col-3">
               <div className="services-image">
-                <Image
-                  src="/images/service-tarot.png"
+                <StrapiImage
+                  src={services[0]?.thumbnail?.url}
                   width={625}
                   height={888}
                   alt="Hero Background"
@@ -45,36 +46,13 @@ export default function Services() {
             <div className="col-4 offset-1">
               <div className="services-list">
                 <ul>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Tarot</div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Reiki Healing</div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Astrology</div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Gemstone Healing</div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Yoga</div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <div className="service-title">Therapy</div>
-                    </Link>
-                  </li>
+                  {services.map(({ title }) => (
+                    <li key={title}>
+                      <Link href={`/services/${title.toLowerCase()}`}>
+                        <div className="service-title">{title}</div>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

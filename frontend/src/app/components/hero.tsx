@@ -4,8 +4,14 @@ import Link from "next/link";
 import { useEffect } from "react";
 import StringTune from "@fiddle-digital/string-tune";
 import { StringParallax } from "@fiddle-digital/string-tune";
+import { StrapiImage } from "./StrapiImage";
 
-export default function Hero() {
+export default function Hero({
+  title = "",
+  content = "",
+  backdrop = { url: "" },
+  cta = { title: "", href: "" },
+}) {
   useEffect(() => {
     const tune = StringTune.getInstance();
     tune.use(StringParallax);
@@ -14,8 +20,8 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero__background">
-        <Image
-          src="/images/hero.png"
+        <StrapiImage
+          src={backdrop?.url}
           width={1200}
           height={700}
           alt="Hero Background"
@@ -24,12 +30,13 @@ export default function Hero() {
         />
       </div>
       <div className="hero__content">
-        <h1 className="hero__title">
-          Your companion in your journey to wholeness
-        </h1>
-        <Link href="#" className="btn btn-primary">
-          Get Started
-        </Link>
+        <h1 className="hero__title">{title}</h1>
+        {content && <p>{content}</p>}
+        {cta && (
+          <Link href={cta.href} className="btn btn-primary">
+            {cta.title}
+          </Link>
+        )}
       </div>
     </section>
   );

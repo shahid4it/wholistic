@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function () {
+import { StrapiImage } from "./StrapiImage";
+export default function ({ name, bio, profile }) {
   return (
     <div className="reader">
       <div className="reader__image">
-        <Image
-          src="/images/reader.png"
+        <StrapiImage
+          src={profile?.url}
           width={400}
           height={400}
           alt="Reader Image"
@@ -14,7 +15,7 @@ export default function () {
       <div className="reader__content">
         <div className="upper-content">
           <div className="name">
-            <h3>Maricia</h3>
+            <h3>{name}</h3>
             <div className="rating">
               <span>4.7</span>
               <svg
@@ -33,10 +34,7 @@ export default function () {
             </div>
           </div>
           <div className="bio">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-              eleifend odio...
-            </p>
+            <p>{bio}</p>
           </div>
           <div className="tags">
             <Link href={"#"} className="tag">

@@ -26,6 +26,9 @@
         "videos",
         "audios"
       ]
+    },
+    "tags": {
+      "type": "string"
     }
   }
 }

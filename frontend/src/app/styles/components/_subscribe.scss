@@ -1,47 +1,45 @@
 .subscribe {
-    $self: &;
-    background-color: $peach;
+  $self: &;
+  background-color: $peach;
 
-    #{$self}__image {
-        width: calc(100% + scale(120));
-        height: 100%;
-        overflow: hidden;
-        margin-left: scale(-120);
+  #{$self}__image {
+    width: calc(100% + scale(120));
+    height: 100%;
+    overflow: hidden;
+    margin-left: scale(-120);
 
-        img {
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: cover;
-        }
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: cover;
+    }
+  }
+
+  #{$self}__content {
+    align-content: center;
+    height: 100%;
+    padding: 3em 0;
+
+    h2 {
+      font-size: scale(60);
+      color: $burgundy;
+      font-weight: 500;
     }
 
-    #{$self}__content {
-        align-content: center;
-        height: 100%;
-
-        h2 {
-            font-size: scale(60);
-            color: $burgundy;
-            font-weight: 500;
-        }
-
-        p {
-            margin-top: scale(24);
-        }
-
-
-        .subscribe-form {
-            margin-top: scale(50);
-            display: flex;
-            flex-direction: column;
-            gap: scale(20);
-
-            .button {
-                margin-top: scale(16);
-            }
-        }
+    p {
+      margin-top: scale(24);
     }
 
+    .subscribe-form {
+      margin-top: scale(50);
+      display: flex;
+      flex-direction: column;
+      gap: scale(20);
 
+      .button {
+        margin-top: scale(16);
+      }
+    }
+  }
 }

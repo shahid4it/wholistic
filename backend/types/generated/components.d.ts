@@ -18,8 +18,10 @@ export interface PreachersFounders extends Struct.ComponentSchema {
     displayName: 'Founders';
   };
   attributes: {
+    content: Schema.Attribute.RichText;
     marquee: Schema.Attribute.String;
     preachers: Schema.Attribute.Relation<'oneToMany', 'api::preacher.preacher'>;
+    title: Schema.Attribute.String;
   };
 }
 

@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "services_pages",
+  "info": {
+    "singularName": "services-page",
+    "pluralName": "services-pages",
+    "displayName": "Services Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "services.services",
+        "ui.testimonials",
+        "ui.section",
+        "ui.link",
+        "ui.intro",
+        "ui.faqs",
+        "ui.faqs-entry",
+        "ui.banner",
+        "preachers.preachers",
+        "blogs.related-articles"
+      ]
+    }
+  }
+}

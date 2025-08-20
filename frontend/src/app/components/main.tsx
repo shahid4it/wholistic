@@ -1,23 +1,20 @@
-"use client";
 import { ReactNode, useEffect } from "react";
+import { Tune } from "./tune";
 
-import { StringTune } from "@fiddle-digital/string-tune";
 import Header from "./header";
 import Footer from "./footer";
+import Subscribe from "./subscribe";
 
 interface MainProps {
   children: ReactNode;
 }
-export default function Main({ children }: MainProps) {
-  useEffect(() => {
-    const instance = StringTune.getInstance();
-    instance.start(60); // or your preferred FPS
-  }, []);
-
+export default async function Main({ children }: MainProps) {
   return (
     <>
+      <Tune />
       <Header />
-      <main>{children}</main>
+      {children}
+      <Subscribe />
       <Footer />
     </>
   );

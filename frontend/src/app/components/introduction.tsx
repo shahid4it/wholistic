@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { StrapiImage } from "./StrapiImage";
 
 export default function Introduction() {
   return (
@@ -26,7 +27,7 @@ export default function Introduction() {
           <div className="row">
             <div className="col-5">
               <div className="image-holder">
-                <Image
+                <StrapiImage
                   src="/images/intro-image.png"
                   width={1000}
                   height={800}

@@ -12,6 +12,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::preacher.preacher"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
     }
   },
   "config": {}
