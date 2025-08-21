@@ -703,6 +703,44 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTestimonialsPageTestimonialsPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'testimonials_pages';
+  info: {
+    displayName: 'Testimonials Page';
+    pluralName: 'testimonials-pages';
+    singularName: 'testimonials-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonials-page.testimonials-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.DynamicZone<
+      [
+        'ui.testimonials',
+        'ui.section',
+        'ui.intro',
+        'ui.faqs',
+        'ui.banner',
+        'preachers.preachers',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1222,6 +1260,7 @@ declare module '@strapi/strapi' {
       'api::service.service': ApiServiceService;
       'api::services-page.services-page': ApiServicesPageServicesPage;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
+      'api::testimonials-page.testimonials-page': ApiTestimonialsPageTestimonialsPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

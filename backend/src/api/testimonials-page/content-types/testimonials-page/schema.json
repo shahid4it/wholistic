@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "testimonials_pages",
+  "info": {
+    "singularName": "testimonials-page",
+    "pluralName": "testimonials-pages",
+    "displayName": "Testimonials Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "ui.testimonials",
+        "ui.section",
+        "ui.intro",
+        "ui.faqs",
+        "ui.banner",
+        "preachers.preachers"
+      ]
+    }
+  }
+}

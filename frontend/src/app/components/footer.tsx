@@ -63,7 +63,7 @@ export default async function Footer() {
           <div className="col-3">
             <nav className="nav">
               <ul>
-                {data.links.slice(0, 5).map(({ title, href }) => (
+                {data.links.slice(0, 6).map(({ title, href }) => (
                   <li key={title}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>

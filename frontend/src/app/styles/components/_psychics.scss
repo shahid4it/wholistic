@@ -1,0 +1,67 @@
+.section-psychics {
+  background: #fbd5cf;
+}
+
+.psychic {
+  height: 400px;
+  aspect-ratio: 12/16;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(45, 23, 3, 0) 35.27%,
+      rgba(45, 23, 3, 0.88) 97.71%
+    );
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .tags {
+      gap: 4px;
+      display: flex;
+
+      .tag {
+        background: #800000;
+
+        color: white;
+      }
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    h3 {
+      color: white;
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 4px 0;
+    }
+  }
+}
