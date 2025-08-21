@@ -32,6 +32,7 @@ export const HOME_QUERY = `query getHomePage  {
         preachers {
           name
           bio
+          tags
           profile {
             url
           }
@@ -42,9 +43,7 @@ export const HOME_QUERY = `query getHomePage  {
       __typename
         title
         content
-        image {
-          url
-        }
+        
       }
 
       ... on ComponentUiIntro  {

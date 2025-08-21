@@ -1,5 +1,5 @@
-export const ABOUT_QUERY = `query getAboutPage  {
-  about {
+export const PSYCHICS_QUERY = `query getPsychicsPage  {
+  psychicsPage {
     sections {
       ... on ComponentUiBanner {
         __typename
@@ -10,9 +10,10 @@ export const ABOUT_QUERY = `query getAboutPage  {
         }
       }
 
-      ... on ComponentPreachersFounders {
+      ... on ComponentPreachersPreachers {
         __typename
         marquee
+        title
         content
         preachers {
           name
@@ -35,15 +36,7 @@ export const ABOUT_QUERY = `query getAboutPage  {
           client
           content
         }
-      }
-
-      ... on ComponentUiIntro  {
-      __typename
-        content
-        images {
-          url
-        }
-      }
+}
     }
   }
 }`;

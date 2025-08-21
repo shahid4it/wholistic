@@ -70,7 +70,7 @@ export default async function Footer() {
                 ))}
               </ul>
               <ul>
-                {data.links.slice(5).map(({ title, href }) => (
+                {data.links.slice(6).map(({ title, href }) => (
                   <li key={title}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>

@@ -3,7 +3,7 @@ export const FOOTER_QUERY = `query getFooter {
     logo {
       url
     }
-    links {
+    links (pagination: {limit: 20}) {
       href
       title
     }

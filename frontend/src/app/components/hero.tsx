@@ -31,7 +31,7 @@ export default function Hero({
       </div>
       <div className="hero__content">
         <h1 className="hero__title">{title}</h1>
-        {content && <p>{content}</p>}
+        {content && <p className="hero__para">{content}</p>}
         {cta && (
           <Link href={cta.href} className="btn btn-primary">
             {cta.title}

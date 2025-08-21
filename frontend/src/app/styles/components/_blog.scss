@@ -1,0 +1,19 @@
+.blogs {
+  margin-top: 2em;
+  gap: 2em;
+
+  .blog {
+    img {
+      border-radius: 0.5em;
+      overflow: hidden;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 1em;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}

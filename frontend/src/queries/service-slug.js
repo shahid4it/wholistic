@@ -1,5 +1,5 @@
-export const ABOUT_QUERY = `query getAboutPage  {
-  about {
+export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
+  services(filters: {slug: {eq: "${slug}"}}) {
     sections {
       ... on ComponentUiBanner {
         __typename
@@ -10,10 +10,11 @@ export const ABOUT_QUERY = `query getAboutPage  {
         }
       }
 
-      ... on ComponentPreachersFounders {
+      ... on ComponentPreachersPreachers {
         __typename
-        marquee
+        title
         content
+        marquee
         preachers {
           name
           bio
@@ -24,6 +25,16 @@ export const ABOUT_QUERY = `query getAboutPage  {
         }
       }
 
+      ...on ComponentUiSection {
+      __typename
+        title
+        content
+        image {
+          url
+        }
+      }
+
+      
       ... on ComponentUiTestimonials {
       __typename
         title
@@ -37,12 +48,16 @@ export const ABOUT_QUERY = `query getAboutPage  {
         }
       }
 
-      ... on ComponentUiIntro  {
+      ... on ComponentBlogsRelatedArticles {
       __typename
-        content
-        images {
-          url
-        }
+      title
+      content
+      blogs {
+      title
+      summary
+      thumbnail {
+      url}
+      }
       }
     }
   }

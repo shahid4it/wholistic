@@ -411,6 +411,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.Relation<'oneToOne', 'api::preacher.preacher'>;
     content: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -424,7 +425,9 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
+    publishDate: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
+    summary: Schema.Attribute.Text;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -590,6 +593,36 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPsychicsPagePsychicsPage extends Struct.SingleTypeSchema {
+  collectionName: 'psychics_pages';
+  info: {
+    displayName: 'Psychics Page';
+    pluralName: 'psychics-pages';
+    singularName: 'psychics-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::psychics-page.psychics-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.DynamicZone<
+      ['ui.testimonials', 'ui.banner', 'preachers.preachers']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
@@ -625,6 +658,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
         'blogs.related-articles',
       ]
     >;
+    slug: Schema.Attribute.UID<'title'>;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -1257,6 +1291,7 @@ declare module '@strapi/strapi' {
       'api::home.home': ApiHomeHome;
       'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::preacher.preacher': ApiPreacherPreacher;
+      'api::psychics-page.psychics-page': ApiPsychicsPagePsychicsPage;
       'api::service.service': ApiServiceService;
       'api::services-page.services-page': ApiServicesPageServicesPage;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

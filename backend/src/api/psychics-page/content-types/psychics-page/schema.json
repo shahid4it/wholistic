@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "psychics_pages",
+  "info": {
+    "singularName": "psychics-page",
+    "pluralName": "psychics-pages",
+    "displayName": "Psychics Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "ui.testimonials",
+        "ui.banner",
+        "preachers.preachers"
+      ]
+    }
+  }
+}

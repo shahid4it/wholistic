@@ -15,7 +15,7 @@ export function Services({ title, content, services = [] }) {
         </div>
       </div>
 
-      <section className="container">
+      <section className="container services">
         {services.map(({ title, thumbnail, content }) => (
           <div key={title} className="service_thumbnail">
             <figure className="service_thumbnail__image">

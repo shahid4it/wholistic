@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
-export default function ({ name, bio, profile }) {
+export default function ({ name, bio, profile, tags }) {
   return (
     <div className="reader">
       <div className="reader__image">
@@ -37,15 +37,11 @@ export default function ({ name, bio, profile }) {
             <p>{bio}</p>
           </div>
           <div className="tags">
-            <Link href={"#"} className="tag">
-              Love
-            </Link>
-            <Link href={"#"} className="tag">
-              Tarot
-            </Link>
-            <Link href={"#"} className="tag">
-              Relationship
-            </Link>
+            {tags?.split(",").map((tag) => (
+              <Link key={tag} href={"#"} className="tag">
+                {tag}
+              </Link>
+            ))}
           </div>
         </div>
         <Link href="#" className="button">

@@ -1,121 +1,126 @@
 .introduction {
-    padding: scale(150) 0 scale(100);
+  padding: scale(150) 0 scale(100);
 }
 
 .introduction-below {
-    padding: scale(50) 0 scale(150);
+  padding: scale(50) 0 scale(150);
 
-    .image-holder {
-        width: 100%;
-        max-height: scale(725);
-        overflow: hidden;
-        border-radius: scale(12);
+  .image-holder {
+    width: 100%;
+    max-height: scale(725);
+    overflow: hidden;
+    border-radius: scale(12);
 
-        img {
-            width: 100%;
-            height: 130%;
-            object-fit: cover;
-        }
+    img {
+      width: 100%;
+      height: 130%;
+      object-fit: cover;
     }
+  }
+}
+
+.two-image-section {
+  .row {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 1.5em;
+  }
+  .image-holder {
+    width: 60%;
+  }
+  .image-holder:first-child {
+    width: 40%;
+    height: 80%;
+  }
 }
 
 // our Services
 
 .our-services {
+  background: $peach;
+  // background: linear-gradient(180deg, #FFDCBD 0%, #FFCB91 100%);
 
-    background: $peach;
-    // background: linear-gradient(180deg, #FFDCBD 0%, #FFCB91 100%);
+  .section-list {
+    margin-top: scale(150);
 
+    .services-image {
+      width: 100%;
+      height: 80vh;
+      border-radius: scale(12);
+      overflow: hidden;
 
-
-    .section-list {
-        margin-top: scale(150);
-
-        .services-image {
-            width: 100%;
-            height: 80vh;
-            border-radius: scale(12);
-            overflow: hidden;
-
-            img {
-                width: 100%;
-                height: auto;
-
-            }
-        }
-
-        .services-list {
-            height: 100%;
-
-            ul {
-                list-style: none;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                counter-reset: item; // start the counter
-
-                li {
-                    border-bottom: 1px solid rgba($white, .5);
-                    flex: 1;
-                    font-family: $swinton;
-                    font-weight: 500;
-                    counter-increment: item; // increment per li
-
-                    a {
-                        height: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        color: $burgundy;
-                        transition: .35s;
-
-                        .service-title {
-                            font-size: scale(48);
-                            transition: .35s;
-                            padding-left: 0;
-
-                        }
-
-                        &:hover {
-                            background: rgba(255, 255, 255, .1);
-
-                            .service-title {
-                                padding-left: scale(25);
-                            }
-
-                            &:after {
-                                margin-right: scale(24);
-                            }
-                        }
-
-                        &:after {
-                            content: counter(item, decimal-leading-zero);
-                            font-size: scale(24);
-                            font-family: "inter";
-                            color: $coral;
-                            transition: .35s;
-
-                        }
-                    }
-                }
-            }
-
-
-        }
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
+
+    .services-list {
+      height: 100%;
+
+      ul {
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        counter-reset: item; // start the counter
+
+        li {
+          border-bottom: 1px solid rgba($white, 0.5);
+          flex: 1;
+          font-family: $swinton;
+          font-weight: 500;
+          counter-increment: item; // increment per li
+
+          a {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: $burgundy;
+            transition: 0.35s;
+
+            .service-title {
+              font-size: scale(48);
+              transition: 0.35s;
+              padding-left: 0;
+            }
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.1);
+
+              .service-title {
+                padding-left: scale(25);
+              }
+
+              &:after {
+                margin-right: scale(24);
+              }
+            }
+
+            &:after {
+              content: counter(item, decimal-leading-zero);
+              font-size: scale(24);
+              font-family: "inter";
+              color: $coral;
+              transition: 0.35s;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-
 
 // Our Readers
 
 .our-readers {
-    .marquee {
-        color: $peach;
-    }
+  .marquee {
+    color: $peach;
+  }
 
-    .readers-list {
-        margin-top: scale(100);
-    }
+  .readers-list {
+    margin-top: scale(100);
+  }
 }

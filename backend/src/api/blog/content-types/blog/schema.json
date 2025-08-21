@@ -30,6 +30,17 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "summary": {
+      "type": "text"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::preacher.preacher"
+    },
+    "publishDate": {
+      "type": "date"
     }
   }
 }
