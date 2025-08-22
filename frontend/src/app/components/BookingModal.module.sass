@@ -1,0 +1,59 @@
+@import "../styles/global/mixins";
+
+.modal
+    position: fixed
+    inset: 0
+    z-index: 111
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: visibility ease-in-out 0.25s
+    transition-property: visibility, opacity
+
+    &.show
+        visibility: visible
+        opacity: 1
+        pointer-events: all
+
+    &_title
+        display: flex
+        justify-content: space-between
+        align-items: center
+        background: #FBD5CF
+        color: #3E3E3E
+        padding: scale(8) scale(16)
+
+        h3
+            font-size: scale(24)
+
+        svg
+            width: scale(18)
+
+        button
+            background: none
+            outline: none
+            border: none
+            cursor: pointer
+
+
+    &_backdrop
+        position: absolute
+        inset: 0
+        z-index: 1
+        background: rgba(black, 0.6)
+        outline: none
+        border: none
+
+    &_main
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 60%
+        z-index: 11
+        transform: translate(-50%, -50%)
+        background: white
+        border-radius: scale(8)
+        overflow: hidden
+
+    &_content
+        padding: scale(16)

@@ -14,7 +14,7 @@ export default async function Header() {
         <div className="headeer__right">
           <nav className="menu">
             <ul className="nav">
-              {data.links.map(({ title, href }) => (
+              {data.links?.map(({ title, href }) => (
                 <li>
                   <Link href={href || "#"}>{title}</Link>
                 </li>

@@ -1,14 +1,14 @@
+@import "./variable";
+
 @mixin font-size($value) {
-  font-size: ($value / $default * 100)+vw;
+  font-size: ($value / $default * 100) + vw;
 }
 
 @mixin margin-bottom($value) {
-  font-size: ($value / $default * 100)+vw;
+  font-size: ($value / $default * 100) + vw;
 }
 
-
 @function scale($value) {
-  $result: (
-    $value / $default * 100)+vw;
+  $result: ($value / $default * 100) + vw;
   @return $result;
 }

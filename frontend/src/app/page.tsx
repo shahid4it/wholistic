@@ -19,11 +19,9 @@ const COMP_MAP = {
 export default async function Home() {
   const { sections } = await fetchStrapi({ query: HOME_QUERY, key: "home" })();
 
-  console.log(sections);
-
   return (
     <section className="home">
-      {sections.map(({ __typename: typename, ...props }, i) => {
+      {sections?.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
 
         return Comp && <Comp key={i} {...props} />;

@@ -33,7 +33,7 @@ const SOCIALS = {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_123_741)">
+      <g clipPath="url(#clip0_123_741)">
         <path d="M12.4448 3.55664C0.651224 3.55664 0.444824 4.60544 0.444824 12.7966C0.444824 20.9878 0.651224 22.0366 12.4448 22.0366C24.2384 22.0366 24.4448 20.9878 24.4448 12.7966C24.4448 4.60544 24.2384 3.55664 12.4448 3.55664ZM16.2908 13.1974L10.9028 15.7126C10.4312 15.931 10.0448 15.6862 10.0448 15.1654V10.4278C10.0448 9.90824 10.4312 9.66224 10.9028 9.88064L16.2908 12.3958C16.7624 12.6166 16.7624 12.9766 16.2908 13.1974Z" />
       </g>
       <defs>
@@ -63,14 +63,14 @@ export default async function Footer() {
           <div className="col-3">
             <nav className="nav">
               <ul>
-                {data.links.slice(0, 6).map(({ title, href }) => (
+                {data.links?.slice(0, 6).map(({ title, href }) => (
                   <li key={title}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>
                 ))}
               </ul>
               <ul>
-                {data.links.slice(6).map(({ title, href }) => (
+                {data.links?.slice(6).map(({ title, href }) => (
                   <li key={title}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>
@@ -82,7 +82,7 @@ export default async function Footer() {
             <div className="social">
               <p>Stay Connected</p>
               <ul className="social-icons">
-                {data.socials.map(({ title, href }) => (
+                {data.socials?.map(({ title, href }) => (
                   <li>
                     <Link href={href || "#"} key={title}>
                       {SOCIALS[title]}
@@ -92,7 +92,7 @@ export default async function Footer() {
               </ul>
             </div>
             <div className="copyrights">
-              <p dangerouslySetInnerHTML={{ __html: data.copyright }} />
+              <p dangerouslySetInnerHTML={{ __html: data.copyright ?? "" }} />
             </div>
           </div>
         </div>

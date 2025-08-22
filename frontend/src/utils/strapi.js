@@ -15,9 +15,7 @@ export function fetchStrapi({ query = "", key = "" }) {
 
       return data;
     } else {
-      console.log(await res.json());
-      // return {};
-      throw Error();
+      return {};
     }
   };
 }

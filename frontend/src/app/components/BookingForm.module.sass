@@ -1,0 +1,50 @@
+@import "../styles/global/mixins.scss"
+    
+    
+.form
+    display: flex
+    gap: scale(32)
+    align-items: stretch
+
+    .right    
+        display: flex
+        gap: scale(16)
+        flex-direction: column
+        flex: 3
+
+        label:has(textarea)
+            flex: 1
+
+            textarea
+                height: 80%
+
+
+    label
+        span
+            color: #800000;
+            font-size: scale(18)
+            display: block
+
+    input, textarea, select
+        border-radius: scale(8);
+        border-width: 1px;
+        padding: scale(16);
+        border: 1px solid #FBD5CF
+        background: white
+        width: 100%
+        outline: none
+        color: #800000
+
+    .left
+        background: #FDEFEC;
+        flex: 1
+        padding: scale(16)
+
+
+    .group
+        display: flex
+        gap: scale(16)
+        width: 100%
+
+        & > *
+            flex: 1

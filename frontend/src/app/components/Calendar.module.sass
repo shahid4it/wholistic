@@ -1,0 +1,57 @@
+@import  "../styles/global/mixins"
+
+
+.calendar
+    width: fit-content
+
+    
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    color: #C55341
+    margin-bottom: scale(43)
+
+    button
+        background: none
+        border: none
+        outline: none
+        margin-left: 4px
+        cursor: pointer
+
+
+.day_labels
+    display: flex
+    font-size: scale(18)
+    color: #C55341
+    text-align: center
+    align-items: center
+
+    span
+        width: scale(56);
+
+.week
+    display: flex
+    width: 100%
+    text-align: center
+
+.day
+    width: scale(56);
+    height: scale(56);
+    font-size: scale(18)
+    background: none;
+    outline: none
+    border: none
+    color:  black
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+    &.disabled
+        opacity: 0.7
+
+.selected
+    background: #C55341
+    border-radius: 50%
+    color: white
