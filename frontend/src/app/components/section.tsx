@@ -7,11 +7,11 @@ export default function Section({ title, content, image }) {
       <section className="introduction">
         <div className="container">
           <div className="row">
-            <div className="col-8">
+            <div className="col-2">
               <h3 className="section-title">{title}</h3>
-              <div className="col-7 offset-1">
-                <p className="body-large">{content}</p>
-              </div>
+            </div>
+            <div className="col-6">
+              <p className="body-large">{content}</p>
             </div>
           </div>
         </div>

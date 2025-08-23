@@ -1,0 +1,32 @@
+.testimonial-card {
+    background: #fdefec;
+    border-radius: scale(12);
+    padding: scale(36);
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .rating {
+        display: flex;
+        gap: 2px;
+        justify-content: flex-end;
+
+        svg {
+            width: scale(20);
+            height: scale(20);
+        }
+    }
+
+    h4 {
+
+        font-size: scale(32);
+        font-weight: 400;
+        line-height: 1.25;
+    }
+
+    cite {
+        font-style: normal;
+        font-size: scale(24);
+        color: #c55341;
+    }
+}

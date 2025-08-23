@@ -30,17 +30,17 @@
     position: absolute;
     left: scale(100);
     bottom: scale(150);
+    width: 100%;
     color: $white;
 
     h1 {
       font-size: scale(90);
-
       font-weight: 500;
       @extend .width-4;
     }
   }
 
   #{$self}__para {
-    max-width: 600px;
+    width: scale(900);
   }
 }

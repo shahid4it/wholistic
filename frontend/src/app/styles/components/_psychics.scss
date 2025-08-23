@@ -3,9 +3,8 @@
 }
 
 .psychic {
-  height: 400px;
-  aspect-ratio: 12/16;
-  border-radius: 8px;
+  height: scale(600);
+  border-radius: scale(12);
   overflow: hidden;
   position: relative;
 
@@ -13,11 +12,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(45, 23, 3, 0) 35.27%,
-      rgba(45, 23, 3, 0.88) 97.71%
-    );
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 50.27%,
+        rgba(0, 0, 0, 0.8) 90%);
   }
 
   img {
@@ -32,36 +29,31 @@
     left: 0;
     right: 0;
     z-index: 1;
-    padding: 20px;
+    padding: scale(20);
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: scale(8);
 
     .tags {
-      gap: 4px;
+      gap: scale(8);
       display: flex;
+      margin-top: scale(16);
 
       .tag {
-        background: #800000;
+        background: $burgundy;
 
         color: white;
       }
     }
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: scale(16);
+      height: scale(16);
     }
 
     h3 {
       color: white;
-      font-size: 32px;
-    }
-
-    p {
-      font-size: 14px;
-      margin: 4px 0;
     }
   }
 }

@@ -1,0 +1,29 @@
+.testimonials-page {
+    .section-testimonials {
+        background-color: $white;
+        padding-top: scale(100);
+
+        .marquee {
+            color: $lightest-peach;
+        }
+
+        .container .row {
+            .col-3 {
+                margin-bottom: 30px;
+
+                &:nth-child(2n + 1) {
+                    @extend .offset-1
+                }
+            }
+        }
+
+
+
+    }
+
+    .section-psychics {
+        .introduction {
+            padding-top: 0;
+        }
+    }
+}

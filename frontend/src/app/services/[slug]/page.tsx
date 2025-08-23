@@ -26,7 +26,7 @@ export default async function Service({ params: { slug = "" } }) {
       {sections.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
 
-        return Comp && <Comp key={i} {...props} />;
+        return Comp && <Comp key={i} {...props} inner />;
       })}
     </section>
   );

@@ -39,7 +39,7 @@ export function Testimonials({ title: marquee, testimonials }) {
         </div>
       </div>
       <div className="container">
-        <div className="testimonials-inner">
+        <div className="row">
           {[
             ...testimonials,
             ...testimonials,
@@ -54,13 +54,15 @@ export function Testimonials({ title: marquee, testimonials }) {
             ...testimonials,
             ...testimonials,
           ].map(({ content, client }) => (
-            <div key={client} className="testimonial">
-              <span className="rating">
-                {new Array(4).fill(0).map((_, i) => StarFilled)}
-                {StarOutline}
-              </span>
-              <p>{content}</p>
-              <cite>{client}</cite>
+            <div className="col-3">
+              <article key={client} className="testimonial-card">
+                <span className="rating">
+                  {new Array(4).fill(0).map((_, i) => StarFilled)}
+                  {StarOutline}
+                </span>
+                <h4>{content}</h4>
+                <cite>{client}</cite>
+              </article>
             </div>
           ))}
         </div>

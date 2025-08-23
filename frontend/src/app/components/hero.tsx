@@ -1,9 +1,6 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import StringTune from "@fiddle-digital/string-tune";
-import { StringParallax } from "@fiddle-digital/string-tune";
+
 import { StrapiImage } from "./StrapiImage";
 
 export default function Hero({
@@ -12,11 +9,6 @@ export default function Hero({
   backdrop = { url: "" },
   cta = { title: "", href: "" },
 }) {
-  useEffect(() => {
-    const tune = StringTune.getInstance();
-    tune.use(StringParallax);
-    tune.start(60); // Start at 60 FPS (adjust as needed)
-  }, []);
   return (
     <section className="hero">
       <div className="hero__background">
@@ -31,7 +23,7 @@ export default function Hero({
       </div>
       <div className="hero__content">
         <h1 className="hero__title">{title}</h1>
-        {content && <p className="hero__para">{content}</p>}
+        {content && <p className="hero__para body-mid">{content}</p>}
         {cta && (
           <Link href={cta.href} className="btn btn-primary">
             {cta.title}

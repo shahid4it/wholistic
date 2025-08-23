@@ -7,19 +7,18 @@
     height: 100%;
     overflow: hidden;
     margin-left: scale(-120);
+    max-height: 90vh;
 
     img {
       width: 100%;
-      height: auto;
-      max-height: 90vh;
+      height: 120%;
       object-fit: cover;
     }
   }
 
   #{$self}__content {
     align-content: center;
-    height: 100%;
-    padding: 3em 0;
+    padding: scale(100) 0;
 
     h2 {
       font-size: scale(60);

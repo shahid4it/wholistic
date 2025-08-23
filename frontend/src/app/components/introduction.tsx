@@ -27,8 +27,9 @@ export default function Introduction() {
           <div className="row">
             <div className="col-5">
               <div className="image-holder">
-                <StrapiImage
+                <Image
                   src="/images/intro-image.png"
+                  // src={profile?.url}
                   width={1000}
                   height={800}
                   alt="Hero Background"
