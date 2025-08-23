@@ -25,9 +25,11 @@
     align-items: flex-end;
     gap: 1.5em;
   }
+
   .image-holder {
     width: 60%;
   }
+
   .image-holder:first-child {
     width: 40%;
     height: 80%;
@@ -51,7 +53,8 @@
 
       img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
       }
     }
 
@@ -78,17 +81,18 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: $burgundy;
+            color: $coral;
             transition: 0.35s;
 
             .service-title {
               font-size: scale(48);
               transition: 0.35s;
               padding-left: 0;
+              font-weight: 400;
             }
 
             &:hover {
-              background: rgba(255, 255, 255, 0.1);
+              background: rgba(255, 255, 255, 0.2);
 
               .service-title {
                 padding-left: scale(25);
@@ -122,5 +126,14 @@
 
   .readers-list {
     margin-top: scale(100);
+  }
+
+  &.inner {
+    background-color: $peach;
+    // margin-bottom: scale(150);
+
+    .marquee {
+      color: $lightest-peach;
+    }
   }
 }

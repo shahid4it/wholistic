@@ -54,4 +54,19 @@
             }
         }
     }
+
+    &.inner {
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        @extend .col-2;
+        border: 1px solid red;
+
+        #{$self}__image {
+            border: 1px solid red;
+            width: 100%;
+
+        }
+
+    }
 }

@@ -21,7 +21,7 @@ export default async function TestimonialsPage() {
   console.log(sections);
 
   return (
-    <section className="home">
+    <section className="testimonials-page">
       {sections.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
 
