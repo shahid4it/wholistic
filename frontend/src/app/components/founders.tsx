@@ -19,6 +19,7 @@ export function Founders({ content = "", preachers = [], marquee = "" }) {
                   width={627}
                   height={850}
                   alt="Founder"
+                  string="parallax"
                 />
               )}
             </div>
