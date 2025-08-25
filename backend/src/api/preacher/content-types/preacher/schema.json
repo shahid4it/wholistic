@@ -29,6 +29,32 @@
     },
     "tags": {
       "type": "string"
+    },
+    "tools": {
+      "type": "string"
+    },
+    "oneliner": {
+      "type": "string"
+    },
+    "topics": {
+      "type": "string"
+    },
+    "abilities": {
+      "type": "string"
+    },
+    "style": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "preacher"
     }
   }
 }

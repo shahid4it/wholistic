@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
 
-export default function ({ name, bio, profile, tags, onBooking }) {
+export default function ({ name, oneliner, profile, tags, onBooking, slug }) {
   return (
     <>
       <div className="reader">
@@ -19,7 +19,7 @@ export default function ({ name, bio, profile, tags, onBooking }) {
           <div className="upper-content">
             <div className="name">
               <h3>
-                <Link href={`/psychics/${name}`}>{name}</Link>
+                <Link href={`/psychics/${slug}`}>{name}</Link>
               </h3>
               <div className="rating">
                 <span>4.7</span>
@@ -39,7 +39,7 @@ export default function ({ name, bio, profile, tags, onBooking }) {
               </div>
             </div>
             <div className="bio">
-              <p>{bio}</p>
+              <p>{oneliner}</p>
             </div>
             <div className="tags">
               {tags?.split(",").map((tag) => (

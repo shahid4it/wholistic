@@ -4,7 +4,7 @@ import styles from "./BookingForm.module.sass";
 import { Calendar } from "./Calender";
 
 export function BookingForm({
-  services = ["Tarot", "Gemstone Healing", "Therapy"],
+  services = [],
   timeSlots = ["10:00am -  11:00am", "11:15am - 12:15pm", "12:30pm - 1:30pm"],
   onCancel,
 }) {
@@ -46,19 +46,9 @@ export function BookingForm({
           <label>
             <span>Services</span>
             <select name="service">
-              {services.map((service) => (
+              {services.map(({ title: service }) => (
                 <option key={service}>{service}</option>
               ))}
-            </select>
-          </label>
-          <label>
-            <span>Minutes</span>
-            <select name="duration">
-              <option>30 Minutes</option>
-              <option>45 Minutes</option>
-              <option>1 hour</option>
-              <option>1 hour 30 Minutes</option>
-              <option>2 hours</option>
             </select>
           </label>
         </div>

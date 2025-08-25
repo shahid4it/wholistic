@@ -31,8 +31,13 @@ export const HOME_QUERY = `query getHomePage  {
         marquee
         preachers {
           name
-          bio
+          oneliner
+          slug
           tags
+          services {
+          title
+          slug
+          }
           profile {
             url
           }

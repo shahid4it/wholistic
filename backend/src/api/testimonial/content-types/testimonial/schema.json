@@ -16,6 +16,14 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "reader": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::preacher.preacher"
     }
   }
 }

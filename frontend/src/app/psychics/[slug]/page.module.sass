@@ -1,5 +1,61 @@
-.section--testimonials
+@import "../../styles/global/mixins"
+    
+.testimonials
     background: #FBD5CF
 
-    .testimonial-card
+    h2
+        margin-bottom: 3em
+
+    .card
         background: white
+
+
+.about
+    flex: 1
+
+.profile
+    img
+        object-fit: cover
+
+.intro
+    background: white
+
+    .right
+        margin-left: 8em
+
+.name
+    display: flex
+    justify-content: space-between
+    gap: 1em
+    align-items: center
+    margin-bottom: 1em
+
+    .booking
+        display: flex
+        gap: 0.5em
+        align-items: center
+        white-space: nowrap
+    
+
+    h1
+        font-size: scale(96)
+        color: #800000
+
+
+.features
+    margin-top: 2em
+
+    p
+        padding: scale(16) 0
+        border-top: 1px solid #FBD5CF
+
+        &:last-child
+            border-bottom: 1px solid #FBD5CF
+
+        span
+            width: scale(200)
+            display: inline-block
+            white-space: nowrap
+            color: #C55341
+
+

@@ -44,6 +44,7 @@ export default function Readers({ readers = [] }) {
         }}
       >
         <BookingForm
+          services={reader?.services}
           onCancel={() => {
             setIsReaderModalOpen(false);
             setTimeout(() => setReader(undefined), 500);

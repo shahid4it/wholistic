@@ -18,14 +18,14 @@ const StarFilled = (
   </svg>
 );
 
-function Psychic({ name, bio, profile, tags }) {
+function Psychic({ name, bio, profile, tags, oneliner }) {
   return (
     <div className="psychic">
       <StrapiImage src={profile?.url} width={300} height={400} alt="" />
       <div className="psychic__content">
         <h3>{name}</h3>
         <span>4.7 {StarFilled} (2026)</span>
-        <p>{bio}</p>
+        <p>{oneliner}</p>
         <div className="tags">
           {tags?.split(",").map((tag) => (
             <span className="tag">{tag}</span>

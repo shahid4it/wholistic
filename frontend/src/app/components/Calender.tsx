@@ -76,7 +76,9 @@ export function Calendar() {
 
   const todayDay = new Date().getDate();
 
-  const isSelectedMonth = month.getMonth() === selectedData.getMonth();
+  const isSelectedMonth =
+    month.getMonth() === selectedData.getMonth() &&
+    month.getFullYear() === selectedData.getFullYear();
 
   return (
     <div className={styles.calendar}>
@@ -158,7 +160,6 @@ export function Calendar() {
                     } `}
                     key={i}
                     onClick={() => {
-                      console.log("clicked");
                       const newDate = new Date(month);
                       newDate.setDate(val);
                       setSelectedData(newDate);

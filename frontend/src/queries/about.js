@@ -16,7 +16,8 @@ export const ABOUT_QUERY = `query getAboutPage  {
         content
         preachers {
           name
-          bio
+          oneliner
+          slug
           tags
           profile {
             url

@@ -17,7 +17,8 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
         marquee
         preachers {
           name
-          bio
+          oneliner
+          slug
           tags
           profile {
             url

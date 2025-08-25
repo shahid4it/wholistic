@@ -44,6 +44,12 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "preacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::preacher.preacher",
+      "inversedBy": "services"
     }
   }
 }

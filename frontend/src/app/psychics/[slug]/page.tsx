@@ -1,5 +1,13 @@
+import { fetchStrapi } from "@/utils/strapi";
 import { RelatedArticles } from "../../components/RelatedArticles";
-import "./page.module.sass";
+import {
+  PSYCHICS_BLOG_SLUG_QUERY,
+  PSYCHICS_SLUG_QUERY,
+  PSYCHICS_TESTIMONIALS_SLUG_QUERY,
+} from "@/queries/psychics-slug";
+import styles from "./page.module.sass";
+import { StrapiImage } from "@/app/components/StrapiImage";
+import { BookingFormModal } from "@/app/components/BookingFormModal";
 
 const StarFilled = (
   <svg
@@ -33,17 +41,31 @@ const StarOutline = (
 );
 
 export default async function PsychicPage({ params: { slug = "" } }) {
+  const [[reader], testimonials, blogs] = await Promise.all([
+    fetchStrapi({ key: "preachers", query: PSYCHICS_SLUG_QUERY(slug) })(),
+    fetchStrapi({
+      key: "testimonials",
+      query: PSYCHICS_TESTIMONIALS_SLUG_QUERY(slug),
+    })(),
+    fetchStrapi({ key: "blogs", query: PSYCHICS_BLOG_SLUG_QUERY(slug) })(),
+  ]);
+
   return (
     <main>
       <section className="section">
         <div className="container">
-          <figure>
-            <img />
+          <figure className={styles.profile}>
+            <StrapiImage
+              src={reader.profile.url}
+              alt=""
+              width={350}
+              height={400}
+            />
           </figure>
-          <div>
-            <div className="name">
-              <h1>Cleo</h1>
-              <div>
+          <div className={styles.about}>
+            <div className={styles.name}>
+              <h1>{reader.name}</h1>
+              <div className={styles.booking}>
                 <div className="rating">
                   <span>4.7</span>
                   <svg
@@ -60,65 +82,69 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                   </svg>
                   <span>(4658)</span>
                 </div>
-                <button type="button" className="button">
-                  Book a Session
-                </button>
+                <BookingFormModal reader={reader} />
+              </div>
+            </div>
+            <div>
+              <p>{reader.oneliner}</p>
+              <div className={styles.features}>
+                <p>
+                  <span>Total Readings</span> 15,429
+                </p>
+                <p>
+                  <span>Abilities</span> {reader.abilities}
+                </p>
+                <p>
+                  <span>Tools</span> {reader.tools}
+                </p>
+                <p>
+                  <span>Style</span> {reader.style}
+                </p>
+                <p>
+                  <span>Topics</span> {reader.topics}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="introduction">
+      <section className={`introduction ${styles.intro}`}>
         <div className="container">
-          <div className="row">
-            <div className="col-2">
-              <h3 className="section-title">About</h3>
+          <div className="">
+            <div className="col-4">
+              <h3 className="section-title">About {reader.name}</h3>
             </div>
-            <div className="col-6">
-              <p className="body-large">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum asperiores error rem ut quaerat fuga alias, incidunt
-                a maxime velit, earum doloremque laboriosam rerum! Pariatur
-                beatae rerum voluptates quam quibusdam!
-              </p>
+            <div className={`col-8 ${styles.right} `}>
+              <p className="body-large">{reader.bio}</p>
             </div>
           </div>
         </div>
       </section>
-      <section className="section section--testimonials">
+      <section className={`section ${styles.testimonials}`}>
         <div className="container">
-          <h2 className="col-8">Whay people say about cleo</h2>
+          <h2 className="col-8">What people say about {reader.name}</h2>
         </div>
         <div className="container">
           <div className="row">
             <div className="col-3">
-              <article className="testimonial-card">
-                <span className="rating">
-                  {new Array(4).fill(0).map((_, i) => StarFilled)}
-                  {StarOutline}
-                </span>
-                <h4>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                  rem officia ex, in est nisi maxime voluptate ad porro beatae
-                  cupiditate nesciunt inventore itaque odio veniam quibusdam
-                  provident labore exercitationem.
-                </h4>
-                <cite>- Client</cite>
-              </article>
+              {testimonials.map(({ client, content, rating }) => (
+                <article
+                  className={`testimonial-card ${styles.card} `}
+                  key={client}
+                >
+                  <span className="rating">
+                    {new Array(rating).fill(0).map((_, i) => StarFilled)}
+                    {StarOutline}
+                  </span>
+                  <h4>{content}</h4>
+                  <cite>&mdash; {client}</cite>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
-      <RelatedArticles
-        title="Articles by Cleo"
-        blogs={[
-          {
-            title: "title",
-            summary: "summary",
-            thumbnail: { url: "/image.png" },
-          },
-        ]}
-      />
+      <RelatedArticles title={`Articles by ${reader.name}`} blogs={blogs} />
     </main>
   );
 }

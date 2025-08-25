@@ -17,7 +17,12 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
         content
         preachers {
           name
-          bio
+          oneliner
+          services {
+          title
+          slug
+          }
+          slug
           tags
           profile {
             url
