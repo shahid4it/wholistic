@@ -1,0 +1,67 @@
+.form {
+    display: flex;
+    gap: scale(32);
+    align-items: stretch;
+
+    .right {
+        display: flex;
+        gap: scale(16);
+        flex-direction: column;
+        flex: 1;
+
+        label:has(textarea) {
+            flex: 1;
+
+            textarea {
+                height: 80%;
+            }
+        }
+    }
+
+    label {
+
+        span {
+            color: $burgundy;
+            display: block;
+            margin-bottom: scale(12);
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        border-radius: scale(8);
+
+        border-width: 1px;
+
+        padding: scale(16);
+        font-size: 18px;
+
+        border: 1px solid $peach;
+        background: white;
+        width: 100%;
+        outline: none;
+        color: $burgundy;
+    }
+
+    .left {
+        background: #FDEFEC;
+        width: scale(500);
+        padding: scale(24);
+        border-radius: scale(8);
+    }
+
+    .group {
+        display: flex;
+        gap: scale(16);
+        width: 100%;
+
+        &>* {
+            flex: 1;
+        }
+    }
+
+    .buttons {
+        margin-top: scale(16);
+    }
+}

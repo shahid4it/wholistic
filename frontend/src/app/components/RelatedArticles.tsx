@@ -14,22 +14,31 @@ export function RelatedArticles({ title, content, blogs }) {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="blogs">
+
+      <div className="related-articles">
+        <div className="container">
           {blogs.map((props) => (
-            <div key={props.title} className="blog">
-              {props.thumbnail && (
-                <StrapiImage
-                  src={props.thumbnail?.url}
-                  alt=""
-                  width={300}
-                  height={170}
-                />
-              )}
-              <h3>
-                <Link href={"#"}>{props.title}</Link>
-              </h3>
-              <p>{props.summary}</p>
+            <div className="row">
+              <div className="col-3">
+                <article key={props.title} className="article">
+                  {props.thumbnail && (
+                    <div className="article-image">
+                      <StrapiImage
+                        src={props.thumbnail?.url}
+                        alt=""
+                        width={300}
+                        height={170}
+                      />
+                    </div>
+                  )}
+                  <div className="article-content">
+                    <h3>
+                      <Link href={"#"}>{props.title}</Link>
+                    </h3>
+                    <p>{props.summary}</p>
+                  </div>
+                </article>
+              </div>
             </div>
           ))}
         </div>

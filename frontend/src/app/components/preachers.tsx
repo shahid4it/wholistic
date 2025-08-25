@@ -9,7 +9,7 @@ export function Preachers({ title, content, marquee, preachers }) {
           <span>{marquee}</span>
         </div>
       </div>
-      <section className="section-content">
+      {/* <section className="section-content">
         <div className="container">
           <div className="row">
             <div className="col-4">
@@ -22,7 +22,7 @@ export function Preachers({ title, content, marquee, preachers }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Readers readers={preachers} />
     </section>

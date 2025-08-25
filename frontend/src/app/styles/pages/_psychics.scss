@@ -1,0 +1,78 @@
+.psychic-single {
+
+    .about {
+        .profile {
+            img {
+                width: 100%;
+                height: scale(673);
+                object-fit: cover;
+                border-radius: scale(8);
+            }
+        }
+
+        .name-booking {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: scale(30);
+
+            h1 {
+                font-size: scale(96);
+                font-weight: 500;
+                color: $burgundy;
+            }
+
+            .booking {
+                display: flex;
+                gap: scale(30);
+                align-items: center;
+                white-space: nowrap;
+            }
+        }
+
+        .tagline {
+            font-size: scale(32);
+            font-weight: 400;
+            margin: scale(24) 0;
+            display: inline-block;
+
+        }
+
+
+        .intro-table {
+
+            p {
+                padding: scale(24) 0;
+                border-top: 1px solid #FBD5CF;
+                // font-size: scale(24);
+                font-size: clamp(18px, scale(24), 30px);
+                line-height: 1.5;
+
+                &:last-child {
+                    border-bottom: 1px solid #FBD5CF;
+                }
+
+                span {
+                    width: scale(200);
+                    display: inline-block;
+                    white-space: nowrap;
+                    color: $coral;
+                }
+            }
+        }
+
+    }
+
+    .intro {
+        background: white;
+    }
+
+    .testimonials {
+        background: #FBD5CF;
+        margin-bottom: 0;
+
+        .card {
+            background: white;
+        }
+    }
+}

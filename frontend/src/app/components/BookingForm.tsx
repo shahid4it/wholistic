@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./BookingForm.module.sass";
+// import styles from "./BookingForm.module.sass";
 import { Calendar } from "./Calender";
 
 export function BookingForm({
@@ -10,13 +10,13 @@ export function BookingForm({
 }) {
   return (
     <form
-      className={styles.form}
+      className="form"
       onSubmit={(e) => {
         e.preventDefault();
         console.log(Object.fromEntries(new FormData(e.target).entries()));
       }}
     >
-      <div className={styles.left}>
+      <div className="left">
         <Calendar />
         <label>
           <span>Time Slot</span>
@@ -27,12 +27,12 @@ export function BookingForm({
           </select>
         </label>
       </div>
-      <div className={styles.right}>
+      <div className="right">
         <label>
           <span>Full Name</span>
           <input name="fullname" />
         </label>
-        <div className={styles.group}>
+        <div className="group">
           <label>
             <span>Email</span>
             <input name="email" />
@@ -42,7 +42,7 @@ export function BookingForm({
             <input name="contact" />
           </label>
         </div>
-        <div className={styles.group}>
+        <div className="group">
           <label>
             <span>Services</span>
             <select name="service">
@@ -56,7 +56,7 @@ export function BookingForm({
           <span>Message</span>
           <textarea name="message" placeholder="Message"></textarea>
         </label>
-        <div className={styles.group}>
+        <div className="group buttons">
           <button type="submit" className="button small">
             Book a Session
           </button>

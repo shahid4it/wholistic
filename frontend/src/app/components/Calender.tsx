@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import styles from "./Calendar.module.sass";
+// import styles from "./Calendar.module.sass";
 
 const months = [
   "January",
@@ -81,12 +81,10 @@ export function Calendar() {
     month.getFullYear() === selectedData.getFullYear();
 
   return (
-    <div className={styles.calendar}>
-      <div className={styles.header}>
-        <label>
-          <span>
-            {months[month.getMonth()]} {month.getFullYear()}
-          </span>
+    <div className="calendar">
+      <div className="cal-header">
+        <h4>
+          {months[month.getMonth()]} {month.getFullYear()}
           <input
             name="date"
             type="text"
@@ -94,7 +92,7 @@ export function Calendar() {
             hidden
             value={selectedData.toLocaleString()}
           />
-        </label>
+        </h4>
         <div>
           <button type="button" onClick={onPrev}>
             <svg
@@ -133,7 +131,7 @@ export function Calendar() {
         </div>
       </div>
       <div>
-        <div className={styles.day_labels}>
+        <div className="day_labels">
           <span>Mon</span>
           <span>Tue</span>
           <span>Wed</span>
@@ -143,21 +141,19 @@ export function Calendar() {
           <span>Sun</span>
         </div>
         {weeks.map((week, i) => (
-          <div className={styles.week} key={i}>
+          <div className="week" key={i}>
             {week.map((val, i) =>
               val ? (
                 isCurrentMonthDisplayed && val < todayDay ? (
-                  <span className={`${styles.day} ${styles.disabled} `}>
-                    {val}
-                  </span>
+                  <span className="day disabled">{val}</span>
                 ) : (
                   <button
                     type="button"
-                    className={`${styles.day} ${
+                    className={`day ${
                       isSelectedMonth && selectedData.getDate() === val
-                        ? styles.selected
+                        ? "selected"
                         : ""
-                    } `}
+                    }`}
                     key={i}
                     onClick={() => {
                       const newDate = new Date(month);
@@ -169,7 +165,7 @@ export function Calendar() {
                   </button>
                 )
               ) : (
-                <span className={styles.day} />
+                <span className="day" />
               )
             )}
           </div>

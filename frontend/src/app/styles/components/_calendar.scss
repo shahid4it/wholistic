@@ -1,0 +1,74 @@
+.calendar {
+    margin-bottom: scale(30);
+    padding-bottom: scale(30);
+    border-bottom: 1px solid $peach;
+
+    .cal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: scale(40);
+
+        h4 {
+            font-weight: 500;
+            font-size: scale(24);
+            font-family: $swinton;
+            color: $burgundy;
+        }
+
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    }
+
+    .day_labels {
+        display: flex;
+        color: $coral;
+        text-align: center;
+        align-items: center;
+        font-weight: 500;
+        font-size: 18px;
+
+        span {
+            flex: 1;
+            flex-shrink: 0;
+        }
+    }
+
+    .week {
+        display: flex;
+        width: 100%;
+        text-align: center;
+
+
+        .day {
+            flex: 1;
+            flex-shrink: 0;
+            height: scale(56);
+            font-size: 18px;
+            background: none;
+            outline: none;
+            border: none;
+            color: $black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            &.disabled {
+                opacity: 0.5;
+            }
+        }
+
+        .selected {
+            background: $coral;
+            border-radius: 100px;
+            color: white;
+        }
+    }
+
+}
