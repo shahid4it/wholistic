@@ -4,12 +4,13 @@
   color: $lightest-peach;
   padding: scale(20) scale(24);
   text-align: center;
-  transition: background-color 0.35s;
+  transition: 0.35s;
   border-radius: scale(8);
   font-weight: 500;
   font-size: clamp(16px, scale(18), 20px);
   outline: 0;
   border: 0;
+  cursor: pointer;
 
   &:hover {
     // background-color: lighten($burgundy, 10%);
@@ -26,6 +27,7 @@
   background-color: white;
   color: $burgundy;
   border: 1px solid $burgundy;
+  border-radius: 100px;
 }
 
 .load-more {
@@ -33,4 +35,5 @@
   margin: auto;
   width: fit-content;
   margin-top: 2em;
+
 }

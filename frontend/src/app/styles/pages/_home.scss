@@ -50,11 +50,31 @@
       height: 80vh;
       border-radius: scale(12);
       overflow: hidden;
+      position: relative;
+
+      .image-wrapper {
+        overflow: hidden;
+        /* important so clip-path stays inside */
+        display: inline-block;
+      }
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .bg-image {
+        z-index: 1;
+        /* background stays */
+      }
+
+      .fg-image {
+        z-index: 2;
+        /* fade in on top */
       }
     }
 

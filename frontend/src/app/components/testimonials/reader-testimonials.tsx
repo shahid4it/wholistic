@@ -35,7 +35,11 @@ const StarOutline = (
 );
 
 export function ReaderTestimonials({ testimonials = [], reader = {} }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    dragFree: true,
+    // align: "start",
+  });
   const [progress, setProgress] = useState(0);
 
   const onScroll = useCallback(() => {

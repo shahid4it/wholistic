@@ -29,7 +29,10 @@ export default function Testimonials({
   content = "",
   background: image = { url: "" },
 }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+  });
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),

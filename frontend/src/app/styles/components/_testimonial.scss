@@ -41,8 +41,14 @@
 .testimonial-slider {
   $self: &;
 
+  // .embla {
+  //   overflow: hidden;
+  //   width: 100%;
+  // }
+
   .embla__container {
     gap: scale(100);
+
   }
 
   .embla__slide {
@@ -78,10 +84,10 @@
   width: 100%;
 
   .embla__button {
-    width: 72px;
-    height: 72px;
+    width: scale(72);
+    height: scale(72);
     flex-shrink: 0;
-    border-radius: 40px;
+    border-radius: 100px;
     transform: none;
     background-color: $lightest-peach;
     font-size: 0;
@@ -101,11 +107,11 @@
     }
 
     &.embla__prev {
-      left: -100px;
+      left: scale(-85);
     }
 
     &.embla__next {
-      right: -100px;
+      right: scale(-85);
     }
   }
 }

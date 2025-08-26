@@ -26,6 +26,8 @@ export function Services({ title, content, services = [] }) {
                       alt=""
                       width={500}
                       height={500}
+                      string="parallax"
+                      string-parallax="1"
                     />
                   </figure>
                   <div className="service-card__content">

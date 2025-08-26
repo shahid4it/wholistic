@@ -40,7 +40,11 @@ function Psychic({ name, bio, profile, tags, oneliner, slug }) {
 }
 
 export function Psychics({ title, content, marquee, preachers = [] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    dragFree: true,
+    // align: "start",
+  });
   const [progress, setProgress] = useState(0);
 
   const onScroll = useCallback(() => {

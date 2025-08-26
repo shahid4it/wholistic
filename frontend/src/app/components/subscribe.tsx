@@ -23,7 +23,9 @@ export default async function Subscribe() {
                 height={1000}
                 alt="Hero Background"
                 string="parallax"
-                string-parallax="1"
+                string-parallax="0.2"
+                string-parallax-bias="0.0"
+                string-repeat
               />
             </div>
           </div>

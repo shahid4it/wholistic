@@ -6,7 +6,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
 export function RelatedArticles({ title, content, blogs }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    dragFree: true,
+    // align: "start",
+  });
   const [progress, setProgress] = useState(0);
 
   const onScroll = useCallback(() => {

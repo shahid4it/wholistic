@@ -43,12 +43,14 @@
     white-space: nowrap;
     font-family: $swinton;
     margin-bottom: scale(100);
+    margin-top: scale(-50);
     line-height: 1;
     // animation: marquee 20s linear infinite;
 
     .marquee__inner {
         display: inline-flex;
-        gap: var(--gap);
+        gap: scale(100);
+
         white-space: nowrap;
         will-change: transform;
         animation: marquee var(--speed) linear infinite;
