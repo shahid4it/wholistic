@@ -6,11 +6,12 @@ import { SERVICE_SLUG_QUERY } from "@/queries/service-slug";
 import { Preachers } from "../../components/preachers";
 import { RelatedArticles } from "@/app/components/RelatedArticles";
 import Section from "@/app/components/section";
+import { Psychics } from "@/app/components/psychics/psychics";
 
 const COMP_MAP = {
   ComponentUiBanner: Hero,
   ComponentUiSection: Section,
-  ComponentPreachersPreachers: Preachers,
+  ComponentPreachersPreachers: Psychics,
   ComponentUiTestimonials: Testimonials,
   ComponentBlogsRelatedArticles: RelatedArticles,
 };

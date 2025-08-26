@@ -2,6 +2,7 @@
 import { StrapiImage } from "../StrapiImage";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
 
 const StarFilled = (
   <svg
@@ -18,12 +19,14 @@ const StarFilled = (
   </svg>
 );
 
-function Psychic({ name, bio, profile, tags, oneliner }) {
+function Psychic({ name, bio, profile, tags, oneliner, slug }) {
   return (
     <div className="psychic">
       <StrapiImage src={profile?.url} width={300} height={400} alt="" />
       <div className="psychic__content">
-        <h3>{name}</h3>
+        <h3>
+          <Link href={`/psychics/${slug}`}>{name}</Link>
+        </h3>
         <span>4.7 {StarFilled} (2026)</span>
         <p>{oneliner}</p>
         <div className="tags">
@@ -84,8 +87,18 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
-                {preachers.map((props) => (
-                  <Psychic key={props.name} {...props} />
+                {[
+                  ...preachers,
+                  ...preachers,
+                  ...preachers,
+                  ...preachers,
+                  ...preachers,
+                  ...preachers,
+                  ...preachers,
+                ].map((props) => (
+                  <div className="col-2">
+                    <Psychic key={props.name} {...props} />
+                  </div>
                 ))}
               </div>
             </div>

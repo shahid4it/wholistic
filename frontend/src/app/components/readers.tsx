@@ -10,8 +10,20 @@ import { BookingModal } from "./BookingModal";
 import { BookingForm } from "./BookingForm";
 
 export default function Readers({ readers = [] }) {
+  readers = [
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+    ...readers,
+  ];
   const [reader, setReader] = useState();
   const [isReaderModalOpen, setIsReaderModalOpen] = useState(false);
+  const [size, setSize] = useState(1);
 
   return (
     <>
@@ -19,7 +31,7 @@ export default function Readers({ readers = [] }) {
         <div className="container">
           <ReaderModalContext.Provider value={reader}>
             <div className="row">
-              {readers.map((preacher) => (
+              {readers.slice(0, size * 6).map((preacher) => (
                 <div className="col-4" key={preacher.name}>
                   <Reader
                     {...preacher}
@@ -33,6 +45,17 @@ export default function Readers({ readers = [] }) {
             </div>
           </ReaderModalContext.Provider>
         </div>
+
+        {size * 6 < readers.length && (
+          <div className="load-more">
+            <button
+              className="button button-outline small"
+              onClick={() => setSize(size + 1)}
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </section>
 
       <BookingModal

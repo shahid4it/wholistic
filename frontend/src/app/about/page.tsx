@@ -12,7 +12,7 @@ const CustomIntro = ({ title = "", content = "" }) => {
       <div className="container">
         <div className="row">
           <div className="col-2">
-            <h3 className="section-title">{title}</h3>
+            <h3 className="section-title">About Us</h3>
           </div>
           <div className="col-6">
             <p className="body-large">{content}</p>
@@ -44,7 +44,7 @@ const CustomIntro = ({ title = "", content = "" }) => {
 
 const COMP_MAP = {
   ComponentUiBanner: Hero,
-  ComponentUiSection: CustomIntro,
+  ComponentUiIntro: CustomIntro,
   ComponentPreachersFounders: Founders,
   ComponentUiTestimonials: Testimonials,
   ComponentUiFaqs: FAQ,
