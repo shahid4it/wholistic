@@ -5,7 +5,7 @@ import { Calendar } from "./Calender";
 
 export function BookingForm({
   services = [],
-  timeSlots = ["10:00am -  11:00am", "11:15am - 12:15pm", "12:30pm - 1:30pm"],
+  timeSlots = ["10:00am -  10:30am", "11:15am - 12:15pm", "12:30pm - 1:30pm"],
   onCancel,
 }) {
   return (

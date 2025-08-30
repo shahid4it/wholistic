@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchStrapi } from "@/utils/strapi";
 import { HEADER_QUERY } from "@/queries/header";
+import { BookASession } from "./BookASession";
 
 export default async function Header() {
   const data = await fetchStrapi({ query: HEADER_QUERY, key: "header" })();
@@ -19,6 +20,9 @@ export default async function Header() {
                   <Link href={href || "#"}>{title}</Link>
                 </li>
               ))}
+              <li>
+                <BookASession />
+              </li>
             </ul>
           </nav>
         </div>

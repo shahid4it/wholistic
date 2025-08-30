@@ -16,6 +16,7 @@ export default async function Main({ children }: MainProps) {
       {children}
       <Subscribe />
       <Footer />
+      <div id="modal-container"></div>
     </>
   );
 }
