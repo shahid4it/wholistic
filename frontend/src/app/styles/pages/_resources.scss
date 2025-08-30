@@ -1,5 +1,12 @@
+.resources-page {
+  margin-top: scale(100);
+
+}
+
 .resources-banner {
   background: $peach;
+  height: scale(238);
+  align-content: center;
 
   h1 {
     color: $burgundy;
@@ -8,56 +15,63 @@
   }
 }
 
-.resources {
+.articles {
   display: flex;
-  gap: 1em;
+  gap: 30px;
   flex-wrap: wrap;
   list-style-type: none;
-}
+  width: 100%;
 
-.resource {
-  box-shadow: 0px 0px 30px 0px #803d001a;
+  .col {
+    width: calc(33.3% - 20px);
+  }
 
-  &-image {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+  .article {
+    box-shadow: 0px 0px 30px 0px #803d001a;
+    border-radius: scale(12);
+    background: $white;
+    width: 100%;
     overflow: hidden;
-    height: 200px;
 
-    img {
-      object-fit: cover;
+
+    &__image {
+      height: scale(340);
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__content {
+      overflow: hidden;
+      background: white;
+      padding: scale(24);
       width: 100%;
-      height: 100%;
-    }
-  }
 
-  &-content {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    overflow: hidden;
-    background: white;
-    padding: 1.5em;
-  }
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 
-  .blog-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+      .date {
+        font-weight: 400;
+        font-size: clamp(12px, scale(14), 16px);
+      }
 
-    .date {
-      font-weight: 400;
-      font-size: 14px;
-    }
+      .title {
+        font-family: $swinton;
+        font-weight: 500;
+        font-style: Medium;
+        font-size: clamp(18px, scale(32), 64px);
+      }
 
-    .title {
-      font-family: $swinton;
-      font-weight: 500;
-      font-style: Medium;
-      font-size: clamp(18px, scale(32), 64px);
-    }
+      .tags {
+        margin-top: 1.5em;
+        gap: 8px;
+        display: flex;
 
-    .tags {
-      margin-top: 1.5em;
+      }
     }
   }
 }

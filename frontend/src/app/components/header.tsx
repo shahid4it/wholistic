@@ -12,7 +12,7 @@ export default async function Header() {
         <div className="headeer__left">
           <Link href={"/"}>Wholistic</Link>
         </div>
-        <div className="headeer__right">
+        <div className="header__right">
           <nav className="menu">
             <ul className="nav">
               {data.links?.map(({ title, href }) => (

@@ -22,15 +22,15 @@ export default async function Resources() {
   const blogs = await fetchStrapi({ query: RESOURCES_QUERY, key: "blogs" })();
 
   return (
-    <main>
-      <div className="section resources-banner">
+    <section className="resources-page">
+      <div className="resources-banner">
         <div className="container">
           <h1>Resources - Articles</h1>
         </div>
       </div>
-      <section className="section">
+      <section className="section resources__content">
         <div className="container">
-          <ul className="resources">
+          <ul className="articles">
             {blogs.map(
               ({
                 title,
@@ -44,9 +44,9 @@ export default async function Resources() {
               }) => {
                 const date = new Date(Date.parse(publishDate || ""));
                 return (
-                  <li>
-                    <article className="resource col-8">
-                      <figure className="resource-image">
+                  <li className="col">
+                    <article className="article">
+                      <figure className="article__image">
                         <StrapiImage
                           src={thumbnail?.url}
                           alt=""
@@ -54,7 +54,7 @@ export default async function Resources() {
                           height={300}
                         />
                       </figure>
-                      <div className="resource-content blog-content">
+                      <div className="article__content blog-content">
                         <time className="date">
                           {months[date.getMonth()]} {date.getDate()},{" "}
                           {date.getFullYear()}
@@ -79,6 +79,6 @@ export default async function Resources() {
           </ul>
         </div>
       </section>
-    </main>
+    </section>
   );
 }
