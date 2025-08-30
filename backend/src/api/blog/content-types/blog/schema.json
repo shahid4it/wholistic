@@ -4,7 +4,7 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "Blog"
+    "displayName": "Resources"
   },
   "options": {
     "draftAndPublish": true
@@ -41,6 +41,32 @@
     },
     "publishDate": {
       "type": "date"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "default": "blog",
+      "enum": [
+        "blog",
+        "video",
+        "podcast"
+      ]
+    },
+    "resource": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }

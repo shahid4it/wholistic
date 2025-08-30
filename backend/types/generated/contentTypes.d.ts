@@ -403,7 +403,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
-    displayName: 'Blog';
+    displayName: 'Resources';
     pluralName: 'blogs';
     singularName: 'blog';
   };
@@ -412,6 +412,8 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
   attributes: {
     author: Schema.Attribute.Relation<'oneToOne', 'api::preacher.preacher'>;
+    category: Schema.Attribute.Enumeration<['blog', 'video', 'podcast']> &
+      Schema.Attribute.DefaultTo<'blog'>;
     content: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -427,7 +429,10 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishDate: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
+    resource: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    slug: Schema.Attribute.UID<'title'>;
     summary: Schema.Attribute.Text;
+    tags: Schema.Attribute.String;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -565,7 +570,7 @@ export interface ApiNewsletterNewsletter extends Struct.SingleTypeSchema {
 export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
   collectionName: 'preachers';
   info: {
-    displayName: 'Preacher';
+    displayName: 'Readers & Healers';
     pluralName: 'preachers';
     singularName: 'preacher';
   };
@@ -603,7 +608,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
 export interface ApiPsychicsPagePsychicsPage extends Struct.SingleTypeSchema {
   collectionName: 'psychics_pages';
   info: {
-    displayName: 'Psychics Page';
+    displayName: 'Readers & Healers Page';
     pluralName: 'psychics-pages';
     singularName: 'psychics-page';
   };
