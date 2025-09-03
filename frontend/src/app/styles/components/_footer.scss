@@ -10,7 +10,7 @@
 
   .nav {
     display: flex;
-    gap: 16px;
+    gap: scale(16);
 
     ul {
       list-style: none;
@@ -39,7 +39,7 @@
     text-align: right;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: scale(16);
     margin-bottom: scale(32);
 
     ul {
@@ -47,7 +47,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 16px;
+      gap: scale(16);
 
       a {
         svg {
