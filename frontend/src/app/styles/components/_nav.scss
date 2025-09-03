@@ -3,15 +3,22 @@
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: scale(24);
 
     li {
       position: relative;
 
       a {
-        font-size: 18px;
-        font-weight: 400;
-        padding: 10px 20px;
+        font-size: clamp(18px, scale(22), 24px);
+        text-underline-offset: 10px;
+        text-decoration-thickness: 1px;
+        transition: .35s;
+
+        &:hover {
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          color: $peach;
+        }
       }
     }
   }
