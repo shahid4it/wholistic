@@ -47,9 +47,9 @@ export default function Readers({ readers = [] }) {
         </div>
 
         {size * 6 < readers.length && (
-          <div className="load-more">
+          <div className="load-button-wrapper">
             <button
-              className="button button-outline small"
+              className="button button--load-more small"
               onClick={() => setSize(size + 1)}
             >
               Load More

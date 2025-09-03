@@ -71,21 +71,21 @@
 .reader-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   max-height: 60vh;
   overflow: auto;
 
   &_item {
     display: flex;
     justify-content: space-between;
-    gap: 2em;
     align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid $peach;
   }
 
   &__content {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: scale(24);
     flex: 1;
 
     .name {
@@ -93,20 +93,25 @@
       font-size: clamp(16px, scale(32), 64px);
       font-weight: 500;
       font-family: $swinton;
-      margin-bottom: 2px;
+      margin-bottom: 8px;
     }
 
     p {
       max-width: 600px;
+      font-size: 16px;
+      color: $black;
     }
 
     figure {
-      width: 96px;
+      width: clamp(80px, scale(96), 120px);
       aspect-ratio: 1;
       border-radius: scale(8);
       overflow: hidden;
     }
+
     img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
   }

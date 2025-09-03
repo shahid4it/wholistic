@@ -45,8 +45,8 @@ export default async function Resources() {
                 const date = new Date(Date.parse(publishDate || ""));
                 return (
                   <li className="col">
-                    <article className="article">
-                      <figure className="article__image">
+                    <article className="resource-item">
+                      <figure className="resource-item__image">
                         <StrapiImage
                           src={thumbnail?.url}
                           alt=""
@@ -54,7 +54,7 @@ export default async function Resources() {
                           height={300}
                         />
                       </figure>
-                      <div className="article__content blog-content">
+                      <div className="resource-item__content blog-content">
                         <time className="date">
                           {months[date.getMonth()]} {date.getDate()},{" "}
                           {date.getFullYear()}

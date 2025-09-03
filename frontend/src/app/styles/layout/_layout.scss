@@ -33,6 +33,11 @@
     }
 }
 
+.load-button-wrapper {
+    margin-top: scale(100);
+    text-align: center;
+}
+
 .marquee {
     --speed: 20s;
     /* lower = faster */

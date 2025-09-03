@@ -27,7 +27,6 @@
   background-color: white;
   color: $burgundy;
   border: 1px solid $burgundy;
-  border-radius: 100px;
 }
 
 .button-cta {
@@ -41,9 +40,31 @@
   }
 }
 
-.load-more {
+.button--header {
+  background: $peach;
+  padding: scale(12) scale(24);
+  color: $burgundy;
+  border-radius: 100em;
+
+  &:hover {
+    background: lighten($peach, 20%);
+    color: $burgundy;
+  }
+}
+
+.button--load-more {
   text-align: center;
   margin: auto;
   width: fit-content;
-  margin-top: 2em;
+  border-radius: 100em;
+  padding: scale(16) scale(32);
+  background-color: $lightest-peach;
+  border: 1px solid $burgundy;
+  color: $burgundy;
+
+  &:hover {
+    background-color: $peach;
+    color: $burgundy;
+    border-color: $peach;
+  }
 }

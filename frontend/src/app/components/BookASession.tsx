@@ -24,7 +24,7 @@ export function BookASession() {
   return (
     <>
       <button
-        className="button button-cta"
+        className="button button--header"
         onClick={() => setShowBookingModal(true)}
       >
         Book a Session
