@@ -6,6 +6,10 @@ export const HEADER_QUERY = `query getHeader {
     links {
       href
       title
+      links {
+        href
+        title
+      }
     }
   }
 }

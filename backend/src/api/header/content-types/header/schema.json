@@ -23,7 +23,7 @@
     },
     "links": {
       "type": "component",
-      "component": "ui.link",
+      "component": "ui.nav",
       "repeatable": true
     }
   }

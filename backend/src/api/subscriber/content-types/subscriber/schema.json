@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscribers",
+  "info": {
+    "singularName": "subscriber",
+    "pluralName": "subscribers",
+    "displayName": "Subscriber"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "videoRights": {
+      "type": "boolean"
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "text"
+    }
+  }
+}

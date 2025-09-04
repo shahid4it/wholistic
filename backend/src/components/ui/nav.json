@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_navs",
+  "info": {
+    "displayName": "Nav"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "component": "ui.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

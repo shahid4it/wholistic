@@ -1,6 +1,6 @@
 import { RESOURCES_QUERY } from "@/queries/resources";
 import { fetchStrapi } from "@/utils/strapi";
-import { StrapiImage } from "../components/StrapiImage";
+import { StrapiImage } from "../../components/StrapiImage";
 import Link from "next/link";
 
 const months = [
@@ -18,14 +18,14 @@ const months = [
   "December",
 ];
 
-export default async function Resources() {
+export default async function Resources({ params: { slug } }) {
   const blogs = await fetchStrapi({ query: RESOURCES_QUERY, key: "blogs" })();
 
   return (
     <section className="resources-page">
       <div className="resources-banner">
         <div className="container">
-          <h1>Resources - Articles</h1>
+          <h1>Resources - {slug?.[0]}</h1>
         </div>
       </div>
       <section className="section resources__content">

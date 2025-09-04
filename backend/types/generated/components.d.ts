@@ -112,6 +112,18 @@ export interface UiLink extends Struct.ComponentSchema {
   };
 }
 
+export interface UiNav extends Struct.ComponentSchema {
+  collectionName: 'components_ui_navs';
+  info: {
+    displayName: 'Nav';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    links: Schema.Attribute.Component<'ui.link', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface UiSection extends Struct.ComponentSchema {
   collectionName: 'components_ui_sections';
   info: {
@@ -157,6 +169,7 @@ declare module '@strapi/strapi' {
       'ui.faqs-entry': UiFaqsEntry;
       'ui.intro': UiIntro;
       'ui.link': UiLink;
+      'ui.nav': UiNav;
       'ui.section': UiSection;
       'ui.testimonials': UiTestimonials;
     }
