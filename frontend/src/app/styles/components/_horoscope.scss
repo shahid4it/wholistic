@@ -1,71 +1,98 @@
 .starsigns {
-  display: flex;
-  overflow: auto;
-  gap: scale(8);
-  padding: scale(75) scale(16) 0;
   background: $white;
-  justify-content: center;
+  padding: scale(75) 0;
+
+  .container {
+    display: flex;
+    gap: scale(8);
+    justify-content: center;
+  }
 }
 
 .starsign {
   display: flex;
-  gap: scale(8);
-  flex-direction: column;
-  text-align: center;
-  padding: scale(8) scale(8) scale(75);
-  border-top-left-radius: 20em;
-  border-top-right-radius: 20em;
+  padding: scale(8) scale(32) scale(8) scale(8);
+  border-radius: 100px;
+  background-color: $peach;
+  gap: scale(16);
 
   &.active {
     background: $burgundy;
 
-    p {
-      color: $white !important;
+    .starsign-image {
+      background: $lightest-peach;
+    }
+
+    .content h3,
+    .content p {
+      color: $white;
     }
   }
 
   &-image {
-    width: scale(118);
+    width: scale(80);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: $peach;
+    background: $white;
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg {
-      width: scale(80);
-      height: scale(80);
+      width: scale(60);
+      height: scale(60);
+      object-fit: contain;
     }
   }
 
-  &-name {
-    font-size: scale(20);
-    color: $burgundy;
-    font-weight: 600;
-    font-family: $swinton;
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+    h3 {
+      font-size: scale(20);
+      font-weight: 600;
+      font-family: $swinton;
+      color: $coral;
+
+    }
+
+    p {
+      color: $coral;
+      font-size: clamp(12px, scale(14), 16px);
+      font-weight: 500;
+      white-space: nowrap;
+    }
   }
 
-  &-duration {
-    font-size: scale(12);
-    font-weight: 500;
+
+}
+
+.horoscope-content {
+  padding: scale(100) 0 scale(150);
+
+  .horoscope-title {
+    font-size: scale(60);
   }
-}
 
-.horoscope-title {
-  font-size: scale(60);
-  max-width: 100%;
-  width: 100%;
-}
+  .horoscope-description {
+    p {
+      @extend .body-large;
+    }
+  }
 
-.horoscope-image {
-  margin-top: scale(64);
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 1.5em;
-    object-fit: cover;
+  .horoscope-image {
+    margin-top: scale(100);
+    aspect-ratio: 1.7;
+    border-radius: scale(16);
     overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }

@@ -47,7 +47,7 @@ export default async function Header() {
                   </li>
                 ) : (
                   <li key={title} className="dropdown">
-                    <button className="dropdown-toggle">{title}</button>
+                    <a className="dropdown-toggle">{title}</a>
                     <ul className="dropdown-menu">
                       {links.map(({ title, href: subhref }) => (
                         <li key={title}>

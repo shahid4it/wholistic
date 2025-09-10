@@ -32,9 +32,8 @@ export default async function Page({ params: { star = ["Aries"] } }) {
           <h1>Resources - Horoscope</h1>
         </div>
       </div>
-      <section className="">
-        {/* <div className="container"> */}
-        <div className="starsigns">
+      <section className="starsigns">
+        <div className="container">
           {Object.entries(durations).map(([name, duration]) => (
             <Link
               href={`/resources/horoscope/${name}`}
@@ -42,14 +41,15 @@ export default async function Page({ params: { star = ["Aries"] } }) {
               className={`starsign ${star[0] === name ? "active" : ""}`}
             >
               <figure className="starsign-image">{Icons[name]}</figure>
-              <p className="starsign-name">{name}</p>
-              <p className="starsign-duration">{duration}</p>
+              <div className="content">
+                <h3>{name}</h3>
+                <p>{duration}</p>
+              </div>
             </Link>
           ))}
-          {/* </div> */}
         </div>
       </section>
-      <section className="introduction intro">
+      <section className="horoscope-content">
         <div className="container">
           <div>
             <div className="row">
@@ -59,22 +59,25 @@ export default async function Page({ params: { star = ["Aries"] } }) {
                 </h3>
               </div>
               <div className="col-7 offset-1">
-                <p
-                  className="body-large"
+                <div
+                  className="horoscope-description"
                   dangerouslySetInnerHTML={{ __html: data.content }}
                 />
               </div>
             </div>
             {data.image?.url && (
-              <figure className="row horoscope-image">
-                <StrapiImage
-                  className="col-8"
-                  src={data.image?.url}
-                  alt=""
-                  width={800}
-                  height={400}
-                />
-              </figure>
+              <div className="row">
+                <div className="col-6">
+                  <figure className="horoscope-image">
+                    <StrapiImage
+                      src={data.image?.url}
+                      alt=""
+                      width={800}
+                      height={400}
+                    />
+                  </figure>
+                </div>
+              </div>
             )}
           </div>
         </div>
