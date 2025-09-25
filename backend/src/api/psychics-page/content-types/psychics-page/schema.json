@@ -16,7 +16,8 @@
       "components": [
         "ui.testimonials",
         "ui.banner",
-        "preachers.preachers"
+        "preachers.preachers",
+        "ui.section"
       ]
     }
   }

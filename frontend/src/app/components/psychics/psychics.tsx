@@ -3,6 +3,7 @@ import { StrapiImage } from "../StrapiImage";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
+import Markdown from "react-markdown";
 
 const StarFilled = (
   <svg
@@ -74,8 +75,8 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
             <div className="col-4">
               <h3 className="section-title">{title}</h3>
             </div>
-            <div className="col-3">
-              <p className="body-mid">{content}</p>
+            <div className="body-mid col-3">
+              <Markdown>{content}</Markdown>
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ export function RelatedArticles({ title, content, blogs }) {
       <div className="container">
         {/* <div className="row"> */}
         <div className="col-4">
-          <h3 className="section-title">{title}</h3>
+          <h3 className="section-title">Related Blogposts</h3>
         </div>
         <div className="col-6 ">
           <p className="">{content}</p>

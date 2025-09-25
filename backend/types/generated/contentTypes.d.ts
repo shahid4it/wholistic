@@ -646,6 +646,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     oneliner: Schema.Attribute.String;
     profile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<4.3>;
     services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     style: Schema.Attribute.String;
@@ -680,7 +681,7 @@ export interface ApiPsychicsPagePsychicsPage extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.DynamicZone<
-      ['ui.testimonials', 'ui.banner', 'preachers.preachers']
+      ['ui.testimonials', 'ui.banner', 'preachers.preachers', 'ui.section']
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

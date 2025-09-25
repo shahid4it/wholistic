@@ -89,9 +89,9 @@ export default function Services({
             <div className="col-4 offset-1">
               <div className="services-list">
                 <ul>
-                  {services.map(({ title }, i) => (
+                  {services.map(({ title, slug }, i) => (
                     <li key={title} onMouseEnter={() => handleHover(i)}>
-                      <Link href={`/services/${title.toLowerCase()}`}>
+                      <Link href={`/services/${slug}`}>
                         <div
                           className={`service-title ${
                             activeIndex === i ? "active" : ""

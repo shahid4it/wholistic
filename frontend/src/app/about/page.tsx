@@ -28,11 +28,11 @@ const CustomIntro = ({ title = "", content = "" }) => {
             </div>
             <div className="col-4">
               <p className="body-mid">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                eleifend odio ut ante tristique, non pulvinar tellus tempor. In
-                convallis accumsan ipsum. Nulla id lectus vitae nisl commodo
-                molestie. Pellentesque vitae nunc leo. Ut libero risus,
-                tristique a laoreet vitae, aliquam sed est.
+                Our mission is to ignite the spark within, guiding individuals
+                toward self-discovery, empowerment, and spiritual growth. As
+                Pakistan's first one-stop shop for spirituality and alternative
+                healing, we weave ancient wisdom with modern practices to foster
+                holistic well-being and connection. Let's awaken together!
               </p>
             </div>
           </div>

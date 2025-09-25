@@ -35,6 +35,12 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
         }
       }
 
+      ...on ComponentUiIntro {
+      __typename
+        content
+        
+      }
+
       
       ... on ComponentUiTestimonials {
       __typename

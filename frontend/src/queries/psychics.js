@@ -10,6 +10,13 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
         }
       }
 
+       ... on ComponentUiSection {
+        __typename
+        title
+        content
+        
+      }
+
       ... on ComponentPreachersPreachers {
         __typename
         marquee

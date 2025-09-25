@@ -1,3 +1,4 @@
+import Markdown from "react-markdown";
 import Readers from "./readers";
 
 export function Preachers({ title, content, marquee, preachers }) {
@@ -9,7 +10,6 @@ export function Preachers({ title, content, marquee, preachers }) {
           <span>{marquee}</span>
         </div>
       </div>
-
       <Readers readers={preachers} />
     </section>
   );

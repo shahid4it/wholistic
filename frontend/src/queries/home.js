@@ -15,9 +15,10 @@ export const HOME_QUERY = `query getHomePage  {
         title
         content
         marquee
+        
         services {
             title,
-
+slug
             thumbnail {
               url
             }

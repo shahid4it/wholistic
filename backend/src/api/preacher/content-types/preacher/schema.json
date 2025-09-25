@@ -55,6 +55,10 @@
       "relation": "oneToMany",
       "target": "api::service.service",
       "mappedBy": "preacher"
+    },
+    "rating": {
+      "type": "decimal",
+      "default": 4.3
     }
   }
 }

@@ -12,6 +12,9 @@ const COMP_MAP = {
   ComponentUiBanner: Hero,
   ComponentUiSection: Section,
   ComponentPreachersPreachers: Psychics,
+  ComponentUiIntro: (props) => (
+    <Introduction {...props} title="When do you need this service?" below />
+  ),
   ComponentUiTestimonials: Testimonials,
   ComponentBlogsRelatedArticles: RelatedArticles,
 };

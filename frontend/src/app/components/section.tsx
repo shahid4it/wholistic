@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { StrapiImage } from "./StrapiImage";
+import Markdown from "react-markdown";
 
 export default function Section({ title, content, image }) {
   return (
@@ -10,8 +11,8 @@ export default function Section({ title, content, image }) {
             <div className="col-2">
               <h3 className="section-title">{title}</h3>
             </div>
-            <div className="col-6">
-              <p className="body-large">{content}</p>
+            <div className="body-large col-6">
+              <Markdown>{content}</Markdown>
             </div>
           </div>
         </div>
