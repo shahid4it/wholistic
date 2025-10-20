@@ -10,27 +10,39 @@
 
   &-menu {
     display: none;
-    gap: 0.5em;
     flex-direction: column;
-    padding: 1em 0;
-    border-radius: 0.5em;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0px);
+    padding: 0;
     z-index: 7000;
     list-style-type: none;
-    background: $lightest-peach;
-    color: black;
-    left: 0;
+    background: $peach;
+    color: $lightest-peach;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    left: 16px;
+    width: 200px;
+    background-color: rgba(45, 3, 3, 1);
+    padding-block: 30px;
+
+
+
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+    }
 
     a {
       display: block;
       width: 100%;
-      padding: 1em;
-      padding-top: 4px !important;
-      padding-bottom: 4px !important;
+      padding-block: scale(16);
+      padding-inline: scale(30);
+      line-height: 1 !important;
 
       &:hover {
-        background: lightgray;
+        color: $burgundy !important;
+        text-decoration: none !important;
+        background-color: $lightest-peach;
       }
     }
   }

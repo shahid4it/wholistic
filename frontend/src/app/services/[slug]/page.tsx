@@ -26,7 +26,7 @@ export default async function Service({ params: { slug = "" } }) {
   })();
 
   return (
-    <section className="service">
+    <section className="service-page">
       {sections.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
 

@@ -55,7 +55,15 @@
 
     p {
       color: $white;
-      width: 70%;
     }
+  }
+
+  .index-number {
+    position: absolute;
+    right: scale(50);
+    top: scale(50);
+    z-index: 1;
+    color: $white;
+    font-size: scale(48);
   }
 }

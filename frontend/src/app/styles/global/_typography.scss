@@ -36,6 +36,12 @@ li {
   p {
     font-size: 1em;
   }
+
+  h3 {
+    margin-block: scale(80) scale(40);
+    color: $coral;
+    font-weight: 300;
+  }
 }
 
 .body-mid {

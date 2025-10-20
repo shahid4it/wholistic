@@ -17,24 +17,26 @@ export default function Section({ title, content, image }) {
           </div>
         </div>
       </section>
-      <section className="two-image-section introduction-below">
-        <div className="container">
-          <div className="row">
-            {image?.map(({ url }) => (
-              <div className="image-holder">
-                <StrapiImage
-                  src={url}
-                  width={1000}
-                  height={800}
-                  alt="Hero Background"
-                  string="parallax"
-                  string-parallax="1"
-                />
-              </div>
-            ))}
+      {image?.length > 0 && (
+        <section className="two-image-section introduction-below">
+          <div className="container">
+            <div className="row">
+              {image.map(({ url }) => (
+                <div className="image-holder" key={url}>
+                  <StrapiImage
+                    src={url}
+                    width={1000}
+                    height={800}
+                    alt="Hero Background"
+                    string="parallax"
+                    string-parallax=".2"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

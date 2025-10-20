@@ -52,7 +52,7 @@ export default function Testimonials({
             height={700}
             alt="Hero Background"
             string="parallax"
-            string-parallax="1"
+            string-parallax=".2"
           />
         </div>
 

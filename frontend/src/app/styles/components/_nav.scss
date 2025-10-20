@@ -14,6 +14,8 @@
         text-decoration-thickness: 1px;
         transition: 0.35s;
         font-family: $swinton;
+        line-height: 3;
+        display: inline-block;
 
         &:hover {
           text-decoration: underline;

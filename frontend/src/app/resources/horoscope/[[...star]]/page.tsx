@@ -1,8 +1,10 @@
 import { fetchStrapi } from "@/utils/strapi";
+// import useEmblaCarousel from "embla-carousel-react";
 import { HOROSCOPE_QUERY } from "@/queries/horoscope";
 import { Icons } from "./Icons";
 import Link from "next/link";
 import { StrapiImage } from "@/app/components/StrapiImage";
+import { use } from "react";
 
 const durations = {
   Aries: "Mar 21 - Apr 19",
@@ -55,7 +57,8 @@ export default async function Page({ params: { star = ["Aries"] } }) {
             <div className="row">
               <div className="">
                 <h3 className="section-title horoscope-title">
-                  {star} Monthly Horoscope
+                  <span>Monthly</span> <br />
+                  {star}
                 </h3>
               </div>
               <div className="col-7 offset-1">
@@ -74,6 +77,8 @@ export default async function Page({ params: { star = ["Aries"] } }) {
                       alt=""
                       width={800}
                       height={400}
+                      string="parallax"
+                      string-parallax=".2"
                     />
                   </figure>
                 </div>

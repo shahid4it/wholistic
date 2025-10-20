@@ -90,6 +90,10 @@
                         transform: translate(-50%, -50%) rotate(90deg);
                     }
                 }
+
+                &:hover {
+                    background: $peach
+                }
             }
 
             .answer {
@@ -115,6 +119,8 @@
             border-radius: scale(12);
             overflow: hidden;
             height: 80vh;
+            position: sticky;
+            top: scale(100);
 
             img {
                 width: 100%;

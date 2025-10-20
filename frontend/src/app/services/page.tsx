@@ -17,7 +17,7 @@ export default async function ServicesPage() {
   })();
 
   return (
-    <main>
+    <main className="services-page">
       {sections.map(({ __typename: typename, ...props }) => {
         const Comp = COMP_MAP[typename];
 

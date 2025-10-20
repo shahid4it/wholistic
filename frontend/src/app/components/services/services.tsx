@@ -17,9 +17,10 @@ export function Services({ title, content, services = [] }) {
       <section className="services">
         <section className="container">
           <div className="row">
-            {services.map(({ title, thumbnail, content }) => (
+            {services.map(({ title, thumbnail, content }, index) => (
               <div className="col-4">
                 <div key={title} className="service-card ">
+                  <div className="index-number">0{index + 1}</div>
                   <figure className="service-card__image">
                     <StrapiImage
                       src={thumbnail?.url}
@@ -27,7 +28,7 @@ export function Services({ title, content, services = [] }) {
                       width={500}
                       height={500}
                       string="parallax"
-                      string-parallax="1"
+                      string-parallax=".2"
                     />
                   </figure>
                   <div className="service-card__content">

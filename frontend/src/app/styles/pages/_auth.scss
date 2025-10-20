@@ -1,7 +1,7 @@
-.signup-page {
-}
+.signup-page {}
 
 .signup {
+
   display: flex;
   flex-direction: column;
   padding: 2em;
@@ -10,9 +10,12 @@
   border-radius: 0.75em;
   width: 420px;
   margin: auto;
+  background-color: white;
+  margin-top: scale(150);
 
   label {
     display: block;
+
     span {
       display: block;
       margin-bottom: 0.25em;

@@ -75,17 +75,23 @@
 
   .horoscope-title {
     font-size: scale(60);
+
+    span {
+      font-size: scale(24);
+      color: $coral;
+
+    }
   }
 
   .horoscope-description {
     p {
-      @extend .body-large;
+      @extend .body-mid;
     }
   }
 
   .horoscope-image {
     margin-top: scale(100);
-    aspect-ratio: 1.7;
+    aspect-ratio: 2;
     border-radius: scale(16);
     overflow: hidden;
 

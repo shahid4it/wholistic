@@ -88,6 +88,7 @@
         display: flex;
         flex-direction: column;
         counter-reset: item; // start the counter
+        padding-left: 0;
 
         li {
           border-bottom: 1px solid rgba($white, 0.5);
@@ -95,6 +96,7 @@
           font-family: $swinton;
           font-weight: 500;
           counter-increment: item; // increment per li
+          padding-left: 0;
 
           a {
             height: 100%;

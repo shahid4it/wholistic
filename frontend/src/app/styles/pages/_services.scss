@@ -1,5 +1,21 @@
+.services-page {
+    .introduction {
+        .container {
+            .row {
+                .col-6 {
+                    margin-top: scale(100);
+                    margin-left: -12.5%;
+                    flex: 0 0 87.5%;
+                    max-width: 87.5%;
+                }
+            }
+        }
+    }
+}
+
 .services {
     padding: scale(150) 0;
+
 
     .col-4 {
         &:nth-child(2n + 2) {

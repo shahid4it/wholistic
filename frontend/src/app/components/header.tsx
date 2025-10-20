@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { fetchStrapi } from "@/utils/strapi";
 import { HEADER_QUERY } from "@/queries/header";
 import { BookASession } from "./BookASession";
@@ -35,7 +36,14 @@ export default async function Header() {
     <header className="header">
       <div className="container">
         <div className="headeer__left">
-          <Link href={"/"}>Wholistic</Link>
+          <Link href={"/"}>
+            <Image
+              src={"/images/logo.svg"}
+              width={193}
+              height={64}
+              alt="Wholistic Logo"
+            />
+          </Link>
         </div>
         <div className="header__right">
           <nav className="menu">
