@@ -59,6 +59,13 @@
     "rating": {
       "type": "decimal",
       "default": 4.3
+    },
+    "specialty": {
+      "type": "enumeration",
+      "enum": [
+        "reader",
+        "healer"
+      ]
     }
   }
 }

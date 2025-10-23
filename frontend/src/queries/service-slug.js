@@ -62,6 +62,10 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
       blogs {
       title
       summary
+
+    slug
+    publishDate
+    category
       thumbnail {
       url}
       }

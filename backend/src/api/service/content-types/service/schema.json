@@ -50,6 +50,13 @@
       "relation": "manyToOne",
       "target": "api::preacher.preacher",
       "inversedBy": "services"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "reader",
+        "healer"
+      ]
     }
   }
 }

@@ -40,20 +40,7 @@ export function Testimonials({ title: marquee, testimonials }) {
       </div>
       <div className="container">
         <div className="row">
-          {[
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-            ...testimonials,
-          ].map(({ content, client }) => (
+          {testimonials.map(({ content, client }) => (
             <div className="col-3">
               <article key={client} className="testimonial-card">
                 <span className="rating">

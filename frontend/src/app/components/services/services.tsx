@@ -17,7 +17,7 @@ export function Services({ title, content, services = [] }) {
       <section className="services">
         <section className="container">
           <div className="row">
-            {services.map(({ title, thumbnail, content }, index) => (
+            {services.map(({ title, thumbnail, content, slug }, index) => (
               <div className="col-4">
                 <div key={title} className="service-card ">
                   <div className="index-number">0{index + 1}</div>
@@ -32,7 +32,7 @@ export function Services({ title, content, services = [] }) {
                     />
                   </figure>
                   <div className="service-card__content">
-                    <Link href={`/services/${title.toLowerCase()}`}>
+                    <Link href={`/services/${slug}`}>
                       <h3>
                         {title}{" "}
                         <svg

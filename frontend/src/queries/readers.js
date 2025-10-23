@@ -4,6 +4,7 @@ query {
    oneliner
    name
    slug
+   specialty
    profile {
       url
    }

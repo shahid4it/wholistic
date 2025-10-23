@@ -92,15 +92,7 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
-                {[
-                  ...preachers,
-                  ...preachers,
-                  ...preachers,
-                  ...preachers,
-                  ...preachers,
-                  ...preachers,
-                  ...preachers,
-                ].map((props) => (
+                {preachers.map((props) => (
                   <div className="col-2">
                     <Psychic key={props.name} {...props} />
                   </div>

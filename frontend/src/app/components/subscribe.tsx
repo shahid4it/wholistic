@@ -32,12 +32,8 @@ export default async function Subscribe() {
           <div className="col-3 offset-1">
             <div className="subscribe__content">
               <div className="content">
-                <h2>Subscribe to our newsletter</h2>
-                <p className="body-mid">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  eleifend odio ut ante tristique, non pulvinar tellus tempor.
-                  In convallis accumsan ipsum.{" "}
-                </p>
+                <h2>{data.title}</h2>
+                <p className="body-mid">{data.content}</p>
               </div>
               <div className="subscribe-form">
                 <div className="input-field">

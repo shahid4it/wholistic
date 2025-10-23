@@ -51,6 +51,9 @@ export const PSYCHICS_BLOG_SLUG_QUERY = (
   }) {
     title
     summary
+    slug
+    publishDate
+    category
     thumbnail {
         url
     }

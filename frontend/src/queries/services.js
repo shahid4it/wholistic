@@ -28,8 +28,9 @@ export const SERVICES_QUERY = `query getServicesPage  {
         title
         content
         services {
-            title,
+            title
             content
+            slug
             thumbnail {
               url
             }

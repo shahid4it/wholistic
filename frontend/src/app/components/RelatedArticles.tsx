@@ -44,14 +44,7 @@ export function RelatedArticles({ title, content, blogs }) {
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
-                {[
-                  ...blogs,
-                  ...blogs,
-                  ...blogs,
-                  ...blogs,
-                  ...blogs,
-                  ...blogs,
-                ].map((props) => (
+                {blogs.map((props) => (
                   <article key={props.title} className="article col-3">
                     {props.thumbnail && (
                       <div className="article-image">
@@ -65,7 +58,13 @@ export function RelatedArticles({ title, content, blogs }) {
                     )}
                     <div className="article-content">
                       <h3>
-                        <Link href={"#"}>{props.title}</Link>
+                        <Link
+                          href={`/resources/${props.category || "blog"}/${
+                            props.slug
+                          }`}
+                        >
+                          {props.title}
+                        </Link>
                       </h3>
                       <p>{props.summary}</p>
                     </div>

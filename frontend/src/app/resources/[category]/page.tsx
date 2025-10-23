@@ -2,6 +2,7 @@ import { RESOURCES_QUERY } from "@/queries/resources";
 import { fetchStrapi } from "@/utils/strapi";
 import { StrapiImage } from "../../components/StrapiImage";
 import Link from "next/link";
+import Image from "next/image";
 
 const months = [
   "January",
@@ -18,19 +19,22 @@ const months = [
   "December",
 ];
 
-export default async function Resources({ params: { slug } }) {
-  const blogs = await fetchStrapi({ query: RESOURCES_QUERY, key: "blogs" })();
+export default async function Page({ params: { category = "blogs" } }) {
+  const blogs = await fetchStrapi({
+    query: RESOURCES_QUERY(category),
+    key: "blogs",
+  })();
 
   return (
     <section className="resources-page">
       <div className="resources-banner">
         <div className="container">
-          <h1>Resources - {slug?.[0]}</h1>
+          <h1>Resources - Vidoes</h1>
         </div>
       </div>
       <section className="section resources__content">
         <div className="container">
-          <ul className="articles">
+          <ul className="videos">
             {blogs.map(
               ({
                 title,
@@ -45,7 +49,7 @@ export default async function Resources({ params: { slug } }) {
                 const date = new Date(Date.parse(publishDate || ""));
                 return (
                   <li className="col">
-                    <article className="resource-item">
+                    <article className="resource-item resource-item--video">
                       <figure className="resource-item__image">
                         <StrapiImage
                           src={thumbnail?.url}
@@ -60,14 +64,16 @@ export default async function Resources({ params: { slug } }) {
                           {date.getFullYear()}
                         </time>
                         <h3 className="title">
-                          <Link href={`/resources/${slug ?? ""}`}>{title}</Link>
+                          <Link href={`/resources/${category}/${slug ?? ""}`}>
+                            {title}
+                          </Link>
                         </h3>
-                        <p>{summary}</p>
+                        <p>{blogs.summary}</p>
                         <div className="tags">
-                          {tags?.split(",").map((tag) => (
-                            <small className="tag" key={tag}>
+                          {blogs.tags?.split(",").map((tag) => (
+                            <span key={tag} className="tag">
                               {tag}
-                            </small>
+                            </span>
                           ))}
                         </div>
                       </div>

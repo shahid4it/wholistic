@@ -20,6 +20,8 @@ export default async function PsychicPage({ params: { slug = "" } }) {
     fetchStrapi({ key: "blogs", query: PSYCHICS_BLOG_SLUG_QUERY(slug) })(),
   ]);
 
+  console.log(blogs);
+
   return (
     <main className="psychic-single">
       <section className="section about">

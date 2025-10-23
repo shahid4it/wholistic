@@ -63,13 +63,7 @@ export function ReaderTestimonials({ testimonials = [], reader = {} }) {
         <div className="embla">
           <div className="embla__viewport" ref={emblaRef}>
             <div className="embla__container" style={{ gap: "2em" }}>
-              {[
-                ...testimonials,
-                ...testimonials,
-                ...testimonials,
-                ...testimonials,
-                ...testimonials,
-              ].map(({ client, content, rating }) => (
+              {testimonials.map(({ client, content, rating }) => (
                 <article className="testimonial-card card col-3" key={client}>
                   <span className="rating">
                     {new Array(rating).fill(0).map((_, i) => StarFilled)}

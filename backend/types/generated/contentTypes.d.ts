@@ -430,6 +430,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     publishDate: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
     resource: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    resourceUrl: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     summary: Schema.Attribute.Text;
     tags: Schema.Attribute.String;
@@ -649,6 +650,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     rating: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<4.3>;
     services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    specialty: Schema.Attribute.Enumeration<['reader', 'healer']>;
     style: Schema.Attribute.String;
     tags: Schema.Attribute.String;
     tools: Schema.Attribute.String;
@@ -728,6 +730,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'title'>;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['reader', 'healer']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

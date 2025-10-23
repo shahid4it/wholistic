@@ -67,6 +67,9 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "resourceUrl": {
+      "type": "text"
     }
   }
 }

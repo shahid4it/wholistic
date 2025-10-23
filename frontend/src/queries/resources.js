@@ -1,6 +1,6 @@
-export const RESOURCES_QUERY = `
+export const RESOURCES_QUERY = (category = "blog") => `
 query {
-  blogs {
+  blogs(filters: {category: {eq: "${category}"}}) {
    title
    summary
    tags
@@ -10,9 +10,6 @@ query {
    thumbnail {
       url
    }
-    resource {
-      url
-    }
   }
 }
 `;

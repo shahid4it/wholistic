@@ -10,17 +10,6 @@ import { BookingModal } from "./BookingModal";
 import { BookingForm } from "./BookingForm";
 
 export default function Readers({ readers = [] }) {
-  readers = [
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-    ...readers,
-  ];
   const [reader, setReader] = useState();
   const [isReaderModalOpen, setIsReaderModalOpen] = useState(false);
   const [size, setSize] = useState(1);
