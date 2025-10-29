@@ -29,7 +29,10 @@ export default async function Page({ params: { category = "blogs" } }) {
     <section className="resources-page">
       <div className="resources-banner">
         <div className="container">
-          <h1>Resources - Vidoes</h1>
+          <h1>
+            Resources -{" "}
+            <span style={{ textTransform: "capitalize" }}>{category}</span>
+          </h1>
         </div>
       </div>
       <section className="section resources__content">

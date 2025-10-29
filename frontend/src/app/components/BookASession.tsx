@@ -63,7 +63,7 @@ export function BookASession() {
                   <li>
                     <h3>Healers</h3>
                     {healers.length ? (
-                      <ul>
+                      <ul className="reader-list">
                         {healers.map((reader) => (
                           <li className="reader-list_item" key={reader.name}>
                             <div className="reader-list__content">
@@ -98,7 +98,7 @@ export function BookASession() {
                   <li>
                     <h3>Readers</h3>
                     {readers.length ? (
-                      <ul>
+                      <ul className="reader-list">
                         {readers.map((reader) => (
                           <li className="reader-list_item" key={reader.name}>
                             <div className="reader-list__content">

@@ -51,7 +51,8 @@
       "enum": [
         "blog",
         "video",
-        "podcast"
+        "podcast",
+        "online-classes"
       ]
     },
     "resource": {
