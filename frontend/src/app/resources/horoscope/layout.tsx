@@ -1,8 +1,13 @@
 "use client";
 
-import { Carousel } from "./Carousal";
+import { usePathname } from "next/navigation";
+import { Carousel } from "./[star]/Carousal";
 
-export default function Template({ children, params: { star = "Aries" } }) {
+export default function Page({ children }) {
+  const path = usePathname();
+
+  const star = path.substring("/resources/horoscope/".length);
+
   return (
     <main className="resources-page">
       <div className="resources-banner">

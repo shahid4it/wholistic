@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  redirects() {
+    return [
+      {
+        source: "/resources/horoscope",
+        destination: "/resources/horoscope/Aries",
+        permanent: true,
+      },
+    ];
+  },
   rewrites() {
     return [
       {

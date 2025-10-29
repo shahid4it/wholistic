@@ -3,7 +3,7 @@ import { HOROSCOPE_QUERY } from "@/queries/horoscope";
 import { StrapiImage } from "@/app/components/StrapiImage";
 
 export default async function Page({ params: { star = "Aries" } }) {
-  const [data] = await fetchStrapi({
+  const [data = { content: "" }] = await fetchStrapi({
     query: HOROSCOPE_QUERY(star),
     key: "horoscopes",
   })();
