@@ -25,7 +25,7 @@ export default async function Subscribe() {
                 string="parallax"
                 string-parallax="0.2"
                 string-parallax-bias="0.0"
-                string-repeat
+                string-repeat="true"
               />
             </div>
           </div>

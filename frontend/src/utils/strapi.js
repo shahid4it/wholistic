@@ -9,11 +9,8 @@ export function fetchStrapi({ query = "", key = "" }) {
       cache: "no-store",
     });
 
-    if (key === "services") console.log(res);
-
     if (res.ok) {
       const json = await res.json();
-      if (key === "services") console.log(json);
       const data = json.data[key];
 
       return data;

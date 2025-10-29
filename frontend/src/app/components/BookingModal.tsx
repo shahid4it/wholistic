@@ -19,9 +19,9 @@ export function BookingModal({ children, open, onClose, title }) {
               <path
                 d="M1 1L17 17M1 17L17 1L1 17Z"
                 stroke="#C55341"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
