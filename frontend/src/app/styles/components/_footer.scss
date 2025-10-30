@@ -24,7 +24,7 @@
           color: $white;
           transition: 0.35s;
           font-family: $swinton;
-          font-size: scale(22);
+          font-size: clamp(18px, scale(22), 24px);
 
           &:hover {
             color: $coral;
@@ -47,7 +47,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: scale(16);
+      gap: scale(8);
 
       a {
         svg {
@@ -66,5 +66,7 @@
 
   .copyrights {
     text-align: right;
+
+
   }
 }

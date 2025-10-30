@@ -1,7 +1,7 @@
 .hero {
   $self: &;
   --progress: 0;
-
+  overflow: hidden;
   position: relative;
 
   #{$self}__background {

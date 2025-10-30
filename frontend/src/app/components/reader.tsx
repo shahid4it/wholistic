@@ -19,7 +19,7 @@ export default function ({ name, oneliner, profile, tags, onBooking, slug }) {
           <div className="upper-content">
             <div className="name">
               <h3>
-                <Link href={`/psychics/${slug}`}>{name}</Link>
+                <Link href={`/readers/${slug}`}>{name}</Link>
               </h3>
               <div className="rating">
                 <span>4.7</span>

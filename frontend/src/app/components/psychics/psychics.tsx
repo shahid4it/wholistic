@@ -26,9 +26,9 @@ function Psychic({ name, bio, profile, tags, oneliner, slug }) {
       <StrapiImage src={profile?.url} width={300} height={400} alt="" />
       <div className="psychic__content">
         <h3>
-          <Link href={`/psychics/${slug}`}>{name}</Link>
+          <Link href={`/readers/${slug}`}>{name}</Link>
         </h3>
-        <span>4.7 {StarFilled} (2026)</span>
+        {/* <span>4.7 {StarFilled} (2026)</span> */}
         <p>{oneliner}</p>
         <div className="tags">
           {tags?.split(",").map((tag) => (

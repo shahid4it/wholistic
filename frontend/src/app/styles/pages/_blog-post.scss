@@ -1,0 +1,73 @@
+.blog-post {
+    .hero {
+        .hero__background {
+            height: 60vh;
+        }
+
+        .hero__content {
+            .hero__title {
+                font-size: scale(80);
+                width: 70%;
+            }
+        }
+    }
+
+    .blog-post__content {
+        padding-block: scale(100);
+
+        .container {
+            flex-direction: column;
+        }
+
+        .publish-date {
+            margin-bottom: scale(50);
+            display: block;
+            color: $coral;
+        }
+
+        .content {
+            columns: 3;
+            gap: scale(50);
+
+
+
+            @include lg {
+                columns: 2;
+            }
+
+            @include md {
+                columns: 1;
+            }
+
+
+            h2 {
+                font-size: clamp(32px, scale(48), 54px);
+                margin-bottom: scale(30);
+                font-weight: 500;
+                color: $burgundy;
+            }
+
+            h3 {
+                font-size: clamp(28px, scale(40), 48px);
+                margin-bottom: scale(30);
+                font-weight: 500;
+                color: $burgundy;
+            }
+
+            h4 {
+                font-size: clamp(24px, scale(32), 40px);
+                margin-bottom: scale(30);
+                font-weight: 500;
+                color: $burgundy;
+            }
+
+            p {
+                font-size: clamp(18px, scale(20), 24px);
+                margin-block: scale(30);
+                font-weight: 500;
+                line-height: 1.5;
+            }
+        }
+    }
+
+}

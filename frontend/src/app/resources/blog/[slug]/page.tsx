@@ -11,20 +11,20 @@ export default async function Page({ params: { slug } }) {
   })();
 
   return (
-    <article>
+    <article className="blog-post">
       <Hero
         title={blog.title}
         content={blog.summary}
         backdrop={blog.thumbnail}
       />
 
-      <section className="introduction">
+      <section className="blog-post__content">
         <div className="container">
-          <div>
-            <time className="">
-              Published on:{" "}
-              {new Date(Date.parse(blog.publishDate)).toLocaleDateString()}
-            </time>
+          <time className="publish-date">
+            Published on:{" "}
+            {new Date(Date.parse(blog.publishDate)).toLocaleDateString()}
+          </time>
+          <div className="content">
             <div dangerouslySetInnerHTML={{ __html: blog.content }} />
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { fetchStrapi } from "@/utils/strapi";
 import { FOOTER_QUERY } from "@/queries/footer";
 import Link from "next/link";
+import Image from "next/image";
 
 const SOCIALS = {
   facebook: (
@@ -14,7 +15,7 @@ const SOCIALS = {
       <path d="M20.845 1.99707H4.04502C2.72502 1.99707 1.64502 3.07707 1.64502 4.39707V21.1971C1.64502 22.5183 2.72502 23.5971 4.04502 23.5971H12.445V15.1971H10.045V12.2271H12.445V9.76707C12.445 7.17027 13.8994 5.34627 16.9642 5.34627L19.1278 5.34867V8.47467H17.6914C16.4986 8.47467 16.045 9.36987 16.045 10.2003V12.2283H19.1266L18.445 15.1971H16.045V23.5971H20.845C22.165 23.5971 23.245 22.5183 23.245 21.1971V4.39707C23.245 3.07707 22.165 1.99707 20.845 1.99707Z" />
     </svg>
   ),
-  twitter: (
+  youtube: (
     <svg
       width="25"
       height="25"
@@ -48,8 +49,6 @@ const SOCIALS = {
       </defs>
     </svg>
   ),
-  youtube: "",
-  linkedin: "",
 };
 
 export default async function Footer() {
@@ -59,7 +58,16 @@ export default async function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-2">Wholistic</div>
+          <div className="col-2">
+            <Link href={"/"}>
+              <Image
+                src={"/images/logo.svg"}
+                width={193}
+                height={64}
+                alt="Wholistic Logo"
+              />
+            </Link>
+          </div>
           <div className="col-3">
             <nav className="nav">
               <ul>
