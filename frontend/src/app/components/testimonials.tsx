@@ -2,32 +2,12 @@
 
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
 import { StrapiImage } from "./StrapiImage";
-
-const testimonials = [
-  {
-    quote:
-      "This service transformed our workflow. The design quality is exceptional!",
-    name: "Sarah Johnson",
-    role: "Product Manager, TechFlow",
-  },
-  {
-    quote: "Shahid delivered beyond expectations. Highly recommended!",
-    name: "James Carter",
-    role: "Founder, StartupHub",
-  },
-  {
-    quote:
-      "A seamless experience from start to finish. Professional and creative.",
-    name: "Emily Davis",
-    role: "Marketing Lead, BrightMedia",
-  },
-];
 
 export default function Testimonials({
   content = "",
   background: image = { url: "" },
+  testimonials = [],
 }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -97,9 +77,9 @@ export default function Testimonials({
                         />
                       </svg>
                     </div>
-                    <h3 className="testimonial__quote">“{t.quote}”</h3>
+                    <h3 className="testimonial__quote">“{t.content}”</h3>
                     <div className="testimonial__author">
-                      <h4 className="body-mid">{t.name}</h4>
+                      <h4 className="body-mid">{t.client}</h4>
                     </div>
                   </div>
                 </div>

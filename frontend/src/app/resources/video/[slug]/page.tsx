@@ -26,11 +26,16 @@ export default async function Page({ params: { slug } }) {
               {new Date(Date.parse(blog.publishDate)).toLocaleDateString()}
             </time>
             <div>
-              <video
-                src={blog.resourceUrl || blog.resource?.url}
-                controls
-                muted
-              ></video>
+              {blog.resourceUrl &&
+              blog.resourceUrl.startsWith("https://www.youtube.com/embed") ? (
+                <iframe src={blog.resourceUrl} width={600} height={400} />
+              ) : (
+                <video
+                  src={blog.resourceUrl || blog.resource?.url}
+                  controls
+                  muted
+                ></video>
+              )}
             </div>
           </div>
         </div>
