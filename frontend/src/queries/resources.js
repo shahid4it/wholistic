@@ -7,6 +7,10 @@ query {
    slug
    category
    publishDate
+   resourceUrl
+   resource {
+    url
+   }
    thumbnail {
       url
    }

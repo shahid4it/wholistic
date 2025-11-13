@@ -1,6 +1,5 @@
 .resources-page {
   margin-top: scale(100);
-
 }
 
 .resources-banner {
@@ -25,7 +24,6 @@
   .col {
     width: calc(33.3% - 20px);
   }
-
 }
 
 .videos {
@@ -40,7 +38,10 @@
   }
 }
 
-
+.iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 
 .resource-item {
   $self: &;
@@ -49,7 +50,6 @@
   background: $white;
   width: 100%;
   overflow: hidden;
-
 
   #{$self}__image {
     height: scale(340);
@@ -87,7 +87,6 @@
       margin-top: 1.5em;
       gap: 8px;
       display: flex;
-
     }
   }
 
@@ -95,6 +94,5 @@
     #{$self}__image {
       height: scale(475);
     }
-
   }
 }
