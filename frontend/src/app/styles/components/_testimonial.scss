@@ -1,4 +1,5 @@
 .testimonials {
+  $self: &;
   padding: scale(100) 0;
   margin-bottom: scale(150);
   background: black;
@@ -8,7 +9,7 @@
   position: relative;
   overflow: hidden;
 
-  .testimonials__header {
+  #{$self}__header {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -19,10 +20,11 @@
       font-weight: 400;
       text-align: center;
       color: $white;
+      position: relative;
     }
   }
 
-  &__bg {
+  #{$self}__bg {
     position: absolute;
     left: 0;
     top: 0;
@@ -34,6 +36,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+
+  @include md {
+    #{$self}__header {
+      h3 {
+        font-size: 18px;
+        width: 90%;
+      }
     }
   }
 }
@@ -69,7 +80,18 @@
       h4 {
         color: $coral;
       }
+
+      @include md {
+
+        h3 {
+          font-size: 18px;
+          margin: scale(30) auto;
+        }
+      }
+
     }
+
+
   }
 }
 
@@ -114,6 +136,12 @@
       right: scale(-85);
     }
   }
+
+  @include md {
+    display: none;
+  }
+
+
 }
 
 .testimonial-slider {
@@ -121,4 +149,9 @@
   margin: 0 auto;
   text-align: center;
   position: relative;
+
+  @include md {
+    max-width: none;
+    width: 90%;
+  }
 }

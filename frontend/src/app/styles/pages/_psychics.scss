@@ -17,7 +17,7 @@
             margin-bottom: scale(30);
 
             h1 {
-                font-size: scale(96);
+                font-size: clamp(40px, scale(96), 108px);
                 font-weight: 500;
                 color: $burgundy;
             }
@@ -31,7 +31,7 @@
         }
 
         .tagline {
-            font-size: scale(32);
+            font-size: clamp(18px, scale(32), 40px);
             font-weight: 400;
             margin: scale(24) 0;
             display: inline-block;
@@ -42,10 +42,10 @@
         .intro-table {
 
             p {
-                padding: scale(24) 0;
+                padding: clamp(16px, scale(24), 40px) 0;
                 border-top: 1px solid #FBD5CF;
                 // font-size: scale(24);
-                font-size: clamp(18px, scale(24), 30px);
+                font-size: clamp(16px, scale(24), 30px);
                 line-height: 1.5;
 
                 &:last-child {
@@ -74,5 +74,51 @@
         .card {
             background: white;
         }
+    }
+
+    @include md {
+        padding-top: 40px;
+
+        .about {
+            .row {
+                display: block;
+            }
+
+            .col-3,
+            .col-5 {
+                flex: none;
+                max-width: none;
+            }
+
+            .col-5 {
+                margin-top: 30px;
+            }
+
+            .profile img {
+                height: auto;
+                aspect-ratio: .9;
+            }
+
+            .name-booking {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+
+            }
+
+            .intro-table {
+                margin-top: 30px;
+
+                p {
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        width: auto;
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -13,32 +13,42 @@
     .container {
         justify-content: space-between;
         align-items: center;
+
+        @include md {
+            flex-direction: row;
+        }
     }
 
     .menu {
         position: relative;
     }
 
-    .header-left {
+    .header__left {
         display: flex;
         justify-content: center;
         gap: 30px;
         align-items: center;
 
+        a {
+            display: inline-block;
+            width: clamp(150px, scale(193), 200px);
 
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+
+        }
     }
 
-    .marker {
-        position: absolute;
-        height: 80px;
-        border-radius: 100px;
-        transition: all 0.3s ease;
-        width: 0;
-        left: 0;
-        z-index: -1;
-
-        @include sm {
+    .header__right {
+        .menu-button {
             display: none;
+
+            @include md {
+                display: block;
+            }
         }
     }
 
@@ -48,18 +58,5 @@
         left: 0;
         top: 0;
         border-radius: 0;
-
-        .header-left {
-            .btn-home {
-                display: inline-block;
-                vertical-align: top;
-
-                img {
-                    height: 50px;
-                    margin-bottom: 0;
-                }
-            }
-
-        }
     }
 }

@@ -21,10 +21,11 @@
 
   #{$self}__content {
     align-content: center;
-    padding: scale(100) 0;
+    // padding: scale(100) 0;
+    padding: clamp(50px, scale(100), 120px) 0;
 
     h2 {
-      font-size: scale(60);
+      font-size: clamp(32px, scale(60), 80px);
       color: $burgundy;
       font-weight: 500;
     }
@@ -42,6 +43,16 @@
       .button {
         margin-top: scale(16);
       }
+    }
+  }
+
+  @include md {
+    #{$self}__image {
+      display: none;
+    }
+
+    #{$self}__content {
+      h2 {}
     }
   }
 }

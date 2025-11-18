@@ -7,7 +7,14 @@
                     margin-left: -12.5%;
                     flex: 0 0 87.5%;
                     max-width: 87.5%;
+
+                    @include md {
+                        margin-left: 0;
+                        flex: 0 0 100%;
+                        max-width: 100%;
+                    }
                 }
+
             }
         }
     }
@@ -18,8 +25,15 @@
 
 
     .col-4 {
+
         &:nth-child(2n + 2) {
             transform: translateY(scale(150));
+        }
+
+        @include md {
+            &:nth-child(2n + 2) {
+                transform: translateY(0);
+            }
         }
     }
 

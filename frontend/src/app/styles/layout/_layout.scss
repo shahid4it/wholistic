@@ -10,7 +10,7 @@
 }
 
 .section {
-    padding: scale(150) 0 scale(150);
+    padding: clamp(75px, scale(150), 200px) 0 clamp(75px, scale(150), 200px);
 }
 
 
@@ -42,7 +42,7 @@
     --speed: 20s;
     /* lower = faster */
     width: 100%;
-    font-size: scale(220);
+    font-size: clamp(110px, scale(220), 300px);
     color: $lightest-peach;
     font-weight: 200;
     white-space: nowrap;

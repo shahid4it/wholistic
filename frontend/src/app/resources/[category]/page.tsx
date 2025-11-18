@@ -71,14 +71,17 @@ export default async function Page({ params: { category = "blogs" } }) {
                             {title}
                           </Link>
                         </h3>
-                        <p>{blogs.summary}</p>
-                        <div className="tags">
-                          {blogs.tags?.split(",").map((tag) => (
-                            <span key={tag} className="tag">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                        {blogs.summary ? <p>{blogs.summary}</p> : null}
+
+                        {blogs.tags && (
+                          <div className="tags">
+                            {blogs.tags?.split(",").map((tag) => (
+                              <span key={tag} className="tag">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </article>
                   </li>

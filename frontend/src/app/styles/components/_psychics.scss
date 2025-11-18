@@ -1,10 +1,16 @@
 .section-psychics {
   background: #fbd5cf;
+
+  @include md {
+    .col-2 {
+      flex: 0 0 70%;
+    }
+  }
 }
 
 .psychic {
   height: scale(600);
-  border-radius: scale(12);
+  border-radius: clamp(8px, scale(12), 16px);
   overflow: hidden;
   position: relative;
 
@@ -13,7 +19,7 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-        rgba(0, 0, 0, 0) 50.27%,
+        rgba(0, 0, 0, 0) 40.27%,
         rgba(0, 0, 0, 0.8) 90%);
   }
 
@@ -29,14 +35,14 @@
     left: 0;
     right: 0;
     z-index: 1;
-    padding: scale(20);
+    padding: clamp(16px, scale(20), 32px);
     color: white;
     display: flex;
     flex-direction: column;
-    gap: scale(8);
+    gap: clamp(8px, scale(8), 16px);
 
     .tags {
-      gap: scale(8);
+      gap: clamp(8px, scale(8), 16px);
       display: flex;
       margin-top: scale(16);
 
@@ -55,5 +61,12 @@
     h3 {
       color: white;
     }
+  }
+
+  @include md {
+    aspect-ratio: .68;
+    width: 100%;
+    height: auto;
+
   }
 }

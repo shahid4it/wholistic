@@ -1,18 +1,19 @@
 .input-field {
     label {
         display: block;
-        margin-bottom: scale(8);
-        font-size: scale(18);
+        margin-bottom: clamp(8px, scale(8), 12px);
+        font-size: clamp(14px, scale(18), 30px);
     }
 
     input,
     textarea,
     select {
         width: 100%;
-        padding: scale(18);
+        padding: clamp(16px, scale(18), 30px);
         border: 0;
-        font-size: scale(18);
+        font-size: clamp(16px, scale(18), 30px);
         border-radius: scale(8);
+        margin-bottom: clamp(8px, scale(8), 12px);
         outline: none;
         box-sizing: border-box;
     }

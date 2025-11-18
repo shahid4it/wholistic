@@ -71,14 +71,16 @@ export default async function Page() {
                           <h3 className="title">
                             <Link href={`?video=${resourceUrl}`}>{title}</Link>
                           </h3>
-                          <p>{summary}</p>
-                          <div className="tags">
-                            {tags?.split(",").map((tag) => (
-                              <span key={tag} className="tag">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                          {summary ? <p>{summary}</p> : null}
+                          {tags && (
+                            <div className="tags">
+                              {tags?.split(",").map((tag) => (
+                                <span key={tag} className="tag">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </article>
                     </li>

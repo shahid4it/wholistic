@@ -48,11 +48,11 @@
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                padding: scale(24);
+                padding: clamp(16px, scale(24), 32px);
                 list-style: none; // remove default disclosure marker
                 font-weight: 500;
                 font-family: $swinton;
-                font-size: scale(20);
+                font-size: clamp(18px, scale(20), 30px);
                 background-color: $lightest-peach;
                 transition: .35S;
 
@@ -107,7 +107,7 @@
                 }
 
                 p {
-                    padding: scale(24);
+                    padding: clamp(16px, scale(24), 32px);
                     margin: 0;
                     line-height: 1.5;
                 }
@@ -126,6 +126,14 @@
                 width: 100%;
                 object-fit: cover;
                 height: 100%;
+            }
+        }
+    }
+
+    @include md {
+        .questions {
+            .image-holder {
+                display: none;
             }
         }
     }

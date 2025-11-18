@@ -7,6 +7,10 @@ $grid-gutter: scale(30);
     padding-left: calc($grid-gutter / 2);
     padding-right: calc($grid-gutter / 2);
     box-sizing: border-box;
+
+    @include md {
+        flex-direction: column;
+    }
 }
 
 // Row
@@ -17,6 +21,10 @@ $grid-gutter: scale(30);
     margin-right: calc(-1 * #{$grid-gutter} / 2);
     box-sizing: border-box;
     width: 100%;
+
+    @include md {
+        flex-direction: column;
+    }
 }
 
 // Column Mixin
@@ -33,12 +41,25 @@ $grid-gutter: scale(30);
     .col-#{$i} {
         @include make-col($i, $grid-columns);
     }
+
+    @include md {
+        .col-#{$i} {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
 }
 
 // Generate offsets
 @for $i from 1 through ($grid-columns - 1) {
     .offset-#{$i} {
         margin-left: percentage($i / $grid-columns);
+    }
+
+    @include md {
+        .offset-#{$i} {
+            margin-left: 0;
+        }
     }
 }
 

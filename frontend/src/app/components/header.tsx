@@ -1,3 +1,5 @@
+// "use client";
+// import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchStrapi } from "@/utils/strapi";
@@ -10,6 +12,7 @@ export default async function Header() {
   const data = await fetchStrapi({ query: HEADER_QUERY, key: "header" })();
   const token = cookies().get("auth")?.value;
   let user = undefined;
+  // const [isOpen, setIsOpen] = useState(false);
 
   if (token) {
     try {
@@ -35,7 +38,7 @@ export default async function Header() {
   return (
     <header className="header">
       <div className="container">
-        <div className="headeer__left">
+        <div className="header__left">
           <Link href={"/"}>
             <Image
               src={"/images/logo.svg"}
@@ -90,6 +93,23 @@ export default async function Header() {
               </li>
             </ul>
           </nav>
+          <div className="menu-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 5h16" />
+              <path d="M4 12h16" />
+              <path d="M4 19h16" />
+            </svg>
+          </div>
         </div>
       </div>
     </header>

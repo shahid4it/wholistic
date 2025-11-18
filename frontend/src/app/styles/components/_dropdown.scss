@@ -45,6 +45,18 @@
         background-color: $lightest-peach;
       }
     }
+
+    @include md {
+      display: flex;
+      position: static;
+      padding-block: 0;
+      width: 100%;
+
+
+      a {
+        line-height: 2 !important;
+      }
+    }
   }
 
   &.open,

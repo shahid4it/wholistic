@@ -27,15 +27,26 @@
 }
 
 .videos {
+  padding-left: 0;
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
   list-style-type: none;
   width: 100%;
 
+
   .col {
     width: calc(50% - 15px);
+
   }
+
+  @include md {
+    .col {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+
 }
 
 .iframe {
@@ -64,7 +75,7 @@
   #{$self}__content {
     overflow: hidden;
     background: white;
-    padding: scale(24);
+    padding: clamp(16px, scale(24), 40px);
     width: 100%;
 
     display: flex;
@@ -93,6 +104,13 @@
   &--video {
     #{$self}__image {
       height: scale(475);
+    }
+  }
+
+  @include md {
+    #{$self}__image {
+      height: auto;
+      aspect-ratio: 16 / 9;
     }
   }
 }

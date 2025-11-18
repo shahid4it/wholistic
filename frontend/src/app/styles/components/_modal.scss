@@ -19,16 +19,16 @@
         justify-content: space-between;
         align-items: center;
         background: $peach;
-        padding: scale(16) scale(24);
+        padding: clamp(12px, scale(16), 24px) clamp(16px, scale(24), 48px);
 
         h3 {
             color: $black;
-            font-size: scale(32);
+            font-size: clamp(24px, scale(32), 48px);
 
         }
 
         svg {
-            width: scale(18);
+            width: clamp(16px, scale(18), 24px);
         }
 
         button {
@@ -59,9 +59,36 @@
         background: $white;
         border-radius: scale(8);
         overflow: hidden;
+
+        &.modal_main--video {
+            max-width: scale(1200);
+            aspect-ratio: 16 / 10;
+
+            .modal_content {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+
+                iframe {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            @include md {
+                width: 80%;
+                max-width: none;
+            }
+        }
     }
 
     &_content {
         padding: scale(24);
+    }
+
+    &_iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border-radius: scale(8);
     }
 }

@@ -1,5 +1,16 @@
 .introduction {
-  padding: scale(150) 0 scale(100);
+  // padding: scale(150) 0 scale(100);
+  padding: clamp(75px, scale(150), 200px) 0 clamp(50px, scale(100), 120px);
+
+  .section-title {
+    margin-bottom: 0;
+  }
+
+  @include md {
+    .container .row {
+      gap: 30px;
+    }
+  }
 }
 
 .introduction-below {
@@ -17,9 +28,28 @@
       object-fit: cover;
     }
   }
+
+  @include md {
+    margin-top: 75px;
+
+    .image-holder {
+      height: 40vh;
+      max-height: none;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      .row {
+        flex-direction: column;
+      }
+    }
+  }
+
+
 }
 
 .two-image-section {
+
   .row {
     flex-wrap: nowrap;
     align-items: flex-end;
@@ -33,6 +63,10 @@
   .image-holder:first-child {
     width: 40%;
     height: 80%;
+  }
+
+  @include md {
+    display: none
   }
 }
 
@@ -76,6 +110,10 @@
         z-index: 2;
         /* fade in on top */
       }
+
+      @include md {
+        display: none;
+      }
     }
 
     .services-list {
@@ -94,7 +132,7 @@
           border-bottom: 1px solid rgba($white, 0.5);
           flex: 1;
           font-family: $swinton;
-          font-weight: 500;
+          font-weight: 400;
           counter-increment: item; // increment per li
           padding-left: 0;
 
@@ -106,11 +144,12 @@
             color: $coral;
             transition: 0.35s;
 
+
             .service-title {
-              font-size: scale(48);
+              font-size: clamp(32px, scale(48), 60px);
               transition: 0.35s;
               padding-left: 0;
-              font-weight: 400;
+              font-weight: 300;
             }
 
             &:hover {
@@ -134,6 +173,21 @@
             }
           }
         }
+      }
+
+      @include md {
+        ul {
+          li {
+            a {
+              padding-block: 24px;
+
+              &:after {
+                display: none;
+              }
+            }
+          }
+        }
+
       }
     }
   }

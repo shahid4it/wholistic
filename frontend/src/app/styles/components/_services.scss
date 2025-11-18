@@ -1,14 +1,16 @@
 .service-card {
+  $self: &;
   position: relative;
   margin-bottom: 30px;
-  border-radius: scale(12);
+  border-radius: clamp(8px, scale(12), 16px);
   overflow: hidden;
 
-  &__image {
+
+  #{$self}__image {
     width: 100%;
     height: scale(800);
     overflow: hidden;
-    border-radius: scale(12);
+    border-radius: clamp(8px, scale(12), 16px);
 
     img {
       object-fit: cover;
@@ -27,11 +29,11 @@
       top: 0;
       bottom: 0;
       right: 0;
-      border-radius: scale(12);
+      border-radius: clamp(8px, scale(12), 16px);
     }
   }
 
-  &__content {
+  #{$self}__content {
     position: absolute;
     z-index: 99;
     color: white !important;
@@ -44,7 +46,7 @@
     width: 90%;
 
     h3 {
-      font-size: scale(72);
+      font-size: clamp(32px, scale(72), 96px);
       color: $lightest-peach;
 
       svg {
@@ -65,5 +67,17 @@
     z-index: 1;
     color: $white;
     font-size: scale(48);
+  }
+
+  @include md {
+    margin-bottom: 0;
+
+    #{$self}__image {
+      height: auto;
+      aspect-ratio: 1.06;
+
+      height: 400px;
+
+    }
   }
 }

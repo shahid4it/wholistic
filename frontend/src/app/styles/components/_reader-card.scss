@@ -1,11 +1,11 @@
 .reader {
   $self: &;
   background-color: $white;
-  padding: scale(24);
+  padding: clamp(12px, scale(24), 40px);
   display: flex;
-  gap: scale(24);
+  gap: clamp(16px, scale(24), 32px);
   box-shadow: 0 0 scale(20) rgba($burgundy, 0.1);
-  margin-bottom: scale(30);
+  margin-bottom: clamp(24px, scale(30), 40px);
   border-radius: scale(12);
 
   #{$self}__image {
@@ -29,7 +29,8 @@
     .upper-content {
       display: flex;
       flex-direction: column;
-      gap: scale(16);
+      gap: clamp(12px, scale(16), 20px);
+
 
       .name {
         display: flex;
@@ -37,7 +38,7 @@
         align-items: center;
 
         h3 {
-          font-size: scale(40);
+          font-size: clamp(24px, scale(40), 60px);
           color: $coral;
         }
       }
@@ -64,6 +65,27 @@
 
     #{$self}__image {
       width: 100%;
+    }
+  }
+
+  @include md {
+
+    #{$self}__image {
+      width: 40%;
+    }
+
+    #{$self}__content {
+      .upper-content {
+        .name {
+          margin-bottom: 12px;
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .bio {
+          display: none;
+        }
+      }
     }
   }
 }

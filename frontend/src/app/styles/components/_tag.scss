@@ -1,5 +1,5 @@
 .tag {
-    padding: scale(8) scale(24);
+    padding: clamp(4px, scale(8), 12px) clamp(16px, scale(24), 32px);
     background-color: $lightest-peach;
     border-radius: 50px;
     color: $coral;

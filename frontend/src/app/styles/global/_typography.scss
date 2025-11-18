@@ -6,7 +6,7 @@ h4 {
 }
 
 h3 {
-  font-size: scale(40);
+  font-size: clamp(32px, scale(40), 48px);
   font-weight: 500;
   color: $burgundy;
 
@@ -26,7 +26,7 @@ li {
 
 .body-large {
   // font-size: scale(48);
-  font-size: clamp(32px, scale(36), 48px);
+  font-size: clamp(24px, scale(36), 48px);
   font-weight: 200;
   // text-indent: 100px;
   line-height: 1.5;
@@ -42,10 +42,14 @@ li {
     color: $coral;
     font-weight: 300;
   }
+
+  @include md {
+    // font-size: 24px;
+  }
 }
 
 .body-mid {
-  font-size: scale(24);
+  font-size: clamp(18px, scale(24), 32px);
 
   font-weight: 400;
   line-height: 1.5;

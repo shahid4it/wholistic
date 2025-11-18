@@ -2,7 +2,7 @@
   width: 100%;
   background-color: $burgundy;
   color: $lightest-peach;
-  padding: scale(20) scale(24);
+  padding: clamp(16px, scale(20), 30px) clamp(16px, scale(24), 30px);
   text-align: center;
   transition: 0.35s;
   border-radius: scale(8);

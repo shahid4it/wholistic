@@ -34,13 +34,37 @@
     color: $white;
 
     h1 {
-      font-size: scale(90);
+      font-size: clamp(42px, scale(90), 110px);
       font-weight: 500;
       @extend .width-4;
     }
+
+    #{$self}__para {
+      width: scale(900);
+    }
   }
 
-  #{$self}__para {
-    width: scale(900);
+
+
+  @include md {
+    height: 50vh;
+
+    #{$self}__background {
+      height: 100%;
+    }
+
+    #{$self}__content {
+      right: scale(100);
+      width: auto;
+
+      h1 {
+        width: auto;
+      }
+
+      #{$self}__para {
+        width: auto;
+      }
+    }
   }
+
 }
