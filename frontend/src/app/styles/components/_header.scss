@@ -1,62 +1,74 @@
 .header {
-    background: rgba($barkest-burgundy, .9);
-    backdrop-filter: blur(4px);
-    position: fixed;
+  background: rgba($barkest-burgundy, 0.9);
+  backdrop-filter: blur(4px);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 20px 0;
+  color: $white;
+  z-index: 100;
+
+  .container {
+    justify-content: space-between;
+    align-items: center;
+
+    @include md {
+      flex-direction: row;
+    }
+  }
+
+  .menu {
+    // position: relative;
+  }
+
+  .header__backdrop {
+    @include md {
+      display: block !important;
+    }
+
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .header__left {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+
+    a {
+      display: inline-block;
+      width: clamp(150px, scale(193), 200px);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .header__right {
+    .menu-button {
+      display: none;
+
+      @include md {
+        display: block;
+      }
+    }
+  }
+
+  @include md {
+    width: 100vw;
+    margin-left: 0;
     left: 0;
     top: 0;
-    width: 100%;
-    padding: 20px 0;
-    color: $white;
-    z-index: 100;
-
-
-    .container {
-        justify-content: space-between;
-        align-items: center;
-
-        @include md {
-            flex-direction: row;
-        }
-    }
-
-    .menu {
-        position: relative;
-    }
-
-    .header__left {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        align-items: center;
-
-        a {
-            display: inline-block;
-            width: clamp(150px, scale(193), 200px);
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-
-
-        }
-    }
-
-    .header__right {
-        .menu-button {
-            display: none;
-
-            @include md {
-                display: block;
-            }
-        }
-    }
-
-    @include sm {
-        width: 100vw;
-        margin-left: 0;
-        left: 0;
-        top: 0;
-        border-radius: 0;
-    }
+    border-radius: 0;
+  }
 }

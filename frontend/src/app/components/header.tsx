@@ -1,5 +1,3 @@
-// "use client";
-// import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchStrapi } from "@/utils/strapi";
@@ -7,6 +5,7 @@ import { HEADER_QUERY } from "@/queries/header";
 import { BookASession } from "./BookASession";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import { HeaderMenu } from "./header-menu";
 
 export default async function Header() {
   const data = await fetchStrapi({ query: HEADER_QUERY, key: "header" })();
@@ -48,69 +47,50 @@ export default async function Header() {
             />
           </Link>
         </div>
-        <div className="header__right">
-          <nav className="menu">
-            <ul className="nav">
-              {data.links?.map(({ title, href, links }) =>
-                !links?.length ? (
-                  <li key={title}>
-                    <Link href={href || "#"}>{title}</Link>
-                  </li>
-                ) : (
-                  <li key={title} className="dropdown">
-                    <a className="dropdown-toggle">{title}</a>
-                    <ul className="dropdown-menu">
-                      {links.map(({ title, href: subhref }) => (
-                        <li key={title}>
-                          <Link href={`${href}${subhref}`}>{title}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                )
+        <HeaderMenu>
+          <ul className="nav">
+            {data.links?.map(({ title, href, links }) =>
+              !links?.length ? (
+                <li key={title}>
+                  <Link href={href || "#"}>{title}</Link>
+                </li>
+              ) : (
+                <li key={title} className="dropdown">
+                  <a className="dropdown-toggle">{title}</a>
+                  <ul className="dropdown-menu">
+                    {links.map(({ title, href: subhref }) => (
+                      <li key={title}>
+                        <Link href={`${href}${subhref}`}>{title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )
+            )}
+            <li>
+              {user ? (
+                <div className="dropdown">
+                  <button className="dropdown-toggle">
+                    {user.firstName} {user.lastName}
+                  </button>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link href="#">Profile</Link>
+                    </li>
+                    <li>
+                      <Link href="/auth/logout">Logout</Link>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <Link href={"/auth/login"}>Login</Link>
               )}
-              <li>
-                {user ? (
-                  <div className="dropdown">
-                    <button className="dropdown-toggle">
-                      {user.firstName} {user.lastName}
-                    </button>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <Link href="#">Profile</Link>
-                      </li>
-                      <li>
-                        <Link href="/auth/logout">Logout</Link>
-                      </li>
-                    </ul>
-                  </div>
-                ) : (
-                  <Link href={"/auth/login"}>Login</Link>
-                )}
-              </li>
-              <li>
-                <BookASession />
-              </li>
-            </ul>
-          </nav>
-          <div className="menu-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M4 5h16" />
-              <path d="M4 12h16" />
-              <path d="M4 19h16" />
-            </svg>
-          </div>
-        </div>
+            </li>
+            <li>
+              <BookASession />
+            </li>
+          </ul>
+        </HeaderMenu>
       </div>
     </header>
   );

@@ -26,24 +26,38 @@
     }
   }
 
-  @include sm {
-
+  @include md {
     .nav {
-
       position: absolute !important;
-      right: -26px;
-      width: 100vw;
+      left: 0;
+      right: 0;
       text-align: right;
       flex-direction: column;
-      top: 50px;
+      top: 100%;
       z-index: -1;
       max-height: 0;
       overflow: hidden;
-      padding: 0 30px;
+      padding: 0 60px;
       background: rgba($barkest-burgundy, 0.95);
       align-items: end;
 
+      .button {
+        width: fit-content;
+        margin-bottom: 30px;
+      }
 
+      .dropdown-menu {
+        background: none;
+        padding: 0;
+
+        a {
+          padding-right: 0;
+        }
+
+        a:hover {
+          background-color: transparent;
+        }
+      }
 
       li {
         display: block;
@@ -53,15 +67,12 @@
           line-height: 2;
         }
       }
-
-
-
     }
   }
 
   &.show {
     .nav {
-      padding-bottom: 30px;
+      // padding-bottom: 30px;
       max-height: 800px;
     }
   }
