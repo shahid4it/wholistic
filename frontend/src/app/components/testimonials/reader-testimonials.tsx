@@ -1,7 +1,7 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 
 const StarFilled = (
   <svg
@@ -66,7 +66,9 @@ export function ReaderTestimonials({ testimonials = [], reader = {} }) {
               {testimonials.map(({ client, content, rating }) => (
                 <article className="testimonial-card card col-3" key={client}>
                   <span className="rating">
-                    {new Array(rating).fill(0).map((_, i) => StarFilled)}
+                    {new Array(rating).fill(0).map((_, i) => (
+                      <Fragment key={i}>{StarFilled}</Fragment>
+                    ))}
                     {StarOutline}
                   </span>
                   <h4>{content}</h4>

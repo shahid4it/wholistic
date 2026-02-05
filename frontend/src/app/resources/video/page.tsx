@@ -51,7 +51,7 @@ export default async function Page() {
                 }) => {
                   const date = new Date(Date.parse(publishDate || ""));
                   return (
-                    <li className="col">
+                    <li className="col" key={title}>
                       <article className="resource-item resource-item--video">
                         <figure className="resource-item__image">
                           <Link href={`?video=${resourceUrl}`}>

@@ -381,7 +381,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     singularName: 'about';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -408,7 +408,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     singularName: 'blog';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     author: Schema.Attribute.Relation<'oneToOne', 'api::preacher.preacher'>;
@@ -452,7 +452,7 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     singularName: 'contact';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -482,7 +482,7 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     singularName: 'footer';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     copyright: Schema.Attribute.String;
@@ -513,7 +513,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     singularName: 'header';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -542,7 +542,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     singularName: 'home';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -578,7 +578,7 @@ export interface ApiHoroscopeHoroscope extends Struct.CollectionTypeSchema {
     singularName: 'horoscope';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Schema.Attribute.RichText &
@@ -631,7 +631,7 @@ export interface ApiNewsletterNewsletter extends Struct.SingleTypeSchema {
     singularName: 'newsletter';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Schema.Attribute.RichText;
@@ -661,7 +661,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     singularName: 'preacher';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     abilities: Schema.Attribute.String;
@@ -701,7 +701,7 @@ export interface ApiPsychicsPagePsychicsPage extends Struct.SingleTypeSchema {
     singularName: 'psychics-page';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -731,7 +731,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     singularName: 'service';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Schema.Attribute.RichText;
@@ -777,7 +777,7 @@ export interface ApiServicesPageServicesPage extends Struct.SingleTypeSchema {
     singularName: 'services-page';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -818,7 +818,7 @@ export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
     singularName: 'subscriber';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -852,7 +852,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     singularName: 'testimonial';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     client: Schema.Attribute.String;
@@ -884,7 +884,7 @@ export interface ApiTestimonialsPageTestimonialsPage
     singularName: 'testimonials-page';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;

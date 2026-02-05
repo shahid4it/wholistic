@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const StarFilled = (
   <svg
     width="21"
@@ -41,10 +43,12 @@ export function Testimonials({ title: marquee, testimonials }) {
       <div className="container">
         <div className="row">
           {testimonials.map(({ content, client }) => (
-            <div className="col-3">
+            <div className="col-3" key={client}>
               <article key={client} className="testimonial-card">
                 <span className="rating">
-                  {new Array(4).fill(0).map((_, i) => StarFilled)}
+                  {new Array(4).fill(0).map((_, i) => (
+                    <Fragment key={i}>{StarFilled}</Fragment>
+                  ))}
                   {StarOutline}
                 </span>
                 <h4>{content}</h4>

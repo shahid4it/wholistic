@@ -18,7 +18,7 @@ export function Services({ title, content, services = [] }) {
         <section className="container">
           <div className="row">
             {services.map(({ title, thumbnail, content, slug }, index) => (
-              <div className="col-4">
+              <div className="col-4" key={index}>
                 <div key={title} className="service-card ">
                   <div className="index-number">0{index + 1}</div>
                   <figure className="service-card__image">

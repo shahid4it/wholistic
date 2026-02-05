@@ -145,7 +145,9 @@ export function Calendar() {
             {week.map((val, i) =>
               val ? (
                 isCurrentMonthDisplayed && val < todayDay ? (
-                  <span className="day disabled">{val}</span>
+                  <span className="day disabled" key={i}>
+                    {val}
+                  </span>
                 ) : (
                   <button
                     type="button"
@@ -165,7 +167,7 @@ export function Calendar() {
                   </button>
                 )
               ) : (
-                <span className="day" />
+                <span className="day" key={i} />
               )
             )}
           </div>

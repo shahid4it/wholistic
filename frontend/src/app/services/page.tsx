@@ -18,10 +18,10 @@ export default async function ServicesPage() {
 
   return (
     <main className="services-page">
-      {sections.map(({ __typename: typename, ...props }) => {
+      {sections.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
 
-        return <Comp {...props} />;
+        return <Comp {...props} key={i} />;
       })}
     </main>
   );

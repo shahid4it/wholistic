@@ -18,7 +18,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["195.35.56.144"],
+    domains: ["195.35.56.144", "localhost"],
   },
   typescript: {
     ignoreBuildErrors: true,

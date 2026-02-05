@@ -29,7 +29,9 @@ function Psychic({ name, bio, profile, tags, oneliner, slug }) {
         <p>{oneliner}</p>
         <div className="tags">
           {tags?.split(",").map((tag) => (
-            <span className="tag">{tag}</span>
+            <span className="tag" key={tag}>
+              {tag}
+            </span>
           ))}
         </div>
       </div>
@@ -84,7 +86,7 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
                 {preachers.map((props) => (
-                  <div className="col-2">
+                  <div className="col-2" key={props.name}>
                     <Psychic key={props.name} {...props} />
                   </div>
                 ))}
