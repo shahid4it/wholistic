@@ -6,12 +6,12 @@ import Introduction from "./components/introduction";
 import { fetchStrapi } from "@/utils/strapi";
 import { HOME_QUERY } from "@/queries/home";
 import { Preachers } from "./components/preachers";
-import Section from "./components/section";
+import HomeIntro from "./components/homeIntro";
 
 const COMP_MAP = {
   ComponentUiBanner: Hero,
   ComponentUiSection: Introduction,
-  // ComponentUiIntro: Section,
+  ComponentUiIntro: HomeIntro,
   ComponentServicesServices: Services,
   ComponentPreachersPreachers: Preachers,
   ComponentUiTestimonials: Testimonials,

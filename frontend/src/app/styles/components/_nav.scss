@@ -9,18 +9,19 @@
       position: relative;
 
       a {
-        font-size: clamp(18px, scale(22), 24px);
+        font-size: clamp(20px, scale(22), 24px);
         text-underline-offset: 10px;
         text-decoration-thickness: 1px;
         transition: 0.35s;
         font-family: $swinton;
         line-height: 3;
         display: inline-block;
+        color: $peach;
 
         &:hover {
           text-decoration: underline;
-          text-underline-offset: 4px;
-          color: $peach;
+          // text-underline-offset: 4px;
+          color: $white;
         }
       }
     }
@@ -37,7 +38,7 @@
       z-index: -1;
       max-height: 0;
       overflow: hidden;
-      padding: 0 60px;
+      padding: 0 30px;
       background: rgba($barkest-burgundy, 0.95);
       align-items: end;
 

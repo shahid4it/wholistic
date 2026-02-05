@@ -73,7 +73,6 @@ export async function Subscribe(
       };
     }
     const [salt, hash] = targetPassword.split(":");
-    console.log(salt, hash);
     if (hash !== scryptSync(password, salt, 32).toString("hex")) {
       return {
         error: "authentication",

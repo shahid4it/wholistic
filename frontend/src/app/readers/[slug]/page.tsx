@@ -9,6 +9,7 @@ import {
 import { StrapiImage } from "@/app/components/StrapiImage";
 import { BookingFormModal } from "@/app/components/BookingFormModal";
 import { ReaderTestimonials } from "@/app/components/testimonials/reader-testimonials";
+import Markdown from "react-markdown";
 
 export default async function PsychicPage({ params: { slug = "" } }) {
   const [[reader], testimonials, blogs] = await Promise.all([
@@ -93,7 +94,9 @@ export default async function PsychicPage({ params: { slug = "" } }) {
               <h3 className="section-title">About {reader.name}</h3>
             </div>
             <div className="col-7 offset-1">
-              <p className="body-mid-large">{reader.bio}</p>
+              <div className="reader-intro">
+                <Markdown>{reader.bio}</Markdown>
+              </div>
             </div>
           </div>
         </div>

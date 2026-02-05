@@ -16,6 +16,59 @@
     cursor: move;
     gap: scale(8);
   }
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: scale(150);
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    background: #FFFFFF;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  &:after {
+    right: 0;
+    background: #FFFFFF;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .embla__button {
+    z-index: 10;
+    width: scale(80) !important;
+    height: scale(80) !important;
+    border-radius: 100%;
+    background: $coral ;
+    border: 1px solid $coral;
+    font-size: scale(32);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    svg {
+      stroke: $lightest-peach;
+    }
+
+
+    &:hover {
+      background: $lightest-peach;
+
+      svg {
+        stroke: $burgundy;
+      }
+    }
+
+    &.embla__button--next {
+      right: scale(-100);
+    }
+
+    &.embla__button--prev {
+      left: scale(-100);
+    }
+  }
 }
 
 .starsign {
@@ -24,7 +77,6 @@
   border-radius: 100px;
   background-color: $peach;
   gap: scale(16);
-
 
   &.active {
     background: $burgundy;
@@ -60,14 +112,11 @@
     flex-direction: column;
     justify-content: center;
 
-
     h3 {
       font-size: scale(20);
       font-weight: 600;
       font-family: $swinton;
       color: $coral;
-
-
     }
 
     p {
@@ -77,8 +126,6 @@
       white-space: nowrap;
     }
   }
-
-
 }
 
 .horoscope-content {

@@ -22,13 +22,10 @@ const StarFilled = (
 
 function Psychic({ name, bio, profile, tags, oneliner, slug }) {
   return (
-    <div className="psychic">
+    <Link href={`/readers/${slug}`} className="psychic">
       <StrapiImage src={profile?.url} width={300} height={400} alt="" />
       <div className="psychic__content">
-        <h3>
-          <Link href={`/readers/${slug}`}>{name}</Link>
-        </h3>
-        {/* <span>4.7 {StarFilled} (2026)</span> */}
+        <h3>{name}</h3>
         <p>{oneliner}</p>
         <div className="tags">
           {tags?.split(",").map((tag) => (
@@ -36,7 +33,7 @@ function Psychic({ name, bio, profile, tags, oneliner, slug }) {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -83,12 +80,6 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
       </section>
       <div className="psychics container">
         <div className="row">
-          {/* <div className="col-2">
-            {preachers.map((props) => (
-              <Psychic key={props.name} {...props} />
-            ))}
-          </div> */}
-
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">

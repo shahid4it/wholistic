@@ -26,12 +26,28 @@ export function Carousel({ star }) {
     dragFree: true,
     // align: "start",
   });
+  // const [progress, setProgress] = useState(0);
+
   const [progress, setProgress] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
   const onScroll = useCallback(() => {
     if (!emblaApi) return;
+
     const scrollProgress = Math.max(0, Math.min(1, emblaApi.scrollProgress()));
+
     setProgress(scrollProgress * 100);
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  const scrollPrev = useCallback(() => {
+    emblaApi && emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi && emblaApi.scrollNext();
   }, [emblaApi]);
 
   useEffect(() => {
@@ -45,6 +61,27 @@ export function Carousel({ star }) {
     <section className="starsigns">
       <div className="container">
         <div className="embla">
+          <button
+            className="embla__button embla__button--prev"
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            aria-label="Previous"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 25 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.0552 12.6904H2.05518M2.05518 12.6904L12.5552 2.19043M2.05518 12.6904L12.5552 23.1904"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
           <div className="embla__viewport" ref={emblaRef}>
             <div className="embla__container">
               {Object.entries(durations).map(([name, duration]) => (
@@ -62,6 +99,27 @@ export function Carousel({ star }) {
               ))}
             </div>
           </div>
+          <button
+            className="embla__button embla__button--next"
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            aria-label="Next"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 25 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.94482 12.6904L22.9448 12.6904M22.9448 12.6904L12.4448 23.1904M22.9448 12.6904L12.4448 2.19043"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
         </div>
       </div>
     </section>

@@ -69,10 +69,7 @@ export default function Page() {
             readOnly
             hidden
           />
-          {/* <Recaptcha
-            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-            onChange={console.log}
-          /> */}
+
           <p>{formState.error === "server" && formState.message}</p>
           <button type="submit" className="button" disabled={!captchaToken}>
             Subscribe

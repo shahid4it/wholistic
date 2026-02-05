@@ -18,8 +18,6 @@ export default async function TestimonialsPage() {
     key: "testimonialsPage",
   })();
 
-  console.log(sections);
-
   return (
     <section className="testimonials-page">
       {sections.map(({ __typename: typename, ...props }, i) => {

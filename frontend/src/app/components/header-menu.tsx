@@ -1,9 +1,15 @@
 "use client";
 
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export function HeaderMenu({ children }: PropsWithChildren) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <div className="header__right">
@@ -24,9 +30,9 @@ export function HeaderMenu({ children }: PropsWithChildren) {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <path d="M4 5h16" />
           <path d="M4 12h16" />

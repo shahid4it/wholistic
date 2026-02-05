@@ -12,7 +12,7 @@ export default function Page({ children }) {
     <main className="resources-page">
       <div className="resources-banner">
         <div className="container">
-          <h1>Resources - Horoscope</h1>
+          <h1>Resources - Horoscopes</h1>
         </div>
       </div>
       <Carousel star={star} />

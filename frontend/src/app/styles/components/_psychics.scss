@@ -13,6 +13,8 @@
   border-radius: clamp(8px, scale(12), 16px);
   overflow: hidden;
   position: relative;
+  display: inline-block;
+
 
   &::after {
     content: "";

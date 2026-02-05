@@ -3,13 +3,10 @@
 import { fetchStrapi } from "@/utils/strapi";
 import { useEffect, useState } from "react";
 import { READERS_QUERY } from "@/queries/readers";
-import { BookingFormModal } from "./BookingFormModal";
 import { BookingModal } from "./BookingModal";
 import { BookingForm } from "./BookingForm";
-import Image from "next/image";
 import { createPortal } from "react-dom";
 import { StrapiImage } from "./StrapiImage";
-import { SERVICES_LIST_QUERY } from "@/queries/services-list";
 
 export function BookASession() {
   const [staff, setStaff] = useState([]);

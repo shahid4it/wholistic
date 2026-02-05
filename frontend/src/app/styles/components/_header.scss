@@ -24,7 +24,10 @@
 
   .header__backdrop {
     @include md {
-      display: block !important;
+      &.show {
+        display: block !important;
+
+      }
     }
 
     display: none;
@@ -57,6 +60,15 @@
   .header__right {
     .menu-button {
       display: none;
+      background: transparent;
+      border: 0;
+      padding: 0;
+
+      svg {
+        width: 32px;
+        height: auto;
+        stroke: $lightest-peach;
+      }
 
       @include md {
         display: block;

@@ -40,11 +40,11 @@ export default async function About() {
 
         return Comp && <Comp key={i} {...props} />;
       })}
-      <Preachers
+      {/* <Preachers
         title="Client Favorites"
         marquee="Client Favorites . Client Favorites . "
         preachers={preachers}
-      />
+      /> */}
     </section>
   );
 }

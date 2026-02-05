@@ -1,4 +1,5 @@
 .psychic-single {
+    padding-top: scale(80);
 
     .about {
         .profile {
@@ -65,11 +66,26 @@
 
     .intro {
         background: white;
+
+        .section-title {
+            margin-bottom: scale(100);
+        }
+
+        p {
+            @extend .body-mid-large;
+            margin-bottom: scale(30);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+        }
     }
 
     .testimonials {
         background: #FBD5CF;
         margin-bottom: 0;
+        border-radius: 0;
 
         .card {
             background: white;

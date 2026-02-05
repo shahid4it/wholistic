@@ -3,6 +3,7 @@ import Image from "next/image";
 import { NEWSLETTER_QUERY } from "@/queries/newsletter";
 import { NewsletterAnimation } from "./newsletter-animation";
 import { StrapiImage } from "./StrapiImage";
+import SubscribeForm from "./SubscribeForm";
 
 export default async function Subscribe() {
   const data = await fetchStrapi({
@@ -35,18 +36,7 @@ export default async function Subscribe() {
                 <h2>{data.title}</h2>
                 <p className="body-mid">{data.content}</p>
               </div>
-              <div className="subscribe-form">
-                <div className="input-field">
-                  <label>Full Name</label>
-                  <input type="text" placeholder="Enter your name" />
-                </div>
-
-                <div className="input-field">
-                  <label>Email Address</label>
-                  <input type="text" placeholder="Enter your email address" />
-                </div>
-                <button className="button">Sign up</button>
-              </div>
+              <SubscribeForm />
             </div>
           </div>
         </div>

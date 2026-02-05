@@ -13,7 +13,6 @@ export function BookingForm({
       className="form"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(Object.fromEntries(new FormData(e.target).entries()));
       }}
     >
       <div className="left">

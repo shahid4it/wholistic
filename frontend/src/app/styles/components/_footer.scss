@@ -8,6 +8,12 @@
     justify-content: space-between;
   }
 
+  h3 {
+    font-size: scale(32);
+    color: $coral;
+    margin-block: scale(30);
+  }
+
   .nav {
     display: flex;
     gap: scale(16);
@@ -17,9 +23,11 @@
       display: flex;
       flex-direction: column;
       gap: scale(16);
-      width: 12.5vw;
+      padding-left: 0;
 
       li {
+        padding-left: 0;
+
         a {
           color: $white;
           transition: 0.35s;
