@@ -10,7 +10,7 @@
 
 .psychic {
   height: scale(600);
-  border-radius: clamp(8px, scale(12), 16px);
+  border-radius: scale(12, 8px, 16px);
   overflow: hidden;
   position: relative;
   display: inline-block;
@@ -37,14 +37,14 @@
     left: 0;
     right: 0;
     z-index: 1;
-    padding: clamp(16px, scale(20), 32px);
+    padding: scale(20, 16px, 32px);
     color: white;
     display: flex;
     flex-direction: column;
-    gap: clamp(8px, scale(8), 16px);
+    gap: scale(8, 8px, 16px);
 
     .tags {
-      gap: clamp(8px, scale(8), 16px);
+      gap: scale(8, 8px, 16px);
       display: flex;
       margin-top: scale(16);
 

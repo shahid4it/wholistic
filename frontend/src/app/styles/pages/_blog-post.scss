@@ -41,28 +41,28 @@
 
 
             h2 {
-                font-size: clamp(32px, scale(48), 54px);
+                font-size: scale(48, 32px, 54px);
                 margin-bottom: scale(30);
                 font-weight: 500;
                 color: $burgundy;
             }
 
             h3 {
-                font-size: clamp(28px, scale(40), 48px);
+                font-size: scale(40, 28px, 48px);
                 margin-bottom: scale(30);
                 font-weight: 500;
                 color: $burgundy;
             }
 
             h4 {
-                font-size: clamp(24px, scale(32), 40px);
+                font-size: scale(32, 24px, 40px);
                 margin-bottom: scale(30);
                 font-weight: 500;
                 color: $burgundy;
             }
 
             p {
-                font-size: clamp(18px, scale(20), 24px);
+                font-size: scale(20, 18px, 24px);
                 margin-block: scale(30);
                 font-weight: 500;
                 line-height: 1.5;

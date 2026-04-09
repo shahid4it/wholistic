@@ -2,7 +2,7 @@
   $self: &;
   position: relative;
   margin-bottom: 30px;
-  border-radius: clamp(8px, scale(12), 16px);
+  border-radius: scale(12, 8px, 16px);
   overflow: hidden;
 
 
@@ -10,7 +10,7 @@
     width: 100%;
     height: scale(800);
     overflow: hidden;
-    border-radius: clamp(8px, scale(12), 16px);
+    border-radius: scale(12, 8px, 16px);
 
     img {
       object-fit: cover;
@@ -29,7 +29,7 @@
       top: 0;
       bottom: 0;
       right: 0;
-      border-radius: clamp(8px, scale(12), 16px);
+      border-radius: scale(12, 8px, 16px);
     }
   }
 
@@ -46,7 +46,7 @@
     width: 90%;
 
     h3 {
-      font-size: clamp(32px, scale(72), 96px);
+      font-size: scale(72, 32px, 96px);
       color: $lightest-peach;
 
       svg {

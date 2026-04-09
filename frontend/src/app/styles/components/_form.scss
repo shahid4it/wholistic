@@ -1,25 +1,32 @@
 .input-field {
     label {
         display: block;
-        margin-bottom: clamp(8px, scale(8), 12px);
-        font-size: clamp(14px, scale(18), 30px);
+        margin-bottom: scale(8, 8px, 12px);
+        font-size: scale(18, 14px, 30px);
     }
 
     input,
     textarea,
     select {
         width: 100%;
-        padding: clamp(16px, scale(18), 30px);
-        border: 0;
-        font-size: clamp(16px, scale(18), 30px);
+        padding: scale(18, 16px, 30px);
+        border: 2px solid $gray-light;
+        font-size: scale(18, 16px, 30px);
         border-radius: scale(8);
-        margin-bottom: clamp(8px, scale(8), 12px);
-        outline: none;
+        margin-bottom: scale(8, 8px, 12px);
+        transition: 0.3s;
         box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: $burgundy;
+            box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+        }
     }
 
     textarea {
         flex: none !important;
         height: 200px;
+        resize: vertical;
     }
 }

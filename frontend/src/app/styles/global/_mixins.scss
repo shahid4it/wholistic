@@ -5,10 +5,18 @@
 }
 
 @mixin margin-bottom($value) {
-  font-size: ($value / $default * 100) + vw;
+  margin-bottom: ($value / $default * 100) + vw;
 }
 
-@function scale($value) {
-  $result: ($value / $default * 100) + vw;
-  @return $result;
+@function scale($value, $min-value: null, $max-value: null) {
+  $scaled: ($value / $default * 100) + vw;
+  
+  @if $min-value == null {
+    $min-value: ($value * 0.6) + px;
+  }
+  @if $max-value == null {
+    $max-value: ($value * 1.25) + px;
+  }
+  
+  @return clamp($min-value, $scaled, $max-value);
 }

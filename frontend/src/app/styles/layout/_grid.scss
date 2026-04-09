@@ -1,47 +1,44 @@
 // Config
 $grid-columns: 8;
 $grid-gutter: scale(30);
-
 // Container
 .container {
-    padding-left: calc($grid-gutter / 2);
-    padding-right: calc($grid-gutter / 2);
+    padding-inline: calc($grid-gutter / 2);
     box-sizing: border-box;
-
     @include md {
         flex-direction: column;
+        margin: 0 scale(10, 15px);
+        padding-inline:0;
     }
 }
-
 // Row
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-left: calc(-1 * #{$grid-gutter} / 2);
-    margin-right: calc(-1 * #{$grid-gutter} / 2);
+    margin-inline: calc(-1 * #{$grid-gutter} / 2);
     box-sizing: border-box;
     width: 100%;
-
     @include md {
         flex-direction: column;
+        margin-inline: 0;
+        // gap: 30px;
     }
 }
-
 // Column Mixin
 @mixin make-col($size, $columns) {
     flex: 0 0 percentage($size / $columns);
     max-width: percentage($size / $columns);
-    padding-left: calc($grid-gutter / 2);
-    padding-right: calc($grid-gutter / 2);
+    padding-inline: calc($grid-gutter / 2);
     box-sizing: border-box;
+    @include md{
+        padding-inline: 0;
+    }
 }
-
 // Generate columns
 @for $i from 1 through $grid-columns {
     .col-#{$i} {
         @include make-col($i, $grid-columns);
     }
-
     @include md {
         .col-#{$i} {
             flex: 0 0 100%;
@@ -49,20 +46,17 @@ $grid-gutter: scale(30);
         }
     }
 }
-
 // Generate offsets
 @for $i from 1 through ($grid-columns - 1) {
     .offset-#{$i} {
         margin-left: percentage($i / $grid-columns);
     }
-
     @include md {
         .offset-#{$i} {
             margin-left: 0;
         }
     }
 }
-
 // Generate width
 @for $i from 1 through ($grid-columns - 1) {
     .width-#{$i} {

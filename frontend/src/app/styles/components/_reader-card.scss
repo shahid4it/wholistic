@@ -1,54 +1,45 @@
 .reader {
   $self: &;
   background-color: $white;
-  padding: clamp(12px, scale(24), 40px);
+  padding: scale(24, 12px, 40px);
   display: flex;
-  gap: clamp(16px, scale(24), 32px);
+  gap: scale(24, 16px, 32px);
   box-shadow: 0 0 scale(20) rgba($burgundy, 0.1);
-  margin-bottom: clamp(24px, scale(30), 40px);
+  margin-bottom: scale(30, 24px, 40px);
   border-radius: scale(12);
-
   #{$self}__image {
     width: scale(332);
     aspect-ratio: 0.9;
     flex-shrink: 0;
-
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-
   #{$self}__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-
     .upper-content {
       display: flex;
       flex-direction: column;
-      gap: clamp(12px, scale(16), 20px);
-
-
+      gap: scale(16, 12px, 20px);
       .name {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         h3 {
-          font-size: clamp(24px, scale(40), 60px);
+          font-size: scale(40, 24px, 60px);
           color: $coral;
         }
       }
-
       .rating {
         font-size: 14px;
         gap: 4px;
         display: flex;
       }
-
       .tags {
         display: flex;
         gap: scale(4);
@@ -56,24 +47,19 @@
       }
     }
   }
-
   &.inner {
     background: transparent;
     box-shadow: none;
     padding: 0;
     @extend .col-2;
-
     #{$self}__image {
       width: 100%;
     }
   }
-
   @include md {
-
     #{$self}__image {
       width: 40%;
     }
-
     #{$self}__content {
       .upper-content {
         .name {
@@ -81,7 +67,6 @@
           flex-direction: column;
           align-items: start;
         }
-
         .bio {
           display: none;
         }
@@ -89,21 +74,18 @@
     }
   }
 }
-
 .reader-list {
   display: flex;
   flex-direction: column;
   max-height: 60vh;
   overflow: auto;
   gap: 1rem;
-
   ul,
   li {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-
   &_item {
     display: flex;
     justify-content: space-between;
@@ -111,34 +93,29 @@
     padding: 8px 0 !important;
     border-bottom: 1px solid $peach;
   }
-
   &__content {
     display: flex;
     align-items: center;
     gap: scale(24);
     flex: 1;
-
     .name {
       color: $coral;
-      font-size: clamp(16px, scale(32), 64px);
+      font-size: scale(32, 16px, 64px);
       font-weight: 500;
       font-family: $swinton;
       margin-bottom: 8px;
     }
-
     p {
       max-width: 600px;
       font-size: 16px;
       color: $black;
     }
-
     figure {
-      width: clamp(80px, scale(96), 120px);
+      width: scale(96, 80px, 120px);
       aspect-ratio: 1;
       border-radius: scale(8);
       overflow: hidden;
     }
-
     img {
       width: 100%;
       height: 100%;

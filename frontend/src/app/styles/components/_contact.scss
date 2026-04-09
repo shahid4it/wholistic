@@ -1,0 +1,110 @@
+.contact-form-container {
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: scale(16);
+    border-radius: scale(8);
+    margin-bottom: scale(24);
+    border: 1px solid #c3e6cb;
+  }
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: scale(16);
+    border-radius: scale(8);
+    margin-bottom: scale(24);
+    border: 1px solid #f5c6cb;
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    gap: scale(24);
+    .input-row {
+      display: flex;
+      gap: scale(24);
+      .field-wrapper{
+        flex: 1;
+      }
+    }
+    label {
+      display: block;
+      margin-bottom: scale(8, 8px, 12px);
+      font-size: scale(18, 14px, 30px);
+      font-weight: 500;
+      color: $burgundy;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: scale(18, 16px, 30px);
+      border: 2px solid $gray-light;
+      font-size: scale(18, 16px, 30px);
+      border-radius: scale(8);
+      transition: 0.3s;
+      box-sizing: border-box;
+      font-family: inherit;
+      &:focus {
+        outline: none;
+        border-color: $burgundy;
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+      }
+    }
+    textarea {
+      resize: vertical;
+      min-height: 200px;
+    }
+    button {
+      align-self: flex-start;
+      margin-top: scale(16);
+    }
+  }
+}
+.contact-section {
+  &__title {
+    margin-bottom: scale(60);
+    font-size: scale(40, 32px, 48px);
+    color: $burgundy;
+    font-weight: 500;
+    font-family: $swinton;
+  }
+  &__content {
+display: flex;width: 100%;
+    gap: scale(60);
+    @include md {
+      grid-template-columns: 1fr;
+      gap: scale(32);
+    }
+  }
+}
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: scale(48);
+  &__item {
+    h3 {
+      font-size: scale(24, 20px, 32px);
+      color: $burgundy;
+      margin-bottom: scale(16);
+      font-weight: 500;
+      font-family: $swinton;
+    }
+    p {
+      font-size: scale(18, 16px, 20px);
+      color: $black;
+      line-height: 1.6;
+      a {
+        color: $coral;
+        text-decoration: none;
+        transition: 0.3s;
+        &:hover {
+          text-decoration: underline;
+          color: $burgundy;
+        }
+      }
+    }
+  }
+  @include md {
+    grid-template-columns: 1fr;
+    gap: scale(32);
+  }
+}

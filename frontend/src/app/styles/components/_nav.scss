@@ -9,7 +9,7 @@
       position: relative;
 
       a {
-        font-size: clamp(20px, scale(22), 24px);
+        font-size: scale(22, 20px, 24px);
         text-underline-offset: 10px;
         text-decoration-thickness: 1px;
         transition: 0.35s;
@@ -39,7 +39,7 @@
       max-height: 0;
       overflow: hidden;
       padding: 0 30px;
-      background: rgba($barkest-burgundy, 0.95);
+      background: rgba($darkest-burgundy, 0.95);
       align-items: end;
 
       .button {

@@ -18,7 +18,7 @@
             margin-bottom: scale(30);
 
             h1 {
-                font-size: clamp(40px, scale(96), 108px);
+                font-size: scale(96, 40px, 108px);
                 font-weight: 500;
                 color: $burgundy;
             }
@@ -32,7 +32,7 @@
         }
 
         .tagline {
-            font-size: clamp(18px, scale(32), 40px);
+            font-size: scale(32, 18px, 40px);
             font-weight: 400;
             margin: scale(24) 0;
             display: inline-block;
@@ -43,10 +43,10 @@
         .intro-table {
 
             p {
-                padding: clamp(16px, scale(24), 40px) 0;
+                padding: scale(24, 16px, 40px) 0;
                 border-top: 1px solid #FBD5CF;
                 // font-size: scale(24);
-                font-size: clamp(16px, scale(24), 30px);
+                font-size: scale(24, 16px, 30px);
                 line-height: 1.5;
 
                 &:last-child {

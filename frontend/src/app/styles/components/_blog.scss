@@ -16,9 +16,9 @@
 
     .article-content {
       h3 {
-        font-size: clamp(24px, scale(32), 40px);
+        font-size: scale(32, 24px, 40px);
         margin-top: scale(48);
-        margin-bottom: clamp(12px, scale(16), 20px);
+        margin-bottom: scale(16, 12px, 20px);
       }
     }
   }

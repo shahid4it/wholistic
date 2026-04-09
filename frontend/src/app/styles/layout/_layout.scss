@@ -3,29 +3,22 @@
     box-sizing: border-box;
     display: flex;
     gap: 30px;
-
     &-col {
         flex-direction: column;
     }
 }
-
 .section {
-    padding: clamp(75px, scale(150), 200px) 0 clamp(75px, scale(150), 200px);
+    padding: scale(150, 75px, 200px) 0 scale(150, 75px, 200px);
 }
-
 // p {
 //     margin-bottom: scale(15);
-
 //     &:last-child {
 //         margin-bottom: 0;
 //     }
 // }
-
-
 .add-testimonial {
     padding: 150px 0;
 }
-
 .not-found {
     height: 80vh;
     display: flex;
@@ -33,24 +26,21 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-
     a {
         &:hover {
             color: $orange;
         }
     }
 }
-
 .load-button-wrapper {
     margin-top: scale(100);
     text-align: center;
 }
-
 .marquee {
     --speed: 20s;
     /* lower = faster */
     width: 100%;
-    font-size: clamp(110px, scale(220), 300px);
+    font-size: scale(220, 110px, 300px);
     color: $lightest-peach;
     font-weight: 200;
     white-space: nowrap;
@@ -59,34 +49,26 @@
     margin-top: scale(-50);
     line-height: 1;
     // animation: marquee 20s linear infinite;
-
     .marquee__inner {
         display: inline-flex;
         gap: scale(100);
-
         white-space: nowrap;
         will-change: transform;
         animation: marquee var(--speed) linear infinite;
-
         >span {
             display: inline-block;
             padding: 0.75rem 0;
             /* demo only */
         }
     }
-
-
     +.introduction {
         padding-top: 0;
     }
-
 }
-
 @keyframes marquee {
     from {
         transform: translateX(0);
     }
-
     to {
         transform: translateX(-50%);
     }

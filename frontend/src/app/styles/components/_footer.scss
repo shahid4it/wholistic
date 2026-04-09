@@ -1,39 +1,37 @@
 .footer {
   padding: scale(100) 0;
-  background-color: $barkest-burgundy;
+  background-color: $darkest-burgundy;
   color: $white;
-
   .container {
     display: flex;
     justify-content: space-between;
+    @include md {
+      .row{
+        gap: scale(30);
+      }
   }
-
+  }
   h3 {
     font-size: scale(32);
     color: $coral;
     margin-block: scale(30);
   }
-
   .nav {
     display: flex;
     gap: scale(16);
-
     ul {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: scale(16);
       padding-left: 0;
-
       li {
         padding-left: 0;
-
         a {
           color: $white;
           transition: 0.35s;
           font-family: $swinton;
-          font-size: clamp(18px, scale(22), 24px);
-
+          font-size: scale(22, 18px, 24px);
           &:hover {
             color: $coral;
           }
@@ -41,7 +39,6 @@
       }
     }
   }
-
   .social {
     justify-content: flex-end;
     text-align: right;
@@ -49,20 +46,17 @@
     flex-direction: column;
     gap: scale(16);
     margin-bottom: scale(32);
-
     ul {
       list-style: none;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       gap: scale(8);
-
       a {
         svg {
           fill: $peach;
           transition: 0.35s;
         }
-
         &:hover {
           svg {
             fill: $white;
@@ -70,11 +64,19 @@
         }
       }
     }
+    @include md{
+      justify-content: flex-start;
+      text-align: left;
+      ul{
+        justify-content: flex-start;
+        padding-left: 0;
+        li{
+          padding-left: 0;
+        }
+      }
+    }
   }
-
   .copyrights {
     text-align: right;
-
-
   }
 }

@@ -74,9 +74,11 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
             <div className="col-4">
               <h3 className="section-title">{title}</h3>
             </div>
-            <div className="body-mid col-3">
-              <Markdown>{content}</Markdown>
-            </div>
+            {content && (
+              <div className="body-mid col-3">
+                <Markdown>{content}</Markdown>
+              </div>
+            )}
           </div>
         </div>
       </section>

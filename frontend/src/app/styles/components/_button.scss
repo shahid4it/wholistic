@@ -2,56 +2,70 @@
   width: 100%;
   background-color: $burgundy;
   color: $lightest-peach;
-  padding: clamp(16px, scale(20), 30px) clamp(16px, scale(24), 30px);
+  padding: scale(20, 12px, 30px) scale(24, 12px, 30px);
   text-align: center;
   transition: 0.35s;
   border-radius: scale(8);
   font-weight: 500;
-  font-size: clamp(16px, scale(18), 20px);
+  font-size: scale(18, 14px, 20px);
   outline: 0;
   border: 0;
   cursor: pointer;
-
   &:hover {
-    // background-color: lighten($burgundy, 10%);
     background-color: $coral;
     color: white;
   }
-
+  &:focus {
+    outline: 2px solid $coral;
+    outline-offset: 2px;
+  }
   &.small {
     padding: scale(12) scale(24);
   }
 }
-
 .button-outline {
   background-color: white;
   color: $burgundy;
   border: 1px solid $burgundy;
+  transition: 0.35s;
+  &:hover {
+    background-color: $burgundy;
+    color: $lightest-peach;
+  }
+  &:focus {
+    outline: 2px solid $burgundy;
+    outline-offset: 2px;
+  }
 }
-
 .button-cta {
   background: $peach;
   color: $burgundy;
   border-radius: 100em;
-
+  transition: 0.35s;
   &:hover {
-    background: darken($peach, 20%);
+    background: darken($peach, 15%);
     color: $burgundy;
   }
+  &:focus {
+    outline: 2px solid $burgundy;
+    outline-offset: 2px;
+  }
 }
-
 .button--header {
   background: $peach;
   padding: scale(12) scale(24);
   color: $burgundy;
   border-radius: 100em;
-
+  transition: 0.35s;
   &:hover {
-    background: lighten($peach, 20%);
+    background: darken($peach, 15%);
     color: $burgundy;
   }
+  &:focus {
+    outline: 2px solid $burgundy;
+    outline-offset: 2px;
+  }
 }
-
 .button--load-more {
   text-align: center;
   margin: auto;
@@ -61,10 +75,14 @@
   background-color: $lightest-peach;
   border: 1px solid $burgundy;
   color: $burgundy;
-
+  transition: 0.35s;
   &:hover {
     background-color: $peach;
     color: $burgundy;
     border-color: $peach;
+  }
+  &:focus {
+    outline: 2px solid $burgundy;
+    outline-offset: 2px;
   }
 }
