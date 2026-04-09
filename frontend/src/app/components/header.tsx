@@ -56,7 +56,7 @@ export default async function Header() {
                 </li>
               ) : (
                 <li key={title} className="dropdown">
-                  <a className="dropdown-toggle">{title}</a>
+                  <a className="dropdown-toggle" href="#">{title}</a>
                   <ul className="dropdown-menu">
                     {links.map(({ title, href: subhref }) => (
                       <li key={title}>
@@ -70,9 +70,9 @@ export default async function Header() {
             <li>
               {user ? (
                 <div className="dropdown">
-                  <button className="dropdown-toggle">
+                  <a className="dropdown-toggle" href="#">
                     {user.firstName} {user.lastName}
-                  </button>
+                  </a>
                   <ul className="dropdown-menu">
                     <li>
                       <Link href="#">Profile</Link>

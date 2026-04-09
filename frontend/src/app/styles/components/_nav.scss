@@ -4,10 +4,8 @@
     display: flex;
     align-items: center;
     gap: scale(24);
-
     li {
       position: relative;
-
       a {
         font-size: scale(22, 20px, 24px);
         text-underline-offset: 10px;
@@ -17,7 +15,6 @@
         line-height: 3;
         display: inline-block;
         color: $peach;
-
         &:hover {
           text-decoration: underline;
           // text-underline-offset: 4px;
@@ -26,7 +23,59 @@
       }
     }
   }
-
+  // Desktop dropdown menu
+  .dropdown {
+    position: relative;
+    // Show dropdown on hover (desktop only)
+    &:hover .dropdown-menu {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown-menu {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      position: absolute;
+      background: rgba($darkest-burgundy, 0.98);
+      top: 100%;
+      // right: 0;
+      padding: scale(12) 0;
+      margin: 0;
+      list-style: none;
+      z-index: 100;
+      @include md {
+        position: static;
+        background: none;
+        padding: 0;
+        top: auto;
+        right: auto;
+      }
+      a {
+        display: block;
+        padding: scale(8) scale(24);
+        color: $peach;
+        transition: color 0.25s ease;
+        &:hover {
+          color: $white;
+          background: rgba($peach, 0.1);
+        }
+        @include md {
+          padding: scale(10) 0 scale(10) scale(32);
+          background: none;
+          color: rgba($peach, 0.85);
+          font-weight: 400;
+          &:hover {
+            background-color: transparent;
+            color: $white;
+            padding-left: scale(36);
+            transition: padding-left 0.2s ease;
+          }
+        }
+      }
+    }
+  }
   @include md {
     .nav {
       position: absolute !important;
@@ -35,50 +84,97 @@
       text-align: right;
       flex-direction: column;
       top: 100%;
-      z-index: -1;
+      z-index: 50;
       max-height: 0;
       overflow: hidden;
       padding: 0 30px;
-      background: rgba($darkest-burgundy, 0.95);
+      background: rgba($darkest-burgundy, 0.98);
       align-items: end;
-
+      transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+      gap: scale(16);
       .button {
         width: fit-content;
-        margin-bottom: 30px;
+        margin-bottom: scale(20);
+        margin-top: scale(10);
       }
-
       .dropdown-menu {
         background: none;
         padding: 0;
-
+        margin: 0;
+        list-style: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
         a {
           padding-right: 0;
+          font-size: scale(16, 14px, 18px);
+          padding: scale(10) 0 scale(10) scale(32);
+          display: block;
+          color: rgba($peach, 0.85);
+          font-weight: 400;
         }
-
         a:hover {
           background-color: transparent;
+          color: $white;
+          padding-left: scale(36);
+          transition: padding-left 0.2s ease;
+        }
+        &.open {
+          max-height: 500px;
         }
       }
-
       li {
         display: block;
         width: 100%;
-
+        border-bottom: 1px solid rgba($peach, 0.1);
+        position: relative;
+        &:last-child {
+          border-bottom: none;
+        }
         a {
           line-height: 2;
+          font-size: scale(20, 18px, 22px);
+          padding: scale(14) 0;
+          display: block;
+          transition: color 0.25s ease, padding-right 0.2s ease;
+          font-weight: 500;
+        }
+        a:active,
+        a:hover {
+          color: $white;
+          padding-right: scale(8);
+        }
+        // Item with submenu
+        &.has-submenu > a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-right: scale(16);
+          &::after {
+            content: "";
+            display: inline-block;
+            width: scale(16);
+            height: scale(16);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8BBA4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: transform 0.3s ease;
+          }
+        }
+        &.has-submenu.open > a::after {
+          transform: rotate(180deg);
         }
       }
     }
   }
-
   &.show {
     .nav {
       // padding-bottom: 30px;
-      max-height: 800px;
+      max-height: 1200px;
+      padding: scale(20) 30px;
     }
   }
 }
-
 .menu-icon {
   // position: absolute;
   width: 20px;
@@ -86,7 +182,6 @@
   top: 15px;
   display: none !important;
   display: block;
-
   span {
     width: 20px;
     height: 3px;
@@ -94,7 +189,6 @@
     display: block;
     margin-bottom: 3px;
   }
-
   @include sm {
     display: block !important;
   }
