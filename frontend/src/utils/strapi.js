@@ -1,22 +1,32 @@
+/** Safely embeds a value in a GraphQL query as an escaped string literal. */
+export const gql = (value) => JSON.stringify(String(value ?? ""));
+
+/** Query results are lists; fetchStrapi returns {} on failure, so normalise. */
+export const asList = (value) => (Array.isArray(value) ? value : []);
+
 export function fetchStrapi({ query = "", key = "" }) {
   return async (variables = {}) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LANDING_URL}/graphql`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ query, variables }),
-      cache: "no-store",
-    });
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LANDING_URL}/graphql`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ query, variables }),
+        cache: "no-store",
+      });
 
-    if (res.ok) {
-      const json = await res.json();
-      const data = json.data[key];
+      const json = await res.json().catch(() => null);
 
-      return data;
-    } else {
-      console.log(await res.json());
-      return {};
+      if (res.ok && json?.data) {
+        return json.data[key] ?? {};
+      }
+
+      console.error("Strapi request failed", res.status, json?.errors?.[0]?.message);
+    } catch (e) {
+      console.error("Strapi request error", e?.message);
     }
+
+    return {};
   };
 }

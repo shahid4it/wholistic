@@ -3,33 +3,28 @@ import Image from "next/image";
 import { fetchStrapi } from "@/utils/strapi";
 import { HEADER_QUERY } from "@/queries/header";
 import { BookASession } from "./BookASession";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { getSessionUserId } from "@/utils/session";
 import { HeaderMenu } from "./header-menu";
 
 export default async function Header() {
   const data = await fetchStrapi({ query: HEADER_QUERY, key: "header" })();
-  const token = cookies().get("auth")?.value;
+  const userId = getSessionUserId();
   let user = undefined;
-  // const [isOpen, setIsOpen] = useState(false);
 
-  if (token) {
+  if (userId) {
     try {
-      const id = jwt.verify(token, process.env.JWT_SECRET!);
-      if (id) {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers?id=${id}`,
-          {
-            headers: {
-              authorization: `bearer ${process.env.STRAPI_SUBSCRIBE_TOKEN}`,
-            },
-          }
-        );
-
-        if (res.ok) {
-          const { data } = await res.json();
-          user = data[0];
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers?filters[id][$eq]=${userId}&fields[0]=firstName&fields[1]=lastName`,
+        {
+          headers: {
+            authorization: `bearer ${process.env.STRAPI_SUBSCRIBE_TOKEN}`,
+          },
         }
+      );
+
+      if (res.ok) {
+        const { data } = await res.json();
+        user = data[0];
       }
     } catch {}
   }
@@ -78,7 +73,9 @@ export default async function Header() {
                       <Link href="#">Profile</Link>
                     </li>
                     <li>
-                      <Link href="/auth/logout">Logout</Link>
+                      <form action="/auth/logout" method="POST">
+                        <button type="submit">Logout</button>
+                      </form>
                     </li>
                   </ul>
                 </div>

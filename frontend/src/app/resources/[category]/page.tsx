@@ -1,5 +1,5 @@
 import { RESOURCES_QUERY } from "@/queries/resources";
-import { fetchStrapi } from "@/utils/strapi";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { StrapiImage } from "../../components/StrapiImage";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,10 +20,12 @@ const months = [
 ];
 
 export default async function Page({ params: { category = "blogs" } }) {
-  const blogs = await fetchStrapi({
-    query: RESOURCES_QUERY(category),
-    key: "blogs",
-  })();
+  const blogs = asList(
+    await fetchStrapi({
+      query: RESOURCES_QUERY(category),
+      key: "blogs",
+    })()
+  );
 
   return (
     <section className="resources-page">

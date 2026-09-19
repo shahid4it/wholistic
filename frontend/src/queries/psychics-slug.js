@@ -1,5 +1,7 @@
+import { gql } from "@/utils/strapi";
+
 export const PSYCHICS_SLUG_QUERY = (slug = "") => `query getPsychicsPage  {
-    preachers(filters: {slug: {eq: "${slug}"}}) {
+    preachers(filters: {slug: {eq: ${gql(slug)}}}) {
         name
         bio
         tags
@@ -27,7 +29,7 @@ export const PSYCHICS_TESTIMONIALS_SLUG_QUERY = (
   testimonials(filters:  {
      reader:  {
         slug:  {
-           eq: "${slug}"
+           eq: ${gql(slug)}
         }
      }
   }) {
@@ -45,7 +47,7 @@ export const PSYCHICS_BLOG_SLUG_QUERY = (
   blogs(filters:  {
      author:  {
         slug:  {
-           eq: "${slug}"
+           eq: ${gql(slug)}
         }
      }
   }) {

@@ -26,7 +26,8 @@ export function Calendar() {
     const firstOfMonth = new Date(month.getFullYear(), month.getMonth(), 1);
     const lastOfMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0);
 
-    const firstDay = firstOfMonth.getDay();
+    // Header labels start on Monday, so shift getDay() (Sunday = 0) to Monday = 0.
+    const firstDay = (firstOfMonth.getDay() + 6) % 7;
     const lastDate = lastOfMonth.getDate();
 
     let runningDay = 1;
@@ -68,8 +69,8 @@ export function Calendar() {
   const onPrev = () => {
     const today = new Date();
     if (
-      today.getFullYear() < month.getFullYear() ||
-      today.getMonth() < month.getMonth()
+      today.getFullYear() * 12 + today.getMonth() <
+      month.getFullYear() * 12 + month.getMonth()
     )
       setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1));
   };
@@ -90,7 +91,9 @@ export function Calendar() {
             type="text"
             readOnly
             hidden
-            value={selectedData.toLocaleString()}
+            value={`${selectedData.getFullYear()}-${String(
+              selectedData.getMonth() + 1
+            ).padStart(2, "0")}-${String(selectedData.getDate()).padStart(2, "0")}`}
           />
         </h4>
         <div>

@@ -1,12 +1,24 @@
-import { fetchStrapi } from "@/utils/strapi";
+import { notFound } from "next/navigation";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { HOROSCOPE_QUERY } from "@/queries/horoscope";
 import { StrapiImage } from "@/app/components/StrapiImage";
 
-export default async function Page({ params: { star = "Aries" } }) {
-  const [data = { content: "" }] = await fetchStrapi({
-    query: HOROSCOPE_QUERY(star),
-    key: "horoscopes",
-  })();
+const SIGNS = [
+  "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+  "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces",
+];
+
+export default async function Page({ params: { star: rawStar = "Aries" } }) {
+  const star = SIGNS.find((s) => s.toLowerCase() === decodeURIComponent(rawStar).toLowerCase());
+
+  if (!star) notFound();
+
+  const [data = { content: "" }] = asList(
+    await fetchStrapi({
+      query: HOROSCOPE_QUERY(star),
+      key: "horoscopes",
+    })()
+  );
 
   return (
     <section className="horoscope-content">

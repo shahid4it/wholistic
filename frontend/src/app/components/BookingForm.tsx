@@ -29,16 +29,16 @@ export function BookingForm({
       <div className="right">
         <label>
           <span>Full Name</span>
-          <input name="fullname" />
+          <input name="fullname" required />
         </label>
         <div className="group">
           <label>
             <span>Email</span>
-            <input name="email" />
+            <input name="email" type="email" required />
           </label>
           <label>
             <span>Contact</span>
-            <input name="contact" />
+            <input name="contact" type="tel" required />
           </label>
         </div>
         <div className="group">

@@ -1,5 +1,7 @@
+import { gql } from "@/utils/strapi";
+
 export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
-  services(filters: {slug: {eq: "${slug}"}}) {
+  services(filters: {slug: {eq: ${gql(slug)}}}) {
     sections {
       ... on ComponentUiBanner {
         __typename

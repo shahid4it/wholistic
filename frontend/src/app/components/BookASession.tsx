@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchStrapi } from "@/utils/strapi";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { useEffect, useState } from "react";
 import { READERS_QUERY } from "@/queries/readers";
 import { BookingModal } from "./BookingModal";
@@ -16,10 +16,17 @@ export function BookASession() {
   const [rendered, setRendered] = useState(false);
 
   useEffect(() => {
-    fetchStrapi({ query: READERS_QUERY, key: "preachers" })().then(setStaff);
-
     setRendered(true);
   }, []);
+
+  // Load readers the first time the modal opens, not on every page view.
+  useEffect(() => {
+    if (!showBookingModal || staff.length) return;
+
+    fetchStrapi({ query: READERS_QUERY, key: "preachers" })().then((list) =>
+      setStaff(asList(list))
+    );
+  }, [showBookingModal, staff.length]);
 
   const healers = staff.filter(({ specialty }) => specialty === "healer");
   const readers = staff.filter(({ specialty }) => specialty !== "healer");

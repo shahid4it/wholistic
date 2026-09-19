@@ -1,14 +1,19 @@
-import { fetchStrapi } from "@/utils/strapi";
+import { notFound } from "next/navigation";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { RESOURCES_SLUG_QUERY } from "@/queries/resource-slug";
 import { StrapiImage } from "@/app/components/StrapiImage";
 import Markdown from "react-markdown";
 import Hero from "@/app/components/hero";
 
 export default async function Page({ params: { slug } }) {
-  const [blog] = await fetchStrapi({
-    query: RESOURCES_SLUG_QUERY(slug),
-    key: "blogs",
-  })();
+  const [blog] = asList(
+    await fetchStrapi({
+      query: RESOURCES_SLUG_QUERY(slug),
+      key: "blogs",
+    })()
+  );
+
+  if (!blog) notFound();
 
   return (
     <article>

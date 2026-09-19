@@ -1,7 +1,8 @@
 import Hero from "../../components/hero";
 import Testimonials from "../../components/testimonials";
 import Introduction from "../../components/introduction";
-import { fetchStrapi } from "@/utils/strapi";
+import { notFound } from "next/navigation";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { SERVICE_SLUG_QUERY } from "@/queries/service-slug";
 import { Preachers } from "../../components/preachers";
 import { RelatedArticles } from "@/app/components/RelatedArticles";
@@ -20,10 +21,16 @@ const COMP_MAP = {
 };
 
 export default async function Service({ params: { slug = "" } }) {
-  const [{ sections }] = await fetchStrapi({
-    query: SERVICE_SLUG_QUERY(slug),
-    key: "services",
-  })();
+  const [service] = asList(
+    await fetchStrapi({
+      query: SERVICE_SLUG_QUERY(slug),
+      key: "services",
+    })()
+  );
+
+  if (!service) notFound();
+
+  const { sections = [] } = service;
 
   return (
     <section className="service-page">

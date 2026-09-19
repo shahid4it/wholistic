@@ -1,9 +1,7 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import jwt from "jsonwebtoken";
-import { scryptSync } from "crypto";
+import { setSession } from "@/utils/session";
 
 export async function Subscribe(
   prevState: unknown,
@@ -53,42 +51,35 @@ export async function Subscribe(
   // }
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers?filters[email][$eq]=${email}`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers/login`,
     {
+      method: "POST",
       headers: {
+        "content-type": "application/json",
         authorization: `bearer ${process.env.STRAPI_SUBSCRIBE_TOKEN}`,
       },
+      body: JSON.stringify({ email, password }),
     }
   );
 
-  if (res.ok) {
-    const {
-      data: [{ id, password: targetPassword } = {}],
-    } = await res.json();
-    if (!id) {
-      return {
-        error: "authentication",
-        success: false,
-        fields: { email: "invalid email entered" },
-      };
-    }
-    const [salt, hash] = targetPassword.split(":");
-    if (hash !== scryptSync(password, salt, 32).toString("hex")) {
-      return {
-        error: "authentication",
-        success: false,
-        fields: { password: "incorrect password entered" },
-      };
-    }
-    const token = jwt.sign({ id }, process.env.JWT_SECRET!);
-    cookies().set("auth", token);
-    return redirect("/");
-  } else {
+  if (res.status === 400 || res.status === 401) {
+    return {
+      error: "authentication",
+      success: false,
+      fields: { password: "Invalid email or password" },
+    };
+  }
+
+  if (!res.ok) {
     return {
       error: "server",
       success: false,
       fields: {},
-      message: (await res.json()).error?.message,
+      message: (await res.json().catch(() => null))?.error?.message,
     };
   }
+
+  const { id } = await res.json();
+  setSession(id);
+  return redirect("/");
 }

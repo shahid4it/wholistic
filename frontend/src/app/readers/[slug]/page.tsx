@@ -1,4 +1,5 @@
-import { fetchStrapi } from "@/utils/strapi";
+import { notFound } from "next/navigation";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { RelatedArticles } from "../../components/RelatedArticles";
 import {
   PSYCHICS_BLOG_SLUG_QUERY,
@@ -12,7 +13,7 @@ import { ReaderTestimonials } from "@/app/components/testimonials/reader-testimo
 import Markdown from "react-markdown";
 
 export default async function PsychicPage({ params: { slug = "" } }) {
-  const [[reader], testimonials, blogs] = await Promise.all([
+  const [readers, testimonials, blogs] = await Promise.all([
     fetchStrapi({ key: "preachers", query: PSYCHICS_SLUG_QUERY(slug) })(),
     fetchStrapi({
       key: "testimonials",
@@ -21,7 +22,9 @@ export default async function PsychicPage({ params: { slug = "" } }) {
     fetchStrapi({ key: "blogs", query: PSYCHICS_BLOG_SLUG_QUERY(slug) })(),
   ]);
 
-  console.log(blogs);
+  const [reader] = asList(readers);
+
+  if (!reader) notFound();
 
   return (
     <main className="psychic-single">
@@ -31,7 +34,7 @@ export default async function PsychicPage({ params: { slug = "" } }) {
             <div className="col-3">
               <figure className="profile">
                 <StrapiImage
-                  src={reader.profile.url}
+                  src={reader.profile?.url}
                   alt=""
                   width={350}
                   height={400}
@@ -101,8 +104,8 @@ export default async function PsychicPage({ params: { slug = "" } }) {
           </div>
         </div>
       </section>
-      <ReaderTestimonials testimonials={testimonials} reader={reader} />
-      <RelatedArticles title={`Articles by ${reader.name}`} blogs={blogs} />
+      <ReaderTestimonials testimonials={asList(testimonials)} reader={reader} />
+      <RelatedArticles title={`Articles by ${reader.name}`} blogs={asList(blogs)} />
     </main>
   );
 }
