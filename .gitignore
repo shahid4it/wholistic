@@ -37,3 +37,7 @@ yarn-error.log*
 next-env.d.ts
 backend/.tmp/data.db
 backend/public/uploads
+
+# playwright
+frontend/test-results
+frontend/playwright-report

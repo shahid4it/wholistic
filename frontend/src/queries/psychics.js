@@ -25,6 +25,7 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
         preachers {
           name
           oneliner
+   rating
           services {
           title
           slug

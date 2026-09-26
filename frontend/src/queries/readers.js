@@ -2,6 +2,7 @@ export const READERS_QUERY = `
 query {
   preachers {
    oneliner
+   rating
    name
    slug
    specialty

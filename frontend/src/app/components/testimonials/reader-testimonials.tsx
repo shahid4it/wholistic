@@ -66,9 +66,11 @@ export function ReaderTestimonials({ testimonials = [], reader = {} }) {
               {testimonials.map(({ client, content, rating }) => (
                 <article className="testimonial-card card col-3" key={client}>
                   <span className="rating">
-                    {new Array(rating).fill(0).map((_, i) => (
-                      <Fragment key={i}>{StarFilled}</Fragment>
-                    ))}
+                    {new Array(Math.min(5, Math.max(0, Math.round(rating) || 0)))
+                      .fill(0)
+                      .map((_, i) => (
+                        <Fragment key={i}>{StarFilled}</Fragment>
+                      ))}
                     {StarOutline}
                   </span>
                   <h4>{content}</h4>

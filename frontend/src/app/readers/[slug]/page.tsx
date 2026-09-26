@@ -47,7 +47,11 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                   <h1>{reader.name}</h1>
                   <div className="booking">
                     <div className="rating">
-                      <span>4.7</span>
+                      <span>
+                        {typeof reader.rating === "number"
+                          ? reader.rating.toFixed(1)
+                          : "New"}
+                      </span>
                       <svg
                         width="14"
                         height="14"

@@ -33,6 +33,7 @@ slug
         preachers {
           name
           oneliner
+   rating
           slug
           tags
           services {

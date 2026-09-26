@@ -35,7 +35,11 @@ export default async function Header() {
         <div className="header__left">
           <Link href={"/"}>
             <Image
-              src={"/images/logo.svg"}
+              src={
+                data.logo?.url
+                  ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.logo.url}`
+                  : "/images/logo.svg"
+              }
               width={193}
               height={64}
               alt="Wholistic Logo"

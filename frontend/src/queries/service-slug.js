@@ -20,6 +20,7 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
         preachers {
           name
           oneliner
+   rating
           slug
           tags
           profile {

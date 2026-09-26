@@ -66,7 +66,11 @@ export default async function Footer() {
           <div className="col-2">
             <Link href={"/"}>
               <Image
-                src={"/images/logo.svg"}
+                src={
+                  data.logo?.url
+                    ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.logo.url}`
+                    : "/images/logo.svg"
+                }
                 width={193}
                 height={64}
                 alt="Wholistic Logo"
@@ -103,9 +107,9 @@ export default async function Footer() {
               <p>Stay Connected</p>
               <ul className="social-icons">
                 {data.socials?.map(({ title, href }) => (
-                  <li>
-                    <Link href={href || "#"} key={title}>
-                      {SOCIALS[title]}
+                  <li key={title}>
+                    <Link href={href || "#"}>
+                      {SOCIALS[title?.toLowerCase()] ?? title}
                     </Link>
                   </li>
                 ))}

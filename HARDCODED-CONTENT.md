@@ -4,20 +4,23 @@ Found by code review of `frontend/src` (2026-09-20). Nothing here is done yet. T
 
 Legend: **FE** = frontend-only change, **BE** = needs a Strapi schema change (and a backend deploy).
 
-## Phase 1: wire up fields that already exist (FE only, no deploy of the backend)
+## Phase 1: wire up fields that already exist (FE only, no deploy of the backend) — done 2026-09-26
 
-- [ ] **Reader rating**: replace hardcoded `4.7` with `preacher.rating`.
-  - `frontend/src/app/components/reader.tsx:25`
-  - `frontend/src/app/readers/[slug]/page.tsx:50`
-  - Add `rating` to the queries in `queries/readers.js`, `queries/psychics-slug.js`, `queries/home.js`, and the inline query in `readers/page.tsx`.
-- [ ] **Site logo**: render `header.logo.url` and `footer.logo.url` instead of `/images/logo.svg` (both are already queried, and `/images/logo.svg` stays as the fallback).
-  - `frontend/src/app/components/header.tsx:38`
-  - `frontend/src/app/components/footer.tsx:69`
-- [ ] **Footer social icons**: icons are looked up by title (`facebook`, `youtube`, `instagram`), so any other title silently renders nothing. Match case-insensitively and render a text link as the fallback.
-  - `frontend/src/app/components/footer.tsx:8`
-- [ ] **Home intro image**: drop the `/images/intro-image.png` fallback once every intro has an image.
+- [x] **Reader rating**: replaced hardcoded `4.7` with `preacher.rating` (falls back to "New" when a reader has no rating yet).
+  - `frontend/src/app/components/reader.tsx`
+  - `frontend/src/app/readers/[slug]/page.tsx`
+  - Added `rating` to the `preachers` selection in `queries/readers.js`, `queries/psychics-slug.js`, `queries/home.js`, `queries/psychics.js`, `queries/testimonials.js`, `queries/service-slug.js` (every place a reader card is fed). Left the dead, commented-out query in `readers/page.tsx` alone; it's covered by the Phase 4 cleanup item below instead.
+- [x] **Site logo**: header and footer render `data.logo.url` (prefixed with `NEXT_PUBLIC_STRAPI_URL`) when the CMS has one, falling back to `/images/logo.svg`.
+  - `frontend/src/app/components/header.tsx`
+  - `frontend/src/app/components/footer.tsx`
+- [x] **Footer social icons**: title is now matched case-insensitively; an unrecognized title renders as a plain text link instead of nothing.
+  - `frontend/src/app/components/footer.tsx`
+- [ ] **Home intro image**: still falls back to `/images/intro-image.png` when a CMS intro has no image (correct behavior already; this is a content-completeness task for whoever fills in the CMS, not a code change).
   - `frontend/src/app/components/homeIntro.tsx:13`
-- [ ] **Bug (fix with this phase)**: `new Array(rating)` throws a RangeError for a decimal rating such as `4.5`. Use `Math.round(rating)`.
+- [x] **Bug (fixed with this phase)**: `new Array(rating)` threw a RangeError for a decimal or missing rating. Now clamped with `Math.round(rating) || 0` between 0 and 5.
+  - `frontend/src/app/components/testimonials/reader-testimonials.tsx`
+
+Verified locally: full Playwright suite re-run against the seeded local stack, 57 passed / 1 failed (the 1 is the pre-existing BUG-07, unrelated to this phase). Confirmed via direct GraphQL query and page HTML that `rating` and the uploaded logo now render.
   - `frontend/src/app/components/testimonials/reader-testimonials.tsx:69`
 
 ## Phase 2: content that has no field yet (BE + FE)

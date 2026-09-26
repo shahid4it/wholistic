@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
 
-export default function ({ name, oneliner, profile, tags, onBooking, slug }) {
+export default function ({
+  name,
+  oneliner,
+  profile,
+  tags,
+  onBooking,
+  slug,
+  rating,
+}) {
   return (
     <>
       <div className="reader">
@@ -22,7 +30,7 @@ export default function ({ name, oneliner, profile, tags, onBooking, slug }) {
                 <Link href={`/readers/${slug}`}>{name}</Link>
               </h3>
               <div className="rating">
-                <span>4.7</span>
+                <span>{typeof rating === "number" ? rating.toFixed(1) : "New"}</span>
                 <svg
                   width="14"
                   height="14"

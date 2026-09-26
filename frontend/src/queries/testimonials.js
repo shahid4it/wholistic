@@ -19,6 +19,7 @@ export const TESTIMONIALS_QUERY = `query getTestimonialPage  {
         preachers {
           name
           oneliner
+   rating
           services {
           title
           slug
