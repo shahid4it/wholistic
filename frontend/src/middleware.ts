@@ -48,6 +48,14 @@ export function middleware(request: NextRequest) {
   // path — only rate-limit those, not the page's own GET page-loads.
   if (request.method !== "POST") return NextResponse.next();
 
+  // Next.js sets NODE_ENV itself ("development" under `next dev`,
+  // "production" under a real `next build`/`next start`) — this isn't an
+  // env var anyone configures. Skipping it outside production means local
+  // dev and the e2e suite (which legitimately bursts well past any sane
+  // per-minute human limit across parallel test workers) aren't throttled,
+  // without weakening the real protection where it matters.
+  if (process.env.NODE_ENV !== "production") return NextResponse.next();
+
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
     request.headers.get("x-real-ip") ||

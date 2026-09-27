@@ -65,6 +65,10 @@ test.describe("Booking", () => {
 
   test("TC-33 past days in the current month are not selectable", async ({ page }) => {
     await pickFirstReader(page);
+    // Calendar renders an empty shell until a post-mount effect confirms
+    // hydration (BUG-11); .count() doesn't auto-wait like other locator
+    // assertions, so wait for the real grid before counting.
+    await expect(modal(page).locator(".calendar .day").first()).toBeVisible();
     const disabled = modal(page).locator(".calendar .day.disabled");
     const today = new Date().getDate();
     expect(await disabled.count()).toBe(today - 1);
