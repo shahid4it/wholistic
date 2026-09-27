@@ -64,11 +64,10 @@ Verified locally: full Playwright suite re-run against the seeded local stack, 5
 - [ ] Add `dateRange` (string) to `horoscope`, or keep the ranges as static reference data if they never change. Then remove the map.
   - `frontend/src/app/resources/horoscope/[star]/Carousal.tsx:9-20`
 
-### Booking (ties to bug BUG-07 in `QA-REPORT.md`)
-- [ ] Decide what a booking is: a new `booking` collection, an email to the reader, or an external calendar tool.
-- [ ] Add per-reader availability, or a `timeSlots` field, and replace the default slots.
-  - `frontend/src/app/components/BookingForm.tsx:8` (`10:00am - 10:30am`, `11:15am - 12:15pm`, `12:30pm - 1:30pm`)
-- [ ] Make the form submit to that backend (today it only calls `preventDefault()`).
+### Booking (BUG-07 in `QA-REPORT.md`) — core done 2026-09-27, one item still open
+- [x] Booking is a new `booking` Strapi collection type, submitted via `/api/booking` with a create-only scoped `STRAPI_BOOKING_TOKEN`, plus an email notification to a fixed admin address and the specific reader (SMTP, gracefully inert until real credentials are set). See `QA-REPORT.md` BUG-07 for full detail.
+- [ ] **Still open, not part of this fix:** per-reader availability. The time slots are still a fixed default list, not tied to the reader's actual schedule.
+  - `frontend/src/app/components/BookingForm.tsx` (`10:00am - 10:30am`, `11:15am - 12:15pm`, `12:30pm - 1:30pm`)
 
 ## Phase 3: UI labels (optional, only if the client wants to edit copy without a deploy)
 

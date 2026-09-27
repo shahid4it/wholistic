@@ -24,6 +24,7 @@ export function BookingFormModal({ reader }) {
         }}
       >
         <BookingForm
+          reader={reader}
           services={reader.services}
           onCancel={() => {
             setIsReaderModalOpen(false);

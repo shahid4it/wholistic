@@ -75,6 +75,10 @@
     },
     "totalReadings": {
       "type": "integer"
+    },
+    "email": {
+      "type": "email",
+      "private": true
     }
   }
 }

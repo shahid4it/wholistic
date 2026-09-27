@@ -56,6 +56,7 @@ export function BookASession() {
             >
               {!!selectedReader ? (
                 <BookingForm
+                  reader={selectedReader}
                   services={selectedReader?.services}
                   onCancel={() => {
                     setShowBookingModal(false);
