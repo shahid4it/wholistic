@@ -188,11 +188,17 @@ async function main() {
     name: 'local-booking', description: 'local e2e', type: 'custom', lifespan: null,
     permissions: ['api::booking.booking.create'],
   });
+  // Create-only: contact submissions must never be publicly readable either.
+  const contactToken = await app.service('admin::api-token').create({
+    name: 'local-contact', description: 'local e2e', type: 'custom', lifespan: null,
+    permissions: ['api::contact-message.contact-message.create'],
+  });
 
   console.log('\nSeed complete.');
   console.log(`Admin:  ${ADMIN.email} / ${ADMIN.password}`);
   console.log(`STRAPI_SUBSCRIBE_TOKEN=${token.accessKey}`);
   console.log(`STRAPI_BOOKING_TOKEN=${bookingToken.accessKey}`);
+  console.log(`STRAPI_CONTACT_TOKEN=${contactToken.accessKey}`);
   await app.destroy();
 }
 
