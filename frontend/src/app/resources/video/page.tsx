@@ -4,6 +4,7 @@ import { StrapiImage } from "../../components/StrapiImage";
 import Link from "next/link";
 import Image from "next/image";
 import { VideoModal } from "./Modal";
+import { Suspense } from "react";
 
 const months = [
   "January",
@@ -85,13 +86,15 @@ export default async function Page() {
                       </article>
                     </li>
                   );
-                }
+                },
               )}
             </ul>
           </div>
         </section>
       </section>
-      <VideoModal />
+      <Suspense>
+        <VideoModal />
+      </Suspense>
     </>
   );
 }

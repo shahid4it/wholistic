@@ -7,14 +7,17 @@ export const asList = (value) => (Array.isArray(value) ? value : []);
 export function fetchStrapi({ query = "", key = "" }) {
   return async (variables = {}) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_LANDING_URL}/graphql`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_LANDING_URL}/graphql`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ query, variables }),
+          // cache: "no-store",
         },
-        body: JSON.stringify({ query, variables }),
-        cache: "no-store",
-      });
+      );
 
       const json = await res.json().catch(() => null);
 
@@ -22,7 +25,11 @@ export function fetchStrapi({ query = "", key = "" }) {
         return json.data[key] ?? {};
       }
 
-      console.error("Strapi request failed", res.status, json?.errors?.[0]?.message);
+      console.error(
+        "Strapi request failed",
+        res.status,
+        json?.errors?.[0]?.message,
+      );
     } catch (e) {
       console.error("Strapi request error", e?.message);
     }
