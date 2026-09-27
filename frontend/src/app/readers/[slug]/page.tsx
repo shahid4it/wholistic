@@ -37,7 +37,7 @@ export default async function PsychicPage({ params: { slug = "" } }) {
               <figure className="profile">
                 <StrapiImage
                   src={reader.profile?.url}
-                  alt=""
+                  alt={reader.name}
                   width={350}
                   height={400}
                 />

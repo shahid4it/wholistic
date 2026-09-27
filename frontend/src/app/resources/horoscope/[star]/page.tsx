@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { asList, fetchStrapi } from "@/utils/strapi";
 import { HOROSCOPE_QUERY } from "@/queries/horoscope";
 import { StrapiImage } from "@/app/components/StrapiImage";
+import { clean } from "@/utils/sanitize";
 
 const SIGNS = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
@@ -33,7 +34,7 @@ export default async function Page({ params: { star: rawStar = "Aries" } }) {
           <div className="col-6">
             <div
               className="horoscope-description"
-              dangerouslySetInnerHTML={{ __html: data.content }}
+              dangerouslySetInnerHTML={{ __html: clean(data.content) }}
             />
           </div>
         </div>
@@ -43,7 +44,7 @@ export default async function Page({ params: { star: rawStar = "Aries" } }) {
               <figure className="horoscope-image">
                 <StrapiImage
                   src={data.image?.url}
-                  alt=""
+                  alt={`${star} horoscope`}
                   width={800}
                   height={400}
                   string="parallax"

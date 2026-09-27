@@ -4,6 +4,7 @@ import { RESOURCES_SLUG_QUERY } from "@/queries/resource-slug";
 import { StrapiImage } from "@/app/components/StrapiImage";
 import Markdown from "react-markdown";
 import Hero from "@/app/components/hero";
+import { clean } from "@/utils/sanitize";
 
 export default async function Page({ params: { slug } }) {
   const [blog] = asList(
@@ -30,7 +31,7 @@ export default async function Page({ params: { slug } }) {
             {new Date(Date.parse(blog.publishDate)).toLocaleDateString()}
           </time>
           <div className="content">
-            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+            <div dangerouslySetInnerHTML={{ __html: clean(blog.content) }} />
           </div>
         </div>
       </section>

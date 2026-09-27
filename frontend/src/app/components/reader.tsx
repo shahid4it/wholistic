@@ -23,7 +23,7 @@ export default function ({
             src={profile?.url}
             width={400}
             height={400}
-            alt="Reader Image"
+            alt={name}
           />
         </div>
         <div className="reader__content">
