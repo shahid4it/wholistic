@@ -3,6 +3,7 @@ import { FOOTER_QUERY } from "@/queries/footer";
 import Link from "next/link";
 import Image from "next/image";
 import { SERVICES_LIST_QUERY } from "@/queries/services-list";
+import { clean } from "@/utils/sanitize";
 
 const SOCIALS = {
   facebook: (
@@ -81,8 +82,8 @@ export default async function Footer() {
             <h3>{data.linksHeading || "Quick Links"}</h3>
             <nav className="nav">
               <ul>
-                {data.links?.map(({ title, href }) => (
-                  <li key={title}>
+                {data.links?.map(({ id, title, href }) => (
+                  <li key={id}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>
                 ))}
@@ -95,7 +96,7 @@ export default async function Footer() {
             <nav className="nav">
               <ul>
                 {List.map(({ title, slug }) => (
-                  <li key={title}>
+                  <li key={slug}>
                     <Link href={`/services/${slug}` || "#"}>{title}</Link>
                   </li>
                 ))}
@@ -106,8 +107,8 @@ export default async function Footer() {
             <div className="social">
               <p>{data.socialHeading || "Stay Connected"}</p>
               <ul className="social-icons">
-                {data.socials?.map(({ title, href }) => (
-                  <li key={title}>
+                {data.socials?.map(({ id, title, href }) => (
+                  <li key={id}>
                     <Link href={href || "#"}>
                       {SOCIALS[title?.toLowerCase()] ?? title}
                     </Link>
@@ -116,7 +117,7 @@ export default async function Footer() {
               </ul>
             </div>
             <div className="copyrights">
-              <p dangerouslySetInnerHTML={{ __html: data.copyright ?? "" }} />
+              <p dangerouslySetInnerHTML={{ __html: clean(data.copyright) }} />
             </div>
           </div>
         </div>
