@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 // import styles from "./Calendar.module.sass";
 
 const months = [
@@ -21,6 +21,13 @@ const months = [
 export function Calendar() {
   const [selectedData, setSelectedData] = useState(new Date());
   const [month, setMonth] = useState(new Date());
+  // BookingFormModal mounts this unconditionally (unlike BookASession's
+  // portal, which is client-only), so it's part of the server-rendered
+  // HTML. "Today" can differ between the server and the client (timezone,
+  // or a render that straddles midnight), so don't paint anything
+  // date-dependent until after hydration, when both sides agree.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const weeks = useMemo(() => {
     const firstOfMonth = new Date(month.getFullYear(), month.getMonth(), 1);
@@ -81,6 +88,10 @@ export function Calendar() {
     month.getMonth() === selectedData.getMonth() &&
     month.getFullYear() === selectedData.getFullYear();
 
+  // Same shape both server- and client-side before hydration; the real,
+  // date-dependent grid only paints once mounted client-side.
+  if (!mounted) return <div className="calendar" />;
+
   return (
     <div className="calendar">
       <div className="cal-header">
@@ -97,7 +108,7 @@ export function Calendar() {
           />
         </h4>
         <div>
-          <button type="button" onClick={onPrev}>
+          <button type="button" onClick={onPrev} aria-label="Previous month">
             <svg
               width="8"
               height="14"
@@ -114,7 +125,7 @@ export function Calendar() {
               />
             </svg>
           </button>
-          <button type="button" onClick={onNext}>
+          <button type="button" onClick={onNext} aria-label="Next month">
             <svg
               width="9"
               height="14"
