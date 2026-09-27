@@ -98,6 +98,7 @@ export interface UiIntro extends Struct.ComponentSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    title: Schema.Attribute.String;
   };
 }
 

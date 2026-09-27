@@ -7,10 +7,13 @@ export const FOOTER_QUERY = `query getFooter {
       href
       title
     }
+    linksHeading
     socials {
       href
       title
     }
+    socialHeading
+    servicesHeading
     copyright
   }
 }

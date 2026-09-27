@@ -17,7 +17,8 @@
         "preachers.founders",
         "ui.intro",
         "ui.testimonials",
-        "ui.banner"
+        "ui.banner",
+        "ui.section"
       ]
     }
   }

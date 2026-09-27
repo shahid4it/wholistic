@@ -34,6 +34,7 @@ slug
           name
           oneliner
    rating
+   testimonials { documentId }
           slug
           tags
           services {

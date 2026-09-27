@@ -21,6 +21,7 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
           name
           oneliner
    rating
+   testimonials { documentId }
           slug
           tags
           profile {

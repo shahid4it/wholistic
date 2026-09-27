@@ -3,6 +3,7 @@ query {
   preachers {
    oneliner
    rating
+   testimonials { documentId }
    name
    slug
    specialty

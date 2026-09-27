@@ -392,7 +392,13 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.DynamicZone<
-      ['preachers.founders', 'ui.intro', 'ui.testimonials', 'ui.banner']
+      [
+        'preachers.founders',
+        'ui.intro',
+        'ui.testimonials',
+        'ui.banner',
+        'ui.section',
+      ]
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -490,6 +496,7 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     links: Schema.Attribute.Component<'ui.link', true>;
+    linksHeading: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -498,6 +505,8 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
+    servicesHeading: Schema.Attribute.String;
+    socialHeading: Schema.Attribute.String;
     socials: Schema.Attribute.Component<'ui.link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -685,8 +694,13 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     specialty: Schema.Attribute.Enumeration<['reader', 'healer']>;
     style: Schema.Attribute.String;
     tags: Schema.Attribute.String;
+    testimonials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
     tools: Schema.Attribute.String;
     topics: Schema.Attribute.String;
+    totalReadings: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -868,7 +882,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Decimal;
-    reader: Schema.Attribute.Relation<'oneToOne', 'api::preacher.preacher'>;
+    reader: Schema.Attribute.Relation<'manyToOne', 'api::preacher.preacher'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

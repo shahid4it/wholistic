@@ -62,17 +62,17 @@ async function main() {
 
   // --- preachers (readers + healer)
   const preachers = [];
-  for (const [name, slug, specialty, svc] of [
-    ['Aria Moon', 'aria-moon', 'reader', [0, 1]],
-    ['Leo Sterling', 'leo-sterling', 'reader', [0]],
-    ['Sage Willow', 'sage-willow', 'healer', [2]],
+  for (const [name, slug, specialty, svc, totalReadings] of [
+    ['Aria Moon', 'aria-moon', 'reader', [0, 1], 1250],
+    ['Leo Sterling', 'leo-sterling', 'reader', [0], 430],
+    ['Sage Willow', 'sage-willow', 'healer', [2], 0], // 0 -> "Total Readings" row is hidden, exercises that fallback
   ]) {
     preachers.push(
       await docs('preacher').create({
         data: {
           name, slug, specialty, bio: `${name} has years of experience guiding clients.`, oneliner: `Guidance with ${name}`,
           tags: 'love, career', tools: 'Tarot', topics: 'Relationships', abilities: 'Clairvoyance', style: 'Compassionate',
-          rating: 4.8, profile: reader.id, services: svc.map((i) => services[i].documentId),
+          rating: 4.8, totalReadings, profile: reader.id, services: svc.map((i) => services[i].documentId),
         },
       })
     );
@@ -145,11 +145,22 @@ async function main() {
     data: {
       logo: logo.id,
       links: [{ title: 'About', href: '/about' }, { title: 'Contact', href: '/contact' }],
+      linksHeading: 'Quick Links',
       socials: [{ title: 'Instagram', href: 'https://instagram.com' }],
+      socialHeading: 'Stay Connected',
+      servicesHeading: 'Our Services',
       copyright: '&copy; 2026 Wholistic',
     },
   });
-  await docs('about').create({ data: { sections: [banner, { __component: 'ui.intro', content: '<p>About us.</p>', images: [intro.id] }] } });
+  await docs('about').create({
+    data: {
+      sections: [
+        banner,
+        { __component: 'ui.intro', title: 'About Us', content: '<p>About us.</p>', images: [intro.id] },
+        { __component: 'ui.section', title: 'Our Mission', content: '<p>Guiding you toward self-discovery and wholeness.</p>' },
+      ],
+    },
+  });
   await docs('contact').create({ data: { sections: [banner, { __component: 'ui.section', title: 'Get in touch', content: 'hello@example.com' }] } });
   await docs('services-page').create({ data: { sections: [banner, servicesSection] } });
   await docs('psychics-page').create({ data: { sections: [banner, preachersSection] } });

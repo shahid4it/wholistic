@@ -26,6 +26,7 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
           name
           oneliner
    rating
+   testimonials { documentId }
           services {
           title
           slug

@@ -78,7 +78,7 @@ export default async function Footer() {
             </Link>
           </div>
           <div className="col-2">
-            <h3>Quick Links</h3>
+            <h3>{data.linksHeading || "Quick Links"}</h3>
             <nav className="nav">
               <ul>
                 {data.links?.map(({ title, href }) => (
@@ -91,7 +91,7 @@ export default async function Footer() {
           </div>
 
           <div className="col-2">
-            <h3>Our Services</h3>
+            <h3>{data.servicesHeading || "Our Services"}</h3>
             <nav className="nav">
               <ul>
                 {List.map(({ title, slug }) => (
@@ -104,7 +104,7 @@ export default async function Footer() {
           </div>
           <div className="col-2">
             <div className="social">
-              <p>Stay Connected</p>
+              <p>{data.socialHeading || "Stay Connected"}</p>
               <ul className="social-icons">
                 {data.socials?.map(({ title, href }) => (
                   <li key={title}>

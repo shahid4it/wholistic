@@ -26,10 +26,19 @@
       "component": "ui.link",
       "repeatable": true
     },
+    "linksHeading": {
+      "type": "string"
+    },
     "socials": {
       "type": "component",
       "component": "ui.link",
       "repeatable": true
+    },
+    "socialHeading": {
+      "type": "string"
+    },
+    "servicesHeading": {
+      "type": "string"
     },
     "copyright": {
       "type": "string"
