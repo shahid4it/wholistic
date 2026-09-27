@@ -78,13 +78,18 @@
         left: 0;
         top: 0;
       }
-      .bg-image {
+      // All thumbnails are mounted at once (so they're preloaded ahead of
+      // hover); only the active one is shown, with a crossfade between them.
+      .img-layer {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
         z-index: 1;
-        /* background stays */
-      }
-      .fg-image {
-        z-index: 2;
-        /* fade in on top */
+        transition: opacity 0.5s ease;
+        &.active {
+          opacity: 1;
+          z-index: 2;
+        }
       }
       @include md {
         display: none;
