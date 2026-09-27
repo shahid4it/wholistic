@@ -3,12 +3,18 @@
 export function BookingModal({ children, open, onClose, title }) {
   return (
     <article className={`modal ${open ? "show" : ""}`}>
-      <button type="button" className="modal_backdrop" onClick={onClose} />
+      <button
+        type="button"
+        className="modal_backdrop"
+        onClick={onClose}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
 
       <div className="modal_main">
         <div className="modal_title">
           <h3>{title}</h3>
-          <button type="button" onClick={onClose}>
+          <button type="button" onClick={onClose} aria-label="Close">
             <svg
               width="18"
               height="18"

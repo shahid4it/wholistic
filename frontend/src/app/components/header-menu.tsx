@@ -68,6 +68,8 @@ export function HeaderMenu({ children }: PropsWithChildren) {
       <button
         className="header__backdrop"
         onClick={() => setIsOpen(false)}
+        aria-hidden="true"
+        tabIndex={-1}
       ></button>
       <nav className={`menu ${isOpen ? "show" : ""} `} ref={menuRef}>
         {children}
@@ -76,6 +78,8 @@ export function HeaderMenu({ children }: PropsWithChildren) {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="menu-button"
+        aria-label="Toggle menu"
+        aria-expanded={isOpen}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
