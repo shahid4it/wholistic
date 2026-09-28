@@ -40,10 +40,17 @@ export const ABOUT_QUERY = `query getAboutPage  {
 
       ... on ComponentUiIntro  {
       __typename
+        title
         content
         images {
           url
         }
+      }
+
+      ... on ComponentUiSection {
+      __typename
+        title
+        content
       }
     }
   }

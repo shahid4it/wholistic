@@ -22,8 +22,9 @@
     },
     "reader": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::preacher.preacher"
+      "relation": "manyToOne",
+      "target": "api::preacher.preacher",
+      "inversedBy": "testimonials"
     }
   }
 }

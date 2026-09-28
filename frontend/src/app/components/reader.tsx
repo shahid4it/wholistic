@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
+import { asList } from "@/utils/strapi";
 
 export default function ({
   name,
@@ -11,7 +12,9 @@ export default function ({
   onBooking,
   slug,
   rating,
+  testimonials,
 }) {
+  const reviewCount = asList(testimonials).length;
   return (
     <>
       <div className="reader">
@@ -20,7 +23,7 @@ export default function ({
             src={profile?.url}
             width={400}
             height={400}
-            alt="Reader Image"
+            alt={name}
           />
         </div>
         <div className="reader__content">
@@ -43,7 +46,7 @@ export default function ({
                     fill="#FDA43C"
                   />
                 </svg>
-                <span>(4658)</span>
+                {reviewCount > 0 && <span>({reviewCount})</span>}
               </div>
             </div>
             <div className="bio">

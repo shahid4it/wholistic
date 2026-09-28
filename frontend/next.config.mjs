@@ -31,7 +31,10 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["195.35.56.144", "localhost"],
+    remotePatterns: [
+      { protocol: "http", hostname: "195.35.56.144" },
+      { protocol: "http", hostname: "localhost" },
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,

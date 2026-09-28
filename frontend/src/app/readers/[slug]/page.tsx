@@ -26,6 +26,8 @@ export default async function PsychicPage({ params: { slug = "" } }) {
 
   if (!reader) notFound();
 
+  const reviewCount = asList(testimonials).length;
+
   return (
     <main className="psychic-single">
       <section className="section about">
@@ -35,7 +37,7 @@ export default async function PsychicPage({ params: { slug = "" } }) {
               <figure className="profile">
                 <StrapiImage
                   src={reader.profile?.url}
-                  alt=""
+                  alt={reader.name}
                   width={350}
                   height={400}
                 />
@@ -64,7 +66,7 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                           fill="#FDA43C"
                         />
                       </svg>
-                      <span>(4658)</span>
+                      {reviewCount > 0 && <span>({reviewCount})</span>}
                     </div>
                     <BookingFormModal reader={reader} />
                   </div>
@@ -72,9 +74,12 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                 <div>
                   <h4 className="tagline">{reader.oneliner}</h4>
                   <div className="intro-table">
-                    <p>
-                      <span>Total Readings</span> 15,429
-                    </p>
+                    {!!reader.totalReadings && (
+                      <p>
+                        <span>Total Readings</span>{" "}
+                        {reader.totalReadings.toLocaleString()}
+                      </p>
+                    )}
                     <p>
                       <span>Abilities</span> {reader.abilities}
                     </p>

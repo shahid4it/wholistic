@@ -3,6 +3,7 @@ import { FOOTER_QUERY } from "@/queries/footer";
 import Link from "next/link";
 import Image from "next/image";
 import { SERVICES_LIST_QUERY } from "@/queries/services-list";
+import { clean } from "@/utils/sanitize";
 
 const SOCIALS = {
   facebook: (
@@ -78,11 +79,11 @@ export default async function Footer() {
             </Link>
           </div>
           <div className="col-2">
-            <h3>Quick Links</h3>
+            <h3>{data.linksHeading || "Quick Links"}</h3>
             <nav className="nav">
               <ul>
-                {data.links?.map(({ title, href }) => (
-                  <li key={title}>
+                {data.links?.map(({ id, title, href }) => (
+                  <li key={id}>
                     <Link href={href || "#"}>{title}</Link>
                   </li>
                 ))}
@@ -91,11 +92,11 @@ export default async function Footer() {
           </div>
 
           <div className="col-2">
-            <h3>Our Services</h3>
+            <h3>{data.servicesHeading || "Our Services"}</h3>
             <nav className="nav">
               <ul>
                 {List.map(({ title, slug }) => (
-                  <li key={title}>
+                  <li key={slug}>
                     <Link href={`/services/${slug}` || "#"}>{title}</Link>
                   </li>
                 ))}
@@ -104,10 +105,10 @@ export default async function Footer() {
           </div>
           <div className="col-2">
             <div className="social">
-              <p>Stay Connected</p>
+              <p>{data.socialHeading || "Stay Connected"}</p>
               <ul className="social-icons">
-                {data.socials?.map(({ title, href }) => (
-                  <li key={title}>
+                {data.socials?.map(({ id, title, href }) => (
+                  <li key={id}>
                     <Link href={href || "#"}>
                       {SOCIALS[title?.toLowerCase()] ?? title}
                     </Link>
@@ -116,7 +117,7 @@ export default async function Footer() {
               </ul>
             </div>
             <div className="copyrights">
-              <p dangerouslySetInnerHTML={{ __html: data.copyright ?? "" }} />
+              <p dangerouslySetInnerHTML={{ __html: clean(data.copyright) }} />
             </div>
           </div>
         </div>

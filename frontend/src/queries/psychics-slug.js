@@ -11,6 +11,8 @@ export const PSYCHICS_SLUG_QUERY = (slug = "") => `query getPsychicsPage  {
         tools
         oneliner
    rating
+   totalReadings
+   testimonials { documentId }
           slug
           services {
           title

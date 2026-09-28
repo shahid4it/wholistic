@@ -56,6 +56,7 @@ export function BookASession() {
             >
               {!!selectedReader ? (
                 <BookingForm
+                  reader={selectedReader}
                   services={selectedReader?.services}
                   onCancel={() => {
                     setShowBookingModal(false);
@@ -69,14 +70,14 @@ export function BookASession() {
                     {healers.length ? (
                       <ul className="reader-list">
                         {healers.map((reader) => (
-                          <li className="reader-list_item" key={reader.name}>
+                          <li className="reader-list_item" key={reader.slug}>
                             <div className="reader-list__content">
                               <figure>
                                 <StrapiImage
                                   src={reader.profile?.url}
                                   width={100}
                                   height={100}
-                                  alt=""
+                                  alt={reader.name}
                                 />
                               </figure>
                               <div>
@@ -104,14 +105,14 @@ export function BookASession() {
                     {readers.length ? (
                       <ul className="reader-list">
                         {readers.map((reader) => (
-                          <li className="reader-list_item" key={reader.name}>
+                          <li className="reader-list_item" key={reader.slug}>
                             <div className="reader-list__content">
                               <figure>
                                 <StrapiImage
                                   src={reader.profile?.url}
                                   width={100}
                                   height={100}
-                                  alt=""
+                                  alt={reader.name}
                                 />
                               </figure>
                               <div>

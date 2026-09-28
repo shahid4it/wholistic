@@ -13,12 +13,14 @@
     "@fiddle-digital/string-tune": "^1.1.26",
     "embla-carousel-react": "^8.6.0",
     "gsap": "^3.13.0",
+    "isomorphic-dompurify": "^3.19.0",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.31",
     "react": "^18",
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

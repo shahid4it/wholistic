@@ -58,10 +58,33 @@ Passing: all 12 horoscope signs, every route smoke test, no console errors on ho
 | BUG-17 | Removed the debug `console.log(blogs)`. |
 | BUG-19 | Horoscope sign is matched case-insensitively against the 12 signs; anything else is a 404. TC-05 passes. |
 | BUG-28 | `next.config.mjs` sends `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` and drops `X-Powered-By`. TC-42 passes. No CSP yet (needs care with inline scripts and reCAPTCHA). |
-| BUG-07 (partly) | Booking form fields are now `required` with proper `email` and `tel` types. **Still open:** submitting sends nothing, because there is no booking endpoint or content type on the backend (TC-30). |
+| BUG-07 | **Fixed 2026-09-27.** New `booking` Strapi collection type, a `/api/booking` Next route (create-only scoped token, mirroring the working `subscriber` pattern rather than the broken `contact` one — see note below), and `BookingForm.tsx` now actually submits and shows a confirmation. An `afterCreate` lifecycle hook emails a fixed admin address and the specific reader (added `preacher.email`, marked `private` so it's never publicly exposed) via SMTP; gracefully skips with a log warning if `SMTP_HOST` isn't configured, so a booking is never lost or blocked by email. TC-30 and TC-31 pass; full suite is 58 passed / 0 failed. Needs real SMTP credentials before email actually goes out in production (see `HARDCODED-CONTENT.md` deployment notes). |
+
+**New finding while building the booking fix (not fixed, out of scope):** `frontend/src/app/api/contact/route.ts` POSTs to `/api/contacts`, but `contact` is a Strapi **singleType** (the Contact page's layout), not a collection — Strapi's REST API doesn't support `POST` create on a singleType. That route is very likely broken today (added in a later commit, outside this review). Worth checking separately.
 | BUG-10 (partly) | Unknown email, wrong password and password-less accounts all return the same "Invalid email or password". Still open: rate limiting. |
 
 **Deployment notes:** (1) The Strapi API token used by the frontend needs the new `subscriber.login` permission (Admin, Settings, API Tokens). (2) Set `COOKIE_SECURE=true` only when the site is served over HTTPS, because on plain HTTP a secure cookie is never sent. (3) `JWT_SECRET` must be set in the frontend environment. (4) Restart Strapi after deploying, since the schema and routes changed.
+
+### Fixed (2026-09-27, closing out the rest of the backlog; verified by full desktop suite: 58 passed / 0 failed)
+
+Everything remaining except BUG-03's reCAPTCHA (needs real site/secret keys from the client) and the booking email's SMTP send (needs real credentials — both already built and inert, see the BUG-07 fix above).
+
+| Bug | Fix |
+|---|---|
+| BUG-03 (partly), BUG-10 (remainder) | Added rate limiting (`frontend/src/middleware.ts`): 20 requests/60s per (IP, path), scoped to POSTs on `/auth/login` and `/auth/signup`. First cut used 5/60s combined across both paths — too strict, it started rejecting this project's own e2e suite's legitimate signup/login bursts (caught by re-running the suite). reCAPTCHA itself is still disabled — needs real keys. |
+| BUG-14 | Header no longer calls `cookies()` directly, which forced every page dynamic. Split into `GET /api/session` + a client component (`UserMenu.tsx`) that fetches it after mount; `header.tsx` is back to a plain server component. |
+| BUG-16 | Added `isomorphic-dompurify` (`frontend/src/utils/sanitize.ts`), applied at all three `dangerouslySetInnerHTML` sites (horoscope, blog, footer copyright). Verified: a `<script>`/`onerror` payload written into a horoscope's content is stripped, safe markup kept. |
+| BUG-18 | Empty `alt=""` replaced with real text (reader photos, horoscope image); icon-only buttons (calendar prev/next, modal close, mobile menu toggle) got `aria-label`; the two purely-decorative click-catcher backdrops got `aria-hidden`+`tabIndex=-1` instead of a confusing label. |
+| BUG-11 (remainder) | `Calender.tsx`'s `new Date()` state is no longer part of the server-rendered HTML — renders an empty shell until a client-only effect confirms mounting. `BookingFormModal.tsx` mounts `Calendar` unconditionally (unlike `BookASession`'s client-only portal), so this was a real, not just theoretical, hydration-mismatch risk. |
+| BUG-21 | Fixed the spots with a real collision risk: `BookASession.tsx`'s two reader lists now key on `slug`; header/footer nav and social links now key on the component's own `id` (confirmed via GraphQL introspection that Strapi exposes `id` on `ui.link`/`ui.nav` entries). Left CMS dynamic-zone and calendar-grid index keys alone — those reflect genuinely stable order. |
+| BUG-22 | `next.config.mjs` uses `images.remotePatterns` instead of the deprecated `domains`. |
+| BUG-24 | Added `not-found.tsx` and `error.tsx`. **Did not** add a root `loading.tsx` (also asked for by this bug) after confirming it breaks BUG-06: a root-level `loading.tsx` wraps the whole tree in a Suspense boundary, which makes Next commit the HTTP status before a deeper `notFound()` call can run — verified locally that adding one made `/readers/does-not-exist` respond 200 instead of 404 again, and removing it (with `not-found.tsx` still present) restored 404. Worth knowing if anyone adds a route-level `loading.tsx` later: fine on a page that never calls `notFound()`, not fine on one that does. |
+| BUG-25 | Re-encoded `testimonials-bg.png` (2.76MB → 1.10MB) and `hero.png` (2.21MB → 1.01MB) in place with `sharp`, same filename/format. Also added `sharp` as a runtime dependency — Next's production image optimizer falls back to a slower path without it, and it wasn't installed at all before. |
+| BUG-26 | `backend/.env.example` now lists the database/SMTP/booking vars added this session. `frontend/.env.example` didn't exist at all — created one. |
+
+**Bonus, found while fixing BUG-07, fixed today:** `frontend/src/app/api/contact/route.ts` POSTed to `/api/contacts`, but `contact` is a Strapi singleType (the Contact page's layout) — singleTypes don't support REST create, so contact-form submissions were very likely silently failing. Fixed with the same recipe as `booking`: a new `contact-message` collection type, a create-only `STRAPI_CONTACT_TOKEN`, and basic server-side validation the route never had. Verified end-to-end locally, including that `/api/contact-messages` correctly rejects an unauthenticated read.
+
+**Not fixed, deliberately out of scope:** BUG-23 (`ignoreBuildErrors`/`ignoreDuringBuilds`). Confirmed repeatedly this session that flipping these would break the build immediately — dozens of pre-existing implicit-`any`/untyped-prop errors across nearly every component. That's a separate, large typing-cleanup initiative, not a quick fix.
 
 ## 2. Bugs
 
@@ -125,7 +148,7 @@ Passing: all 12 horoscope signs, every route smoke test, no console errors on ho
 
 | ID | Finding | Location |
 |---|---|---|
-| BUG-11 | Calendar `onPrev` compares year and month separately, which mis-handles year boundaries; `selectedData` stores time via `toLocaleString()` in a hidden field. `new Date()` in client-component state also risks a hydration mismatch. | Calender.tsx:68-75, 93 |
+| BUG-11 | **Mostly fixed 2026-09-26** as part of the BUG-09 calendar work: `onPrev` now compares year+month combined (year boundaries correct), and the hidden field is `YYYY-MM-DD` instead of `toLocaleString()`. Still open: `useState(new Date())` in a client component carries a theoretical hydration-mismatch risk. | Calender.tsx |
 | BUG-12 | Newsletter route: `fullName.split(" ")` fails on empty or multi-word names (`lastName` gets only the second word). Non-JSON body gives a 500. The route is unauthenticated and unthrottled. | api/subscribe/route.ts |
 | BUG-13 | Newsletter success message is shown inside a form that still allows immediate resubmission. Duplicate email (unique) returns the raw Strapi text. | SubscribeForm.tsx |
 | BUG-14 | Header does a live user lookup with `cookies()` on every request, so the whole site is dynamic. This is slow and defeats caching. | header.tsx, layout |
@@ -139,7 +162,7 @@ Passing: all 12 horoscope signs, every route smoke test, no console errors on ho
 
 | ID | Finding |
 |---|---|
-| BUG-20 | Hardcoded rating `4.7` on every reader page ([readers/[slug]/page.tsx](frontend/src/app/readers/[slug]/page.tsx)). |
+| BUG-20 | **Fixed 2026-09-26.** Reader rating is now the real `preacher.rating` value (falls back to "New" when unset), on both the list card and the detail page. See `HARDCODED-CONTENT.md` Phase 1. |
 | BUG-21 | List keys use index or name (`key={i}`, `key={reader.name}`), which is unstable when CMS data changes. |
 | BUG-22 | `images.domains` contains a fixed IP; `domains` is deprecated. Uploads from other hosts fail with an image-host error. |
 | BUG-23 | `ignoreBuildErrors` and `ignoreDuringBuilds` hide all type and lint failures. |

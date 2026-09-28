@@ -66,6 +66,19 @@
         "reader",
         "healer"
       ]
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial",
+      "mappedBy": "reader"
+    },
+    "totalReadings": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "email",
+      "private": true
     }
   }
 }

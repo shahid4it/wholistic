@@ -4,9 +4,11 @@ export const HEADER_QUERY = `query getHeader {
       url
     }
     links {
+      id
       href
       title
       links {
+        id
         href
         title
       }

@@ -62,17 +62,17 @@ async function main() {
 
   // --- preachers (readers + healer)
   const preachers = [];
-  for (const [name, slug, specialty, svc] of [
-    ['Aria Moon', 'aria-moon', 'reader', [0, 1]],
-    ['Leo Sterling', 'leo-sterling', 'reader', [0]],
-    ['Sage Willow', 'sage-willow', 'healer', [2]],
+  for (const [name, slug, specialty, svc, totalReadings, email] of [
+    ['Aria Moon', 'aria-moon', 'reader', [0, 1], 1250, 'aria@example.com'],
+    ['Leo Sterling', 'leo-sterling', 'reader', [0], 430, undefined], // no email -> exercises the "reader has none on file" path
+    ['Sage Willow', 'sage-willow', 'healer', [2], 0, undefined], // 0 -> "Total Readings" row is hidden, exercises that fallback
   ]) {
     preachers.push(
       await docs('preacher').create({
         data: {
           name, slug, specialty, bio: `${name} has years of experience guiding clients.`, oneliner: `Guidance with ${name}`,
           tags: 'love, career', tools: 'Tarot', topics: 'Relationships', abilities: 'Clairvoyance', style: 'Compassionate',
-          rating: 4.8, profile: reader.id, services: svc.map((i) => services[i].documentId),
+          rating: 4.8, totalReadings, email, profile: reader.id, services: svc.map((i) => services[i].documentId),
         },
       })
     );
@@ -145,11 +145,22 @@ async function main() {
     data: {
       logo: logo.id,
       links: [{ title: 'About', href: '/about' }, { title: 'Contact', href: '/contact' }],
+      linksHeading: 'Quick Links',
       socials: [{ title: 'Instagram', href: 'https://instagram.com' }],
+      socialHeading: 'Stay Connected',
+      servicesHeading: 'Our Services',
       copyright: '&copy; 2026 Wholistic',
     },
   });
-  await docs('about').create({ data: { sections: [banner, { __component: 'ui.intro', content: '<p>About us.</p>', images: [intro.id] }] } });
+  await docs('about').create({
+    data: {
+      sections: [
+        banner,
+        { __component: 'ui.intro', title: 'About Us', content: '<p>About us.</p>', images: [intro.id] },
+        { __component: 'ui.section', title: 'Our Mission', content: '<p>Guiding you toward self-discovery and wholeness.</p>' },
+      ],
+    },
+  });
   await docs('contact').create({ data: { sections: [banner, { __component: 'ui.section', title: 'Get in touch', content: 'hello@example.com' }] } });
   await docs('services-page').create({ data: { sections: [banner, servicesSection] } });
   await docs('psychics-page').create({ data: { sections: [banner, preachersSection] } });
@@ -172,10 +183,22 @@ async function main() {
     name: 'local-subscribe', description: 'local e2e', type: 'custom', lifespan: null,
     permissions: ['api::subscriber.subscriber.find', 'api::subscriber.subscriber.create', 'api::subscriber.subscriber.login'],
   });
+  // Create-only: bookings must never be publicly readable (customer PII).
+  const bookingToken = await app.service('admin::api-token').create({
+    name: 'local-booking', description: 'local e2e', type: 'custom', lifespan: null,
+    permissions: ['api::booking.booking.create'],
+  });
+  // Create-only: contact submissions must never be publicly readable either.
+  const contactToken = await app.service('admin::api-token').create({
+    name: 'local-contact', description: 'local e2e', type: 'custom', lifespan: null,
+    permissions: ['api::contact-message.contact-message.create'],
+  });
 
   console.log('\nSeed complete.');
   console.log(`Admin:  ${ADMIN.email} / ${ADMIN.password}`);
   console.log(`STRAPI_SUBSCRIBE_TOKEN=${token.accessKey}`);
+  console.log(`STRAPI_BOOKING_TOKEN=${bookingToken.accessKey}`);
+  console.log(`STRAPI_CONTACT_TOKEN=${contactToken.accessKey}`);
   await app.destroy();
 }
 

@@ -23,26 +23,31 @@ Legend: **FE** = frontend-only change, **BE** = needs a Strapi schema change (an
 Verified locally: full Playwright suite re-run against the seeded local stack, 57 passed / 1 failed (the 1 is the pre-existing BUG-07, unrelated to this phase). Confirmed via direct GraphQL query and page HTML that `rating` and the uploaded logo now render.
   - `frontend/src/app/components/testimonials/reader-testimonials.tsx:69`
 
-## Phase 2: content that has no field yet (BE + FE)
+## Phase 2: content that has no field yet (BE + FE) — 3 items done 2026-09-27, NOT yet deployed
 
-### Reader stats
-- [ ] Add `reviewCount` (integer) and `totalReadings` (integer) to `preacher`, or compute the review count from linked testimonials. Replace:
-  - `(4658)` in `reader.tsx:38` and `readers/[slug]/page.tsx:63`
-  - `Total Readings 15,429` in `readers/[slug]/page.tsx:72`
+- [x] **About page + footer headings + reader stats** (the 3 items below marked done) are implemented and verified locally (schema changes, query changes, component changes, seed script updated). **⚠️ Deployment order matters:** the frontend queries now request fields (`ui.intro.title`, the `ui.section` block on About, `preacher.testimonials`, `preacher.totalReadings`) that only exist in this repo's *local* Strapi schema. Confirmed by testing read-only against the live production Strapi: it does not have these fields yet, so the updated queries fail GraphQL validation there, and since `about/page.tsx` and `readers/page.tsx` don't guard against `fetchStrapi` returning `{}` on a query error, both currently 500 against production. **The backend schema changes must be deployed and Strapi restarted before (or atomically with) the frontend build that uses these queries** — deploying the frontend alone will break the About and Readers-list pages in production until the backend catches up.
 
-### About page
-- [ ] Add `title` (default "About Us"), `missionTitle` and `mission` (rich text) to the `about` single type.
-  - `frontend/src/app/about/page.tsx:15` ("About Us")
-  - `frontend/src/app/about/page.tsx:27-35` ("Our Mission" and the mission paragraph)
+
+### Reader stats — done
+- [x] Review count is now computed from the real testimonials relation (no new field needed for this part — reused via `asList(testimonials).length`), shown only when > 0.
+  - Fixed `testimonial.reader` to be a proper bidirectional `manyToOne`/`oneToMany` relation (it was an inconsistent unidirectional `oneToOne`, unlike every other relation in this codebase) so `preacher.testimonials` can be queried at all: `backend/src/api/testimonial/content-types/testimonial/schema.json`, `backend/src/api/preacher/content-types/preacher/schema.json`.
+  - `frontend/src/app/components/reader.tsx`, `frontend/src/app/readers/[slug]/page.tsx`
+- [x] Added `totalReadings` (integer, optional) to `preacher`. There's no real data source for this (no booking system exists yet — see BUG-07), so it's a manually-maintained approximate number; the "Total Readings" row is hidden entirely when unset rather than showing a fake number.
+
+### About page — done
+- [x] Added `title` to the `ui.intro` component (used for "About Us", falls back to that text if unset) and added `ui.section` to About's allowed dynamic-zone components (used for "Our Mission", via the existing generic `Section` component). No dedicated `missionTitle`/`mission` fields needed — reusing `ui.section` avoided a new content type.
+  - `backend/src/components/ui/intro.json`, `backend/src/api/about/content-types/about/schema.json`
+  - `frontend/src/app/about/page.tsx`, `frontend/src/queries/about.js`
+  - **Content step still needed in the real CMS:** an editor must set the About page's intro `title` to "About Us" and add a `ui.section` block titled "Our Mission" with the mission paragraph — the code change alone doesn't move that text into Strapi.
 
 ### Site settings (new single type `site-settings`)
 - [ ] Fields: `siteTitle`, `siteDescription`, `ogImage`, optional `favicon`.
 - [ ] Use them in `generateMetadata` in `frontend/src/app/layout.tsx:16-17` (currently `Wholistic` and `Your companion in your journey to wholeness`).
 - [ ] Consider per-page SEO title and description on each page single type.
 
-### Footer
-- [ ] Add `linksHeading`, `servicesHeading`, `socialHeading` to `footer`.
-  - `footer.tsx:77` ("Quick Links"), `footer.tsx:90` ("Our Services"), `footer.tsx:103` ("Stay Connected")
+### Footer — done
+- [x] Added `linksHeading`, `servicesHeading`, `socialHeading` to `footer` (all optional; each falls back to the original hardcoded text when unset).
+  - `backend/src/api/footer/content-types/footer/schema.json`, `frontend/src/queries/footer.js`, `frontend/src/app/components/footer.tsx`
 
 ### Resources pages (blog, video, podcast, horoscope)
 - [ ] New single type `resources-page` (or one entry per category) with banner `title` and `content`.
@@ -59,11 +64,10 @@ Verified locally: full Playwright suite re-run against the seeded local stack, 5
 - [ ] Add `dateRange` (string) to `horoscope`, or keep the ranges as static reference data if they never change. Then remove the map.
   - `frontend/src/app/resources/horoscope/[star]/Carousal.tsx:9-20`
 
-### Booking (ties to bug BUG-07 in `QA-REPORT.md`)
-- [ ] Decide what a booking is: a new `booking` collection, an email to the reader, or an external calendar tool.
-- [ ] Add per-reader availability, or a `timeSlots` field, and replace the default slots.
-  - `frontend/src/app/components/BookingForm.tsx:8` (`10:00am - 10:30am`, `11:15am - 12:15pm`, `12:30pm - 1:30pm`)
-- [ ] Make the form submit to that backend (today it only calls `preventDefault()`).
+### Booking (BUG-07 in `QA-REPORT.md`) — core done 2026-09-27, one item still open
+- [x] Booking is a new `booking` Strapi collection type, submitted via `/api/booking` with a create-only scoped `STRAPI_BOOKING_TOKEN`, plus an email notification to a fixed admin address and the specific reader (SMTP, gracefully inert until real credentials are set). See `QA-REPORT.md` BUG-07 for full detail.
+- [ ] **Still open, not part of this fix:** per-reader availability. The time slots are still a fixed default list, not tied to the reader's actual schedule.
+  - `frontend/src/app/components/BookingForm.tsx` (`10:00am - 10:30am`, `11:15am - 12:15pm`, `12:30pm - 1:30pm`)
 
 ## Phase 3: UI labels (optional, only if the client wants to edit copy without a deploy)
 
