@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import { asList, fetchStrapi } from "@/utils/strapi";
 import { RESOURCES_SLUG_QUERY } from "@/queries/resource-slug";
 import { StrapiImage } from "@/app/components/StrapiImage";
-import Markdown from "react-markdown";
-import Hero from "@/app/components/hero";
 import { clean } from "@/utils/sanitize";
 
 export default async function Page({ params: { slug } }) {
@@ -18,14 +16,23 @@ export default async function Page({ params: { slug } }) {
 
   return (
     <article className="blog-post">
-      <Hero
-        title={blog.title}
-        content={blog.summary}
-        backdrop={blog.thumbnail}
-      />
+      {blog.thumbnail?.url && (
+        <div className="blog-post__image">
+          <StrapiImage
+            src={blog.thumbnail.url}
+            width={1920}
+            height={900}
+            alt=""
+            priority
+            string="parallax"
+            string-parallax="1"
+          />
+        </div>
+      )}
 
       <section className="blog-post__content">
         <div className="container">
+          <h1 className="blog-post__title">{blog.title}</h1>
           <time className="publish-date">
             Published on:{" "}
             {new Date(Date.parse(blog.publishDate)).toLocaleDateString()}

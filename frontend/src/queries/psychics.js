@@ -1,3 +1,5 @@
+import { gql } from "@/utils/strapi";
+
 export const PSYCHICS_QUERY = `query getPsychicsPage  {
   psychicsPage {
     sections {
@@ -33,6 +35,7 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
           }
           slug
           tags
+          tagList { name }
           profile {
             url
           }
@@ -51,6 +54,30 @@ export const PSYCHICS_QUERY = `query getPsychicsPage  {
           content
         }
 }
+    }
+  }
+}`;
+
+/**
+ * Everyone carrying ANY of these tags (case-insensitive). Callers narrow to
+ * readers with ALL of them: Strapi can't AND several conditions on one
+ * manyToMany relation, as each would have to match the same joined row.
+ */
+export const PREACHERS_BY_TAGS_QUERY = (tags = []) => `query {
+  preachers(filters: {or: [${tags.map((t) => `{tagList: {name: {eqi: ${gql(t)}}}}`).join(", ")}]}, sort: "name") {
+    name
+    oneliner
+    rating
+    testimonials { documentId }
+    services {
+      title
+      slug
+    }
+    slug
+    tags
+    tagList { name }
+    profile {
+      url
     }
   }
 }`;

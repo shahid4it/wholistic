@@ -30,6 +30,12 @@
     "tags": {
       "type": "string"
     },
+    "tagList": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "preachers"
+    },
     "tools": {
       "type": "string"
     },
@@ -52,9 +58,9 @@
     },
     "services": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::service.service",
-      "mappedBy": "preacher"
+      "inversedBy": "preachers"
     },
     "rating": {
       "type": "decimal",

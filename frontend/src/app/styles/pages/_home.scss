@@ -160,6 +160,87 @@
   }
 }
 // Our Readers
+// /readers: tag links and "Clear filters" land on #readers, clear of the fixed header
+#readers {
+  scroll-margin-top: 90px;
+  @include md {
+    scroll-margin-top: 74px;
+  }
+}
+
+.tag-filter {
+  position: sticky;
+  // fallback until TagFilter measures the fixed header
+  top: 90px;
+  @include md {
+    top: 74px;
+  }
+  z-index: 50;
+  margin: scale(60) 0 0;
+  padding: scale(20, 14px) 0;
+  background: $peach;
+  color: $maroon;
+  box-shadow: 0 6px 16px rgba($darkest-burgundy, 0.08);
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: scale(20, 10px);
+  }
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: scale(8, 6px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: scale(10, 8px);
+      background: $white;
+      color: $maroon;
+      padding-right: scale(10, 8px);
+    }
+  }
+  &__remove {
+    display: inline-grid;
+    place-items: center;
+    width: scale(22, 20px);
+    height: scale(22, 20px);
+    border-radius: 50%;
+    color: $maroon;
+    font-size: 1.2em;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover,
+    &:focus-visible {
+      background: $burgundy;
+      color: $white;
+    }
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: scale(20, 12px);
+    font-size: scale(16, 14px);
+  }
+  &__clear {
+    padding: scale(8, 6px) scale(18, 14px);
+    border: 1px solid $burgundy;
+    border-radius: 50px;
+    color: $burgundy;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover,
+    &:focus-visible {
+      background: $burgundy;
+      color: $white;
+    }
+  }
+}
+
 .our-readers {
   .marquee {
     color: $peach;

@@ -2,18 +2,21 @@
 
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
-import { asList } from "@/utils/strapi";
+import { asList, tagNames } from "@/utils/strapi";
+import { useTagHref } from "./useTagHref";
 
 export default function ({
   name,
   oneliner,
   profile,
   tags,
+  tagList,
   onBooking,
   slug,
   rating,
   testimonials,
 }) {
+  const tagHref = useTagHref();
   const reviewCount = asList(testimonials).length;
   return (
     <>
@@ -53,8 +56,8 @@ export default function ({
               <p>{oneliner}</p>
             </div>
             <div className="tags">
-              {tags?.split(",").map((tag) => (
-                <Link key={tag} href={"#"} className="tag">
+              {tagNames({ tagList, tags }).map((tag) => (
+                <Link key={tag} href={tagHref(tag)} scroll={false} className="tag">
                   {tag}
                 </Link>
               ))}

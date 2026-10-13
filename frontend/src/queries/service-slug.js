@@ -2,6 +2,18 @@ import { gql } from "@/utils/strapi";
 
 export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
   services(filters: {slug: {eq: ${gql(slug)}}}) {
+    preachers {
+      name
+      oneliner
+      rating
+      testimonials { documentId }
+      slug
+      tags
+      tagList { name }
+      profile {
+        url
+      }
+    }
     sections {
       ... on ComponentUiBanner {
         __typename
@@ -24,6 +36,7 @@ export const SERVICE_SLUG_QUERY = (slug = "") => `query getHomePage  {
    testimonials { documentId }
           slug
           tags
+          tagList { name }
           profile {
             url
           }
