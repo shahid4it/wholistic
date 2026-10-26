@@ -1,3 +1,68 @@
+// confirmation shown in the booking modal after a successful booking
+.booking-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: scale(14, 10px);
+    max-width: 520px;
+    margin: 0 auto;
+    padding: scale(24, 12px) 0 scale(8);
+    // the reader page's .booking wrapper sets nowrap, and the modal inherits it
+    white-space: normal;
+    overflow-wrap: anywhere;
+
+    &__icon {
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: $lightest-peach;
+        color: $burgundy;
+        border: 2px solid $peach;
+    }
+    &__title {
+        font-size: scale(32, 22px, 36px);
+        font-weight: 500;
+        color: $burgundy;
+    }
+    &__text {
+        color: $black;
+        line-height: 1.5;
+    }
+    &__details {
+        width: 100%;
+        margin: scale(8) 0;
+        padding: scale(16, 12px) scale(20, 14px);
+        border-radius: scale(12, 10px);
+        background: $lightest-peach;
+        text-align: left;
+        div {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 6px 0;
+            & + div {
+                border-top: 1px solid $peach;
+            }
+        }
+        dt {
+            color: $coral;
+        }
+        dd {
+            margin: 0;
+            font-weight: 500;
+            text-align: right;
+        }
+    }
+    &__done {
+        width: auto; // .button is full width by default
+        min-width: 160px;
+        margin-top: scale(8);
+    }
+}
+
 .form {
     display: flex;
     gap: scale(32);

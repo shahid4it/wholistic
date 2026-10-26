@@ -763,10 +763,11 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     profile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<4.3>;
-    services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
+    services: Schema.Attribute.Relation<'manyToMany', 'api::service.service'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     specialty: Schema.Attribute.Enumeration<['reader', 'healer']>;
     style: Schema.Attribute.String;
+    tagList: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     tags: Schema.Attribute.String;
     testimonials: Schema.Attribute.Relation<
       'oneToMany',
@@ -832,7 +833,10 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       'api::service.service'
     > &
       Schema.Attribute.Private;
-    preacher: Schema.Attribute.Relation<'manyToOne', 'api::preacher.preacher'>;
+    preachers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::preacher.preacher'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.DynamicZone<
       [
@@ -929,6 +933,38 @@ export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     videoRights: Schema.Attribute.Boolean;
+  };
+}
+
+export interface ApiTagTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tags';
+  info: {
+    description: 'Pills shown on reader and healer cards; picked from this list.';
+    displayName: 'Tag';
+    pluralName: 'tags';
+    singularName: 'tag';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    preachers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::preacher.preacher'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1525,6 +1561,7 @@ declare module '@strapi/strapi' {
       'api::service.service': ApiServiceService;
       'api::services-page.services-page': ApiServicesPageServicesPage;
       'api::subscriber.subscriber': ApiSubscriberSubscriber;
+      'api::tag.tag': ApiTagTag;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'api::testimonials-page.testimonials-page': ApiTestimonialsPageTestimonialsPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;

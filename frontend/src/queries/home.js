@@ -37,6 +37,7 @@ slug
    testimonials { documentId }
           slug
           tags
+          tagList { name }
           services {
           title
           slug

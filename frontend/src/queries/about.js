@@ -19,6 +19,7 @@ export const ABOUT_QUERY = `query getAboutPage  {
           oneliner
           slug
           tags
+          tagList { name }
           profile {
             url
           }

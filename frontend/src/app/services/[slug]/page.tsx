@@ -30,12 +30,17 @@ export default async function Service({ params: { slug = "" } }) {
 
   if (!service) notFound();
 
-  const { sections = [] } = service;
+  const { sections = [], preachers: assigned = [] } = service;
 
   return (
     <section className="service-page">
       {sections.map(({ __typename: typename, ...props }, i) => {
         const Comp = COMP_MAP[typename];
+        // The readers/healers section lists the practitioners assigned to this
+        // service, falling back to the section's own picks when none are.
+        if (typename === "ComponentPreachersPreachers" && assigned.length) {
+          props.preachers = assigned;
+        }
 
         return Comp && <Comp key={i} {...props} inner />;
       })}

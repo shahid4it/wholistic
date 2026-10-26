@@ -11,7 +11,7 @@ export function BookingForm({
   onCancel,
 }) {
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(null);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -41,7 +41,12 @@ export function BookingForm({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to book your session");
 
-      setSubmitted(true);
+      setSubmitted({
+        date: String(form.get("date") || ""),
+        timeSlot: String(form.get("timeSlot") || ""),
+        service: String(form.get("service") || ""),
+        email: String(form.get("email") || ""),
+      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -50,12 +55,45 @@ export function BookingForm({
   };
 
   if (submitted) {
+    // "YYYY-MM-DD" from the calendar, built as a local date so it can't shift a day
+    const [y, m, d] = submitted.date.split("-").map(Number);
+    const date = y
+      ? new Date(y, m - 1, d).toLocaleDateString(undefined, {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      : "";
+    const details = [
+      date && ["Date", date],
+      submitted.timeSlot && ["Time", submitted.timeSlot],
+      submitted.service && ["Service", submitted.service],
+    ].filter(Boolean);
+
     return (
-      <div className="form">
-        <p className="form-message">
-          Your session is booked! We&apos;ll be in touch to confirm.
+      <div className="booking-success" role="status">
+        <div className="booking-success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+            <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <h3 className="booking-success__title">Your session is booked!</h3>
+        <p className="booking-success__text">
+          We&apos;ll be in touch{submitted.email ? ` at ${submitted.email}` : ""} to
+          confirm{reader?.name ? ` your session with ${reader.name}` : ""}.
         </p>
-        <button type="button" onClick={onCancel} className="button small">
+        {details.length > 0 && (
+          <dl className="booking-success__details">
+            {details.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <button type="button" onClick={onCancel} className="button small booking-success__done">
           Done
         </button>
       </div>

@@ -27,6 +27,7 @@ export const TESTIMONIALS_QUERY = `query getTestimonialPage  {
           }
           slug
           tags
+          tagList { name }
           profile {
             url
           }

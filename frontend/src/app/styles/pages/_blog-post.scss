@@ -1,22 +1,35 @@
 .blog-post {
-    .hero {
-        .hero__background {
-            height: 60vh;
+    // image only; the title sits at the top of the content column
+    .blog-post__image {
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
+    }
 
-        .hero__content {
-            .hero__title {
-                font-size: scale(80);
-                width: 70%;
-            }
-        }
+    .blog-post__title {
+        font-size: scale(64, 34px, 72px);
+        line-height: 1.15;
+        font-weight: 500;
+        color: $burgundy;
+        margin-bottom: scale(20);
     }
 
     .blog-post__content {
         padding-block: scale(100);
 
+        // one centred reading column: 1000px of text plus a 16px gutter each side
         .container {
             flex-direction: column;
+            width: 100%;
+            max-width: calc(1000px + 32px);
+            margin-inline: auto;
+            padding-inline: 16px;
         }
 
         .publish-date {
@@ -26,19 +39,6 @@
         }
 
         .content {
-            columns: 3;
-            gap: scale(50);
-
-
-
-            @include lg {
-                columns: 2;
-            }
-
-            @include md {
-                columns: 1;
-            }
-
 
             h2 {
                 font-size: scale(48, 32px, 54px);

@@ -1,4 +1,12 @@
 module.exports = ({ env }) => ({
+  // The default of 10 silently truncated lists (readers, horoscopes) and
+  // nested relations (a section's testimonials) in frontend queries.
+  graphql: {
+    config: {
+      defaultLimit: 100,
+      maxLimit: 500,
+    },
+  },
   email: {
     config: {
       provider: "nodemailer",

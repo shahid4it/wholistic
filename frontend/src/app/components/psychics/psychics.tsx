@@ -3,7 +3,10 @@ import { StrapiImage } from "../StrapiImage";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Markdown from "react-markdown";
+import { tagNames } from "@/utils/strapi";
+import { useTagHref } from "../useTagHref";
 
 const StarFilled = (
   <svg
@@ -20,7 +23,17 @@ const StarFilled = (
   </svg>
 );
 
-function Psychic({ name, bio, profile, tags, oneliner, slug }) {
+function Psychic({ name, bio, profile, tags, tagList, oneliner, slug }) {
+  const router = useRouter();
+  const tagHref = useTagHref();
+  // The whole card is a link, so a pill can't be another <a>: it navigates
+  // itself and stops the click from also opening the reader's page.
+  const openTag = (e, tag) => {
+    e.preventDefault();
+    e.stopPropagation();
+    router.push(tagHref(tag), { scroll: false });
+  };
+
   return (
     <Link href={`/readers/${slug}`} className="psychic">
       <StrapiImage src={profile?.url} width={300} height={400} alt="" />
@@ -28,8 +41,15 @@ function Psychic({ name, bio, profile, tags, oneliner, slug }) {
         <h3>{name}</h3>
         <p>{oneliner}</p>
         <div className="tags">
-          {tags?.split(",").map((tag) => (
-            <span className="tag" key={tag}>
+          {tagNames({ tagList, tags }).map((tag) => (
+            <span
+              className="tag"
+              key={tag}
+              role="link"
+              tabIndex={0}
+              onClick={(e) => openTag(e, tag)}
+              onKeyDown={(e) => e.key === "Enter" && openTag(e, tag)}
+            >
               {tag}
             </span>
           ))}

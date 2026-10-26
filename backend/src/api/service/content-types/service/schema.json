@@ -45,11 +45,11 @@
       "type": "uid",
       "targetField": "title"
     },
-    "preacher": {
+    "preachers": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::preacher.preacher",
-      "inversedBy": "services"
+      "mappedBy": "services"
     },
     "type": {
       "type": "enumeration",

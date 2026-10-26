@@ -54,7 +54,7 @@ export default async function Page({ params: { category = "blogs" } }) {
                 const date = new Date(Date.parse(publishDate || ""));
                 return (
                   <li className="col" key={title}>
-                    <article className="resource-item resource-item--video">
+                    <article className="resource-item resource-item--video resource-item--link">
                       <figure className="resource-item__image">
                         <StrapiImage
                           src={thumbnail?.url}
