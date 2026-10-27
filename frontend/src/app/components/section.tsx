@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StrapiImage } from "./StrapiImage";
-import Markdown from "react-markdown";
+import { CmsMarkdown } from "@/app/components/CmsMarkdown";
 
 export default function Section({ title, content, image }) {
   return (
@@ -12,7 +12,7 @@ export default function Section({ title, content, image }) {
               <h3 className="section-title">{title}</h3>
             </div>
             <div className="body-large col-6">
-              <Markdown>{content}</Markdown>
+              <CmsMarkdown>{content}</CmsMarkdown>
             </div>
           </div>
         </div>
@@ -28,8 +28,7 @@ export default function Section({ title, content, image }) {
                     width={1000}
                     height={800}
                     alt="Hero Background"
-                    string="parallax"
-                    string-parallax=".2"
+                    data-parallax=".2"
                   />
                 </div>
               ))}

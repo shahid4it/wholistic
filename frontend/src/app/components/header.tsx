@@ -28,6 +28,11 @@ export default async function Header() {
         </div>
         <HeaderMenu>
           <ul className="nav">
+            {!data.links?.some(({ href }) => href === "/") && (
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+            )}
             {data.links?.map(({ id, title, href, links }) =>
               !links?.length ? (
                 <li key={id}>
@@ -35,7 +40,7 @@ export default async function Header() {
                 </li>
               ) : (
                 <li key={id} className="dropdown">
-                  <a className="dropdown-toggle" href="#">{title}</a>
+                  <Link className="dropdown-toggle" href={href || "#"}>{title}</Link>
                   <ul className="dropdown-menu">
                     {links.map(({ id: subId, title, href: subhref }) => (
                       <li key={subId}>

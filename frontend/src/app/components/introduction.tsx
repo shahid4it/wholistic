@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StrapiImage } from "./StrapiImage";
-import Markdown from "react-markdown";
+import { CmsMarkdown } from "@/app/components/CmsMarkdown";
 
 export default function Introduction({ title, content, image, below }) {
   return (
@@ -11,7 +11,7 @@ export default function Introduction({ title, content, image, below }) {
             <div className="col-8">
               <h3 className="section-title">{title}</h3>
               <div className="col-7 offset-1 body-large">
-                <Markdown>{content}</Markdown>
+                <CmsMarkdown>{content}</CmsMarkdown>
               </div>
             </div>
           </div>

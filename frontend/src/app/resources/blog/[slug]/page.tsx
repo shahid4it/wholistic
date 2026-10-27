@@ -24,8 +24,7 @@ export default async function Page({ params: { slug } }) {
             height={900}
             alt=""
             priority
-            string="parallax"
-            string-parallax="1"
+            data-parallax="1"
           />
         </div>
       )}

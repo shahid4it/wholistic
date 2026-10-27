@@ -47,8 +47,7 @@ export default async function Page({ params: { star: rawStar = "Aries" } }) {
                   alt={`${star} horoscope`}
                   width={800}
                   height={400}
-                  string="parallax"
-                  string-parallax=".2"
+                  data-parallax=".2"
                 />
               </figure>
             </div>

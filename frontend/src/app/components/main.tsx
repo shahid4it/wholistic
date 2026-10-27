@@ -1,5 +1,6 @@
 import { ReactNode, useEffect } from "react";
-import { Tune } from "./tune";
+import { Parallax } from "./parallax";
+import { SmoothScroll } from "./smoothScroll";
 
 import Header from "./header";
 import Footer from "./footer";
@@ -11,7 +12,8 @@ interface MainProps {
 export default async function Main({ children }: MainProps) {
   return (
     <>
-      <Tune />
+      <SmoothScroll />
+      <Parallax />
       <Header />
       {children}
       <Subscribe />

@@ -15,8 +15,7 @@ export default function HomeIntro({ title, content, image }) {
                 width={1000}
                 height={800}
                 alt="Hero Background"
-                string="parallax"
-                string-parallax="1"
+                data-parallax="1"
               />
             </div>
           </div>

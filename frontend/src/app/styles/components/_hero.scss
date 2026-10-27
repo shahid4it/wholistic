@@ -28,6 +28,7 @@
     bottom: scale(150);
     width: 100%;
     color: $white;
+    visibility: hidden; // revealed by the GSAP text animation in hero.tsx
     h1 {
       font-size: scale(90, 42px, 110px);
       font-weight: 500;

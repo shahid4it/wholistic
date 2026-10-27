@@ -10,7 +10,7 @@ import {
 import { StrapiImage } from "@/app/components/StrapiImage";
 import { BookingFormModal } from "@/app/components/BookingFormModal";
 import { ReaderTestimonials } from "@/app/components/testimonials/reader-testimonials";
-import Markdown from "react-markdown";
+import { CmsMarkdown } from "@/app/components/CmsMarkdown";
 
 export default async function PsychicPage({ params: { slug = "" } }) {
   const [readers, testimonials, blogs] = await Promise.all([
@@ -80,18 +80,21 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                         {reader.totalReadings.toLocaleString()}
                       </p>
                     )}
-                    <p>
-                      <span>Abilities</span> {reader.abilities}
-                    </p>
-                    <p>
-                      <span>Tools</span> {reader.tools}
-                    </p>
-                    <p>
-                      <span>Style</span> {reader.style}
-                    </p>
-                    <p>
-                      <span>Topics</span> {reader.topics}
-                    </p>
+                    {/* fields left empty in Strapi are hidden, since not every service has them */}
+                    {(
+                      [
+                        ["Abilities", reader.abilities],
+                        ["Tools", reader.tools],
+                        ["Style", reader.style],
+                        ["Topics", reader.topics],
+                      ] as const
+                    ).map(([label, value]) =>
+                      value?.trim() ? (
+                        <p key={label}>
+                          <span>{label}</span> {value}
+                        </p>
+                      ) : null
+                    )}
                   </div>
                 </div>
               </div>
@@ -107,7 +110,7 @@ export default async function PsychicPage({ params: { slug = "" } }) {
             </div>
             <div className="col-7 offset-1">
               <div className="reader-intro">
-                <Markdown>{reader.bio}</Markdown>
+                <CmsMarkdown>{reader.bio}</CmsMarkdown>
               </div>
             </div>
           </div>
