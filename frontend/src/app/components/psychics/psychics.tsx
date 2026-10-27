@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Markdown from "react-markdown";
+import { CmsMarkdown } from "@/app/components/CmsMarkdown";
 import { tagNames } from "@/utils/strapi";
 import { useTagHref } from "../useTagHref";
 
@@ -96,7 +96,7 @@ export function Psychics({ title, content, marquee, preachers = [] }) {
             </div>
             {content && (
               <div className="body-mid col-3">
-                <Markdown>{content}</Markdown>
+                <CmsMarkdown>{content}</CmsMarkdown>
               </div>
             )}
           </div>

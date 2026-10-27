@@ -26,8 +26,29 @@ const META = new Set(['id', 'documentId', 'createdAt', 'updatedAt', 'publishedAt
 
 async function getJson(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`${res.status} ${url}`);
+  if (!res.ok) {
+    const err = new Error(`${res.status} ${url}`);
+    err.status = res.status;
+    err.body = await res.json().catch(() => null);
+    throw err;
+  }
   return res.json();
+}
+
+// Fetches with `populate`, dropping keys the remote schema doesn't have yet
+// (the live server can lag behind the local schema) instead of failing.
+async function getWithPopulate(buildUrl, populate, label) {
+  for (;;) {
+    try {
+      return await getJson(buildUrl(populate));
+    } catch (e) {
+      const key = e.status === 400 && e.body?.error?.details?.key;
+      if (!key || !(key in populate)) throw e;
+      console.warn(`${label}: remote has no "${key}", skipping it`);
+      const { [key]: _, ...rest } = populate;
+      populate = rest;
+    }
+  }
 }
 
 async function main() {
@@ -65,20 +86,28 @@ async function main() {
   for (const ct of types) {
     const populate = populateFor(ct.attributes);
     if (ct.kind === 'singleType') {
-      const url = `${REMOTE}/api/${ct.info.singularName}?${qs.stringify({ populate }, { encodeValuesOnly: true })}`;
+      const url = (p) => `${REMOTE}/api/${ct.info.singularName}?${qs.stringify({ populate: p }, { encodeValuesOnly: true })}`;
       try {
-        remote[ct.uid] = [(await getJson(url)).data].filter(Boolean);
+        remote[ct.uid] = [(await getWithPopulate(url, populate, ct.uid)).data].filter(Boolean);
       } catch (e) {
         console.warn(`skip ${ct.uid}: ${e.message}`);
       }
       continue;
     }
     const rows = [];
-    for (let page = 1; ; page++) {
-      const query = qs.stringify({ populate, pagination: { page, pageSize: 100 } }, { encodeValuesOnly: true });
-      const json = await getJson(`${REMOTE}/api/${ct.info.pluralName}?${query}`);
-      rows.push(...json.data);
-      if (page >= json.meta.pagination.pageCount) break;
+    try {
+      for (let page = 1; ; page++) {
+        const url = (p) =>
+          `${REMOTE}/api/${ct.info.pluralName}?${qs.stringify({ populate: p, pagination: { page, pageSize: 100 } }, { encodeValuesOnly: true })}`;
+        const json = await getWithPopulate(url, populate, ct.uid);
+        rows.push(...json.data);
+        if (page >= json.meta.pagination.pageCount) break;
+      }
+    } catch (e) {
+      // type not on the live server yet: leave the local entries alone
+      if (e.status !== 404 && e.status !== 403) throw e;
+      console.warn(`skip ${ct.uid}: ${e.message}`);
+      continue;
     }
     remote[ct.uid] = rows;
   }

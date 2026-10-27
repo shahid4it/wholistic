@@ -1,7 +1,6 @@
 import { fetchStrapi } from "@/utils/strapi";
 import Image from "next/image";
 import { NEWSLETTER_QUERY } from "@/queries/newsletter";
-import { NewsletterAnimation } from "./newsletter-animation";
 import { StrapiImage } from "./StrapiImage";
 import SubscribeForm from "./SubscribeForm";
 
@@ -13,7 +12,6 @@ export default async function Subscribe() {
 
   return (
     <section className="subscribe">
-      <NewsletterAnimation />
       <div className="container">
         <div className="row">
           <div className="col-4">
@@ -23,10 +21,7 @@ export default async function Subscribe() {
                 width={900}
                 height={1000}
                 alt="Hero Background"
-                string="parallax"
-                string-parallax="0.2"
-                string-parallax-bias="0.0"
-                string-repeat="true"
+                data-parallax="0.2"
               />
             </div>
           </div>

@@ -19,12 +19,12 @@ export function Founders({ content = "", preachers = [], marquee = "" }) {
                   width={627}
                   height={850}
                   alt="Founder"
-                  string="parallax"
+                  data-parallax=".2"
                 />
               )}
             </div>
           </div>
-          <div className="col-4" string="parallax" string-parallax=".5">
+          <div className="col-4" data-parallax=".5">
             <div className="founder__content">
               <p className="body-mid">{content}</p>
             </div>

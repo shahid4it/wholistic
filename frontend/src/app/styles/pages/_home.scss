@@ -18,7 +18,7 @@
     border-radius: scale(12);
     img {
       width: 100%;
-      height: 130%;
+      height: 105%;
       object-fit: cover;
     }
   }
@@ -44,10 +44,10 @@
   }
   .image-holder {
     width: 60%;
+    height: 100%;
   }
   .image-holder:first-child {
     width: 40%;
-    height: 80%;
   }
   @include md {
     display: none
@@ -167,7 +167,6 @@
     scroll-margin-top: 74px;
   }
 }
-
 .tag-filter {
   position: sticky;
   // fallback until TagFilter measures the fixed header
@@ -240,7 +239,6 @@
     }
   }
 }
-
 .our-readers {
   .marquee {
     color: $peach;

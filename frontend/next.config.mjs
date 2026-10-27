@@ -20,6 +20,12 @@ const nextConfig = {
         destination: "/resources/horoscope/Aries",
         permanent: true,
       },
+      // the Resources menu item is a link too, but has no page of its own
+      {
+        source: "/resources",
+        destination: "/resources/blog",
+        permanent: false,
+      },
     ];
   },
   rewrites() {

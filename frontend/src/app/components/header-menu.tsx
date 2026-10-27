@@ -29,16 +29,14 @@ export function HeaderMenu({ children }: PropsWithChildren) {
       const submenu = item.querySelector(".dropdown-menu");
 
       if (toggle && submenu) {
-        // Handle click on toggle
+        // On desktop the toggle is a normal link (the submenu opens on hover);
+        // on mobile a tap opens the submenu instead of navigating
         toggle.addEventListener("click", (e) => {
+          if (window.innerWidth > 768) return;
           e.preventDefault();
           e.stopPropagation();
-
-          // Only toggle on mobile
-          if (window.innerWidth <= 768) {
-            submenu.classList.toggle("open");
-            item.classList.toggle("open");
-          }
+          submenu.classList.toggle("open");
+          item.classList.toggle("open");
         });
 
         // Close submenu when a link is clicked
