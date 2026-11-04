@@ -11,10 +11,17 @@
     width: scale(332);
     aspect-ratio: 0.9;
     flex-shrink: 0;
+    display: block; // it's a link to the reader's page
+    overflow: hidden; // also clips the hover zoom to the rounded corners
+    border-radius: 8px;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    &:hover img {
+      transform: scale(1.03);
     }
   }
   #{$self}__content {

@@ -61,6 +61,11 @@ export default function Hero({
           src={backdrop?.url}
           width={1200}
           height={700}
+          // full-bleed: let the browser pick a width matching the viewport
+          // (without `sizes` it gets the 1200px file and stretches it)
+          sizes="100vw"
+          quality={90}
+          priority
           alt="Hero Background"
           data-parallax="1"
         />

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_preachers_details",
+  "info": {
+    "displayName": "Detail",
+    "description": "A fact shown on the reader's page, e.g. label \"Tools\", description \"Tarot - Oracle cards\""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

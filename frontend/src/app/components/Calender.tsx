@@ -18,8 +18,17 @@ const months = [
   "December",
 ];
 
-export function Calendar() {
+/** `onChange` gets the selected date as "YYYY-MM-DD", on mount and on every pick. */
+export function Calendar({ onChange }: { onChange?: (date: string) => void } = {}) {
   const [selectedData, setSelectedData] = useState(new Date());
+  const isoDate = `${selectedData.getFullYear()}-${String(selectedData.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(selectedData.getDate()).padStart(2, "0")}`;
+  useEffect(() => {
+    onChange?.(isoDate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isoDate]);
   const [month, setMonth] = useState(new Date());
   // BookingFormModal mounts this unconditionally (unlike BookASession's
   // portal, which is client-only), so it's part of the server-rendered
@@ -102,9 +111,7 @@ export function Calendar() {
             type="text"
             readOnly
             hidden
-            value={`${selectedData.getFullYear()}-${String(
-              selectedData.getMonth() + 1
-            ).padStart(2, "0")}-${String(selectedData.getDate()).padStart(2, "0")}`}
+            value={isoDate}
           />
         </h4>
         <div>

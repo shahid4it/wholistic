@@ -29,6 +29,10 @@ test.describe("Booking", () => {
     await modal(page).locator('input[name="fullname"]').fill("Qa Tester");
     await modal(page).locator('input[name="email"]').fill("qa@example.com");
     await modal(page).locator('input[name="contact"]').fill("5551234567");
+    // no time slot or service is preselected
+    // (earlier runs book real slots, so take the first one still free)
+    await modal(page).locator(".time-slot:not(.is-taken):not(.is-past)").first().click();
+    await modal(page).locator('select[name="service"]').selectOption({ index: 1 });
     await modal(page).getByRole("button", { name: "Book a Session" }).click();
     await posted;
     await expect(modal(page)).toContainText(/booked|confirmed|thank/i);

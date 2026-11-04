@@ -1,3 +1,5 @@
+import { getAvailability } from "@/utils/bookingAvailability";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const json = (body: object, status: number) =>
@@ -30,6 +32,17 @@ export async function POST(req: Request) {
   if (!data.timeSlot) return json({ error: "Please pick a time slot" }, 400);
   if (!data.service) return json({ error: "Please pick a service" }, 400);
   if (!data.readerSlug) return json({ error: "Please select a reader or healer" }, 400);
+
+  // The slot must be one of the reader's and not already booked that day.
+  // (Two submits in the same instant can still both pass; it's a guard, not a lock.)
+  const availability = await getAvailability(data.readerSlug, data.date);
+  if (!availability) return json({ error: "Something went wrong, please try again later" }, 502);
+  if (!availability.slots.includes(data.timeSlot)) {
+    return json({ error: "Please pick one of the available time slots" }, 400);
+  }
+  if (availability.taken.includes(data.timeSlot)) {
+    return json({ error: "Sorry, that time slot was just booked. Please pick another.", taken: true }, 409);
+  }
 
   let res: Response;
   try {

@@ -217,10 +217,19 @@ async function main() {
   let added = { preachers: 0, blogs: 0, testimonials: 0 };
   for (const p of PRACTITIONERS) {
     if (preachers[p.slug]) continue;
-    const { colors, services: serviceSlugs, ...data } = p;
+    const { colors, services: serviceSlugs, abilities, tools, style, topics, ...data } = p;
     const created = await docs('preacher').create({
       data: {
         ...data,
+        // the reader's own label/description list (replaced four fixed fields)
+        details: [
+          ['Abilities', abilities],
+          ['Tools', tools],
+          ['Style', style],
+          ['Topics', topics],
+        ]
+          .filter(([, description]) => description)
+          .map(([label, description]) => ({ label, description })),
         profile: await upload(await avatar(tmp, p), `${p.name} avatar`),
         services: serviceSlugs.map((s) => services[s]).filter(Boolean),
       },

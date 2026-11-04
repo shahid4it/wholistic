@@ -64,9 +64,10 @@
             }
         }
 
+        // the cell is wider than it is tall, so a plain background reads as an
+        // oval; closest-side gives a circle as wide as the cell is high
         .selected {
-            background: $coral;
-            border-radius: 100px;
+            background: radial-gradient(circle closest-side, $coral 97%, transparent 100%);
             color: white;
         }
     }

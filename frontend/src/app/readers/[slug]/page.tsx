@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { asList, fetchStrapi } from "@/utils/strapi";
 import { RelatedArticles } from "../../components/RelatedArticles";
@@ -35,6 +36,11 @@ export default async function PsychicPage({ params: { slug = "" } }) {
           <div className="row">
             <div className="col-3">
               <figure className="profile">
+                <Link href="/readers" className="back-link" aria-label="Back to readers" title="Back to readers">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M16 10H4m0 0l5-5m-5 5l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
                 <StrapiImage
                   src={reader.profile?.url}
                   alt={reader.name}
@@ -80,18 +86,11 @@ export default async function PsychicPage({ params: { slug = "" } }) {
                         {reader.totalReadings.toLocaleString()}
                       </p>
                     )}
-                    {/* fields left empty in Strapi are hidden, since not every service has them */}
-                    {(
-                      [
-                        ["Abilities", reader.abilities],
-                        ["Tools", reader.tools],
-                        ["Style", reader.style],
-                        ["Topics", reader.topics],
-                      ] as const
-                    ).map(([label, value]) =>
-                      value?.trim() ? (
-                        <p key={label}>
-                          <span>{label}</span> {value}
+                    {/* each reader's own label/description list, in the order set in Strapi */}
+                    {asList(reader.details).map(({ label, description }, i) =>
+                      label?.trim() && description?.trim() ? (
+                        <p key={i}>
+                          <span>{label.trim()}</span> {description.trim()}
                         </p>
                       ) : null
                     )}

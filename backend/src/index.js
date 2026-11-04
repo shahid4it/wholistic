@@ -1,6 +1,8 @@
 'use strict';
 
 const preacherTags = require('./bootstrap/preacher-tags');
+const bookingSlots = require('./bootstrap/booking-slots');
+const preacherDetails = require('./bootstrap/preacher-details');
 
 module.exports = {
   /**
@@ -20,5 +22,7 @@ module.exports = {
    */
   async bootstrap({ strapi }) {
     await preacherTags(strapi);
+    await bookingSlots(strapi);
+    await preacherDetails(strapi);
   },
 };

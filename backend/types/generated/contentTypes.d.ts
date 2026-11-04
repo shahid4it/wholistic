@@ -751,6 +751,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    details: Schema.Attribute.Component<'preachers.detail', true>;
     email: Schema.Attribute.Email & Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -773,6 +774,7 @@ export interface ApiPreacherPreacher extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::testimonial.testimonial'
     >;
+    timeSlots: Schema.Attribute.Component<'preachers.time-slot', true>;
     tools: Schema.Attribute.String;
     topics: Schema.Attribute.String;
     totalReadings: Schema.Attribute.Integer;

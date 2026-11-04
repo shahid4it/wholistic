@@ -6,10 +6,7 @@ export const PSYCHICS_SLUG_QUERY = (slug = "") => `query getPsychicsPage  {
         bio
         tags
         tagList { name }
-        abilities
-        style
-        topics
-        tools
+        details { label description }
         oneliner
    rating
    totalReadings

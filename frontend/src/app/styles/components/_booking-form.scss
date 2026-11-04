@@ -1,65 +1,228 @@
-// confirmation shown in the booking modal after a successful booking
+// confirmation shown in the booking modal after a successful booking.
+// Mirrors the form: a peach "ticket" where the calendar was, the message beside it.
 .booking-success {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: scale(14, 10px);
-    max-width: 520px;
-    margin: 0 auto;
-    padding: scale(24, 12px) 0 scale(8);
+    gap: scale(32);
+    align-items: stretch;
     // the reader page's .booking wrapper sets nowrap, and the modal inherits it
     white-space: normal;
     overflow-wrap: anywhere;
+    animation: booking-success-in 0.45s ease-out both;
 
-    &__icon {
+    &__ticket {
+        width: scale(400, 320px, 420px);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: scale(24, 18px);
+        padding: scale(32, 20px);
+        border-radius: scale(12, 10px);
+        background: $lightest-peach;
+    }
+    &__date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 14px 20px 16px;
+        border-radius: 12px;
+        background: white;
+        border: 1px solid $peach;
+        line-height: 1.1;
+        text-align: center;
+    }
+    &__month {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $coral;
+    }
+    &__day {
+        font-family: $swinton;
+        font-size: 56px;
+        font-weight: 500;
+        color: $burgundy;
+        margin: 2px 0 4px;
+    }
+    &__weekday {
+        font-size: 14px;
+        color: $gray;
+    }
+    &__when {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 0;
+        dt {
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: $coral;
+            margin-bottom: 2px;
+        }
+        dd {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            color: $burgundy;
+        }
+    }
+    &__reader {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: scale(20, 16px);
+        border-top: 1px solid $peach;
+        img,
+        .booking-success__initial {
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        > div {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__initial {
         display: grid;
         place-items: center;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: $lightest-peach;
+        background: $peach;
         color: $burgundy;
-        border: 2px solid $peach;
+        font-family: $swinton;
+        font-size: 24px;
     }
-    &__title {
-        font-size: scale(32, 22px, 36px);
+    &__label {
+        font-size: 14px;
+        color: $gray;
+    }
+    &__name {
+        font-family: $swinton;
+        font-size: 22px;
         font-weight: 500;
         color: $burgundy;
     }
+
+    &__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: scale(16, 12px);
+        padding: scale(16) 0;
+    }
+    &__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px 6px 8px;
+        border-radius: 100px;
+        background: $lightest-peach;
+        color: $coral;
+        font-size: 14px;
+        font-weight: 500;
+        svg {
+            padding: 3px;
+            border-radius: 50%;
+            background: $coral;
+            color: white;
+            box-sizing: content-box;
+        }
+    }
+    &__title {
+        font-size: scale(44, 28px, 48px);
+        font-weight: 500;
+        line-height: 1.1;
+        color: $burgundy;
+    }
     &__text {
+        max-width: 460px;
         color: $black;
-        line-height: 1.5;
+        line-height: 1.6;
+        strong {
+            font-weight: 600;
+            color: $burgundy;
+        }
     }
     &__details {
         width: 100%;
+        max-width: 460px;
         margin: scale(8) 0;
-        padding: scale(16, 12px) scale(20, 14px);
-        border-radius: scale(12, 10px);
-        background: $lightest-peach;
-        text-align: left;
         div {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 16px;
-            padding: 6px 0;
-            & + div {
-                border-top: 1px solid $peach;
+            padding: 12px 0;
+            border-top: 1px solid $peach;
+            &:last-child {
+                border-bottom: 1px solid $peach;
             }
         }
         dt {
-            color: $coral;
+            color: $gray;
         }
         dd {
             margin: 0;
             font-weight: 500;
+            color: $burgundy;
             text-align: right;
+        }
+    }
+    &__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: #fff4e5;
+        color: $brown;
+        font-size: 14px;
+        &::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: $golden;
         }
     }
     &__done {
         width: auto; // .button is full width by default
-        min-width: 160px;
+        min-width: 180px;
         margin-top: scale(8);
+    }
+
+    @include md {
+        flex-direction: column;
+        &__ticket {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        &__reader {
+            width: 100%;
+        }
+        &__done {
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+@keyframes booking-success-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
     }
 }
 
@@ -101,9 +264,96 @@
     }
     .left {
         background: #FDEFEC;
-        width: scale(500);
+        width: scale(400, 320px, 420px);
+        flex-shrink: 0;
         padding: scale(24);
         border-radius: scale(8);
+    }
+    .time-slots {
+        border: none;
+        padding: 0;
+        margin: 0;
+        legend {
+            color: $burgundy;
+            padding: 0;
+            margin-bottom: scale(12);
+        }
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    }
+    .time-slot {
+        position: relative;
+        input {
+            // visually hidden but still focusable and validated
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            pointer-events: none;
+        }
+        span {
+            display: block;
+            margin: 0;
+            padding: 10px 14px;
+            border: 1px solid $peach;
+            border-radius: 100px;
+            background: white;
+            color: $burgundy;
+            font-size: 15px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        &:hover span {
+            border-color: $coral;
+        }
+        input:checked + span {
+            background: $coral;
+            border-color: $coral;
+            color: white;
+        }
+        input:focus-visible + span {
+            outline: 2px solid $burgundy;
+            outline-offset: 2px;
+        }
+        // already booked on the chosen date
+        &.is-taken span {
+            background: $gray-light;
+            border-color: $gray-light;
+            color: $gray;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+        &.is-taken:hover span {
+            border-color: $gray-light;
+        }
+        // start time already passed (today only); greyed, no strike-through
+        &.is-past span,
+        &.is-past:hover span {
+            background: $gray-light;
+            border-color: $gray-light;
+            color: $gray;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+    .time-slots__note {
+        width: 100%;
+        font-size: 15px;
+        color: $gray;
+    }
+    .time-slots__retry {
+        background: none;
+        border: none;
+        padding: 0;
+        color: $burgundy;
+        text-decoration: underline;
+        cursor: pointer;
+        font: inherit;
     }
     .group {
         display: flex;

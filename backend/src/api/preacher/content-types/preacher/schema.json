@@ -37,19 +37,28 @@
       "inversedBy": "preachers"
     },
     "tools": {
-      "type": "string"
+      "type": "string",
+      "visible": false
     },
     "oneliner": {
       "type": "string"
     },
+    "details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "preachers.detail"
+    },
     "topics": {
-      "type": "string"
+      "type": "string",
+      "visible": false
     },
     "abilities": {
-      "type": "string"
+      "type": "string",
+      "visible": false
     },
     "style": {
-      "type": "string"
+      "type": "string",
+      "visible": false
     },
     "slug": {
       "type": "uid",
@@ -85,6 +94,11 @@
     "email": {
       "type": "email",
       "private": true
+    },
+    "timeSlots": {
+      "type": "component",
+      "repeatable": true,
+      "component": "preachers.time-slot"
     }
   }
 }

@@ -42,9 +42,10 @@
         display: block;
         width: 100vw;
         background-color: $white;
-        height: calc(100% + 100px);
+        // 200px / 100px at the 1920px design width
+        height: calc(100% + 10.4vw);
         position: absolute;
-        top: -50px;
+        top: -5.2vw;
         left: -50vw;
         z-index: 0;
         @include md {

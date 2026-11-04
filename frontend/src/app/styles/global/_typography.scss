@@ -55,3 +55,19 @@ li {
   font-weight: 300;
   line-height: 1.5;
 }
+
+// The reset strips underlines from every <a>; inline links in body copy
+// (mostly from CMS text) need one back so readers can tell they're links.
+.body-large,
+.body-mid,
+.body-mid-large {
+  a:not(.btn) {
+    color: $brand;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+}

@@ -52,6 +52,10 @@
         background: $burgundy;
 
         color: white;
+        &:hover,
+        &:focus-visible {
+          background: $coral;
+        }
       }
     }
 

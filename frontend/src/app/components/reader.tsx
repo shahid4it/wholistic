@@ -21,14 +21,16 @@ export default function ({
   return (
     <>
       <div className="reader">
-        <div className="reader__image">
+        {/* same destination as the name link, so it's skipped by keyboard and
+            screen readers to avoid announcing the reader twice */}
+        <Link href={`/readers/${slug}`} className="reader__image" tabIndex={-1} aria-hidden="true">
           <StrapiImage
             src={profile?.url}
             width={400}
             height={400}
-            alt={name}
+            alt=""
           />
-        </div>
+        </Link>
         <div className="reader__content">
           <div className="upper-content">
             <div className="name">

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_preachers_time_slots",
+  "info": {
+    "displayName": "Time slot",
+    "description": "A bookable session time; shown on the site as e.g. \"10:00am - 10:30am\""
+  },
+  "options": {},
+  "attributes": {
+    "start": {
+      "type": "time",
+      "required": true
+    },
+    "end": {
+      "type": "time",
+      "required": true
+    }
+  },
+  "config": {}
+}

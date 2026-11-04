@@ -12,6 +12,18 @@ export interface BlogsRelatedArticles extends Struct.ComponentSchema {
   };
 }
 
+export interface PreachersDetail extends Struct.ComponentSchema {
+  collectionName: 'components_preachers_details';
+  info: {
+    description: 'A fact shown on the reader\'s page, e.g. label "Tools", description "Tarot - Oracle cards"';
+    displayName: 'Detail';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PreachersFounders extends Struct.ComponentSchema {
   collectionName: 'components_preachers_founders';
   info: {
@@ -35,6 +47,18 @@ export interface PreachersPreachers extends Struct.ComponentSchema {
     marquee: Schema.Attribute.String;
     preachers: Schema.Attribute.Relation<'oneToMany', 'api::preacher.preacher'>;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface PreachersTimeSlot extends Struct.ComponentSchema {
+  collectionName: 'components_preachers_time_slots';
+  info: {
+    description: 'A bookable session time; shown on the site as e.g. "10:00am - 10:30am"';
+    displayName: 'Time slot';
+  };
+  attributes: {
+    end: Schema.Attribute.Time & Schema.Attribute.Required;
+    start: Schema.Attribute.Time & Schema.Attribute.Required;
   };
 }
 
@@ -162,8 +186,10 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blogs.related-articles': BlogsRelatedArticles;
+      'preachers.detail': PreachersDetail;
       'preachers.founders': PreachersFounders;
       'preachers.preachers': PreachersPreachers;
+      'preachers.time-slot': PreachersTimeSlot;
       'services.services': ServicesServices;
       'ui.banner': UiBanner;
       'ui.faqs': UiFaqs;

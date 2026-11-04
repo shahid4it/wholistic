@@ -1,13 +1,10 @@
 import Markdown, { type Components } from "react-markdown";
 
-// External links in CMS text open in a new tab so visitors don't leave the site.
+// Links in CMS text always open in a new tab so visitors don't leave the page.
 const components: Components = {
-  a: ({ node, href, ...props }) =>
-    /^https?:\/\//.test(href ?? "") ? (
-      <a href={href} target="_blank" rel="noopener noreferrer" {...props} />
-    ) : (
-      <a href={href} {...props} />
-    ),
+  a: ({ node, ...props }) => (
+    <a {...props} target="_blank" rel="noopener noreferrer" />
+  ),
 };
 
 export function CmsMarkdown({ children }: { children?: string | null }) {
