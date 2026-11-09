@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * Adds FICTIONAL sample readers/healers, articles and testimonials to the LOCAL
+ * Adds FICTIONAL sample readers/healers, articles, videos, podcasts, online
+ * classes and testimonials to the LOCAL
  * database for testing. All names, bios, articles and reviews are invented
  * placeholders: never import this into the live site as real content.
  *
@@ -157,6 +158,76 @@ const ARTICLES = [
   },
 ];
 
+// Members-only resources (Video / Podcast / Online Classes). Videos reuse the one
+// YouTube embed already on the live site so the player has something to show;
+// podcasts get a short generated audio clip as their `resource` file.
+const SAMPLE_VIDEO = 'https://www.youtube.com/embed/dwh-Dhj08TE';
+const RESOURCES = [
+  {
+    category: 'video', title: 'Guided Morning Meditation for Clarity', author: 'theo-marsh', thumb: 'yoga_content_small_9f37ad4dbf', date: '2026-10-02',
+    summary: 'A fifteen-minute guided meditation to set a calm, clear intention for your day.', tags: 'Meditation,Mindfulness',
+  },
+  {
+    category: 'video', title: 'Pulling Your Daily Tarot Card', author: 'celeste-rowan', thumb: 'tarot_content_small_3dde22bba4', date: '2026-09-18',
+    summary: 'How to shuffle, ask a good question and read a single card as a daily practice.', tags: 'Tarot,Beginners',
+  },
+  {
+    category: 'video', title: 'Reiki Self-Treatment in Five Hand Positions', author: 'leila-haddad', thumb: 'reiki_content_small_adafee4194', date: '2026-08-27',
+    summary: 'Follow along with a simple self-Reiki routine you can do before bed.', tags: 'Reiki,Self-care',
+  },
+  {
+    category: 'podcast', title: 'Episode 1: Finding Your Intuitive Voice', author: 'mira-solis', thumb: 'intro_image_9d4f93882c', date: '2026-10-10',
+    summary: 'Mira talks about the first signs of intuition and how to trust them in daily life.', tags: 'Intuition',
+  },
+  {
+    category: 'podcast', title: 'Episode 2: Planning Your Year With the Stars', author: 'orion-vale', thumb: 'astrology_content_small_21405fb258', date: '2026-10-24',
+    summary: 'Orion walks through the big transits of the coming year and how to use them.', tags: 'Astrology,Timing',
+  },
+  {
+    category: 'podcast', title: 'Episode 3: Crystals for Beginners', author: 'priya-nair', thumb: 'gemstone_small_3b03c7ab66', date: '2026-11-01',
+    summary: 'Priya answers listener questions about choosing, cleansing and using crystals.', tags: 'Crystals',
+  },
+  {
+    category: 'online-classes', title: 'Tarot Foundations: Six-Week Course', author: 'celeste-rowan', thumb: 'tarot_content_large_b2dd2cdb98', date: '2026-11-12',
+    summary: 'Learn the Major and Minor Arcana, core spreads and how to read for others with confidence.', tags: 'Tarot,Course',
+  },
+  {
+    category: 'online-classes', title: 'Intro to Natal Astrology', author: 'orion-vale', thumb: 'astrology_content_large_feea8469b0', date: '2026-11-20',
+    summary: 'Read your own birth chart: signs, houses, planets and the aspects between them.', tags: 'Astrology,Course',
+  },
+  {
+    category: 'online-classes', title: 'Restorative Yoga Weekly Class', author: 'theo-marsh', thumb: 'yoga_content_large_3eaf621e1b', date: '2026-11-15',
+    summary: 'A slow, supported live class every Sunday evening to reset for the week ahead.', tags: 'Yoga,Live class',
+  },
+];
+
+// Sample articles listed in each service page's Related Articles section.
+const RELATED = {
+  tarot: ['three-card-tarot-spreads-for-love-questions'],
+  astrology: ['saturn-return-what-it-means-and-how-to-prepare', 'your-life-path-number-explained'],
+  therapy: ['signs-a-loved-one-is-reaching-out-from-spirit'],
+  'reiki-healing': ['what-to-expect-in-your-first-reiki-session'],
+  yoga: ['a-ten-minute-evening-yoga-routine-for-better-sleep'],
+  'gemstone-healing': ['five-crystals-to-keep-on-your-desk'],
+  'divine-nourishment': ['five-crystals-to-keep-on-your-desk', 'what-to-expect-in-your-first-reiki-session'],
+};
+
+// 8 s of a soft 432 Hz tone with fade in/out, as a 16-bit mono WAV.
+function toneWav(filepath, seconds = 8, rate = 22050) {
+  const n = seconds * rate;
+  const buf = Buffer.alloc(44 + n * 2);
+  buf.write('RIFF', 0); buf.writeUInt32LE(36 + n * 2, 4); buf.write('WAVEfmt ', 8);
+  buf.writeUInt32LE(16, 16); buf.writeUInt16LE(1, 20); buf.writeUInt16LE(1, 22);
+  buf.writeUInt32LE(rate, 24); buf.writeUInt32LE(rate * 2, 28); buf.writeUInt16LE(2, 32); buf.writeUInt16LE(16, 34);
+  buf.write('data', 36); buf.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) {
+    const env = Math.min(1, i / rate, (n - i) / rate);
+    buf.writeInt16LE(Math.round(Math.sin((2 * Math.PI * 432 * i) / rate) * 6000 * env), 44 + i * 2);
+  }
+  fs.writeFileSync(filepath, buf);
+  return filepath;
+}
+
 const TESTIMONIALS = [
   ['celeste-rowan', 'Hannah P., Portland, OR', 'Celeste was direct but kind. She picked up on the exact situation without me explaining much, and her advice gave me the confidence to finally have the conversation.', 5],
   ['celeste-rowan', 'Marcus T., Atlanta, GA', 'Fast, clear and spot on about the timing. Things unfolded within a few weeks just like she described.', 5],
@@ -196,10 +267,10 @@ async function main() {
   const docs = (name) => app.documents(`api::${name}.${name}`);
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'sample-content-'));
 
-  const upload = async (filepath, name) => {
+  const upload = async (filepath, name, mimetype = 'image/png') => {
     const [entry] = await app.plugin('upload').service('upload').upload({
       data: { fileInfo: { name, alternativeText: name } },
-      files: { filepath, originalFilename: path.basename(filepath), mimetype: 'image/png', size: fs.statSync(filepath).size },
+      files: { filepath, originalFilename: path.basename(filepath), mimetype, size: fs.statSync(filepath).size },
     });
     return entry.id;
   };
@@ -214,7 +285,7 @@ async function main() {
   const preachers = Object.fromEntries(
     (await docs('preacher').findMany({ fields: ['slug'] })).map((p) => [p.slug, p.documentId])
   );
-  let added = { preachers: 0, blogs: 0, testimonials: 0 };
+  let added = { preachers: 0, blogs: 0, resources: 0, testimonials: 0 };
   for (const p of PRACTITIONERS) {
     if (preachers[p.slug]) continue;
     const { colors, services: serviceSlugs, abilities, tools, style, topics, ...data } = p;
@@ -236,6 +307,20 @@ async function main() {
     });
     preachers[p.slug] = created.documentId;
     added.preachers++;
+  }
+
+  // --- bookable time slots for sample practitioners that have none (the
+  // one-time bootstrap default only ran for readers that existed back then)
+  const SLOTS = [
+    { start: '10:00:00.000', end: '10:30:00.000' },
+    { start: '11:15:00.000', end: '12:15:00.000' },
+    { start: '14:00:00.000', end: '15:00:00.000' },
+    { start: '16:30:00.000', end: '17:00:00.000' },
+  ];
+  for (const p of PRACTITIONERS) {
+    const current = await docs('preacher').findOne({ documentId: preachers[p.slug], populate: ['timeSlots'] });
+    if (current?.timeSlots?.length) continue;
+    await docs('preacher').update({ documentId: preachers[p.slug], data: { timeSlots: SLOTS } });
   }
 
   // --- service assignments (manyToMany): only adds links, never removes any.
@@ -265,9 +350,10 @@ async function main() {
   if (linked) console.log(`linked ${linked} practitioner-service assignments`);
 
   // --- articles
+  const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const blogSlugs = new Set((await docs('blog').findMany({ fields: ['slug'] })).map((b) => b.slug));
   for (const a of ARTICLES) {
-    const slug = a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const slug = slugify(a.title);
     if (blogSlugs.has(slug)) continue;
     await docs('blog').create({
       data: {
@@ -276,6 +362,23 @@ async function main() {
       },
     });
     added.blogs++;
+  }
+
+  // --- members-only resources (video / podcast / online classes)
+  for (const r of RESOURCES) {
+    const slug = slugify(r.title);
+    if (blogSlugs.has(slug)) continue;
+    const data = {
+      title: r.title, slug, summary: r.summary, category: r.category, tags: r.tags,
+      content: toHtml([['p', r.summary]]), publishDate: r.date,
+      author: preachers[r.author], thumbnail: await libraryImage(r.thumb),
+    };
+    if (r.category === 'video') data.resourceUrl = SAMPLE_VIDEO;
+    if (r.category === 'podcast') {
+      data.resource = await upload(toneWav(path.join(tmp, `${slug}.wav`)), `${r.title} audio`, 'audio/wav');
+    }
+    await docs('blog').create({ data });
+    added.resources++;
   }
 
   // --- testimonials
@@ -299,7 +402,9 @@ async function main() {
   // the Readers, Testimonials and Home pages' preachers/testimonials sections.
   // Dynamic zones are rewritten whole, so every section is rebuilt from its current
   // data (media -> ids, relations -> documentIds) before appending.
-  const appendToSection = async (pageName, component, field, ids) => {
+  // `documentId` picks one entry of a collection type (e.g. a service); single
+  // types leave it out.
+  const appendToSection = async (pageName, component, field, ids, documentId) => {
     const ct = app.contentTypes[`api::${pageName}.${pageName}`];
     const deep = (attrs) => {
       const out = {};
@@ -328,17 +433,29 @@ async function main() {
       }
       return out;
     };
-    const page = await app.documents(ct.uid).findFirst({ populate: deep(ct.attributes) });
+    const populate = deep(ct.attributes);
+    const page = documentId
+      ? await app.documents(ct.uid).findOne({ documentId, populate })
+      : await app.documents(ct.uid).findFirst({ populate });
+    const label = documentId ? `${pageName} ${page?.slug}` : pageName;
     const section = page?.sections?.find((s) => s.__component === component);
-    if (!section) return console.warn(`No ${component} section on ${pageName}; skipped.`);
+    if (!section) return console.warn(`No ${component} section on ${label}; skipped.`);
     const data = toData(ct.attributes, page);
     const target = data.sections[page.sections.indexOf(section)];
     const missing = ids.filter((id) => !target[field].includes(id));
     if (!missing.length) return;
     target[field] = [...target[field], ...missing];
     await app.documents(ct.uid).update({ documentId: page.documentId, data });
-    console.log(`${pageName}: added ${missing.length} to ${component}.${field}`);
+    console.log(`${label}: added ${missing.length} to ${component}.${field}`);
   };
+  const blogIds = Object.fromEntries(
+    (await docs('blog').findMany({ fields: ['slug'] })).map((b) => [b.slug, b.documentId])
+  );
+  for (const [service, slugs] of Object.entries(RELATED)) {
+    if (!services[service]) continue;
+    await appendToSection('service', 'blogs.related-articles', 'blogs',
+      slugs.map((s) => blogIds[s]).filter(Boolean), services[service]);
+  }
   await appendToSection('psychics-page', 'preachers.preachers', 'preachers',
     PRACTITIONERS.map((p) => preachers[p.slug]));
   await appendToSection('testimonials-page', 'ui.testimonials', 'testimonials', sampleTestimonials);
@@ -346,7 +463,7 @@ async function main() {
   await appendToSection('home', 'ui.testimonials', 'testimonials', sampleTestimonials);
 
   fs.rmSync(tmp, { recursive: true, force: true });
-  console.log(`\nAdded ${added.preachers} practitioners, ${added.blogs} articles, ${added.testimonials} testimonials.`);
+  console.log(`\nAdded ${added.preachers} practitioners, ${added.blogs} articles, ${added.resources} videos/podcasts/classes, ${added.testimonials} testimonials.`);
   // let the upload plugin's background writes settle before closing the pool
   await new Promise((r) => setTimeout(r, 1000));
   await app.destroy();

@@ -4,6 +4,10 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,
   retries: 0,
+  // The suite runs against `next dev`, which is slow under parallel workers:
+  // a signup that takes ~200ms alone took 3-7s with the full suite running,
+  // past the default 5s assertion timeout.
+  expect: { timeout: 10_000 },
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3000",

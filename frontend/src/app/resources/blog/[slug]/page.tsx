@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { asList, fetchStrapi } from "@/utils/strapi";
 import { RESOURCES_SLUG_QUERY } from "@/queries/resource-slug";
 import { StrapiImage } from "@/app/components/StrapiImage";
@@ -13,6 +13,11 @@ export default async function Page({ params: { slug } }) {
   );
 
   if (!blog) notFound();
+  // Podcasts and videos are members only and have their own (gated) pages;
+  // the slug lookup above matches any category, so don't show them here.
+  if (blog.category === "podcast") redirect(`/resources/podcast/${encodeURIComponent(slug)}`);
+  if (blog.category === "video") redirect("/resources/video");
+  if (blog.category === "online-classes") redirect("/resources/online-classes");
 
   return (
     <article className="blog-post">

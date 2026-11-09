@@ -46,6 +46,15 @@ export async function login(page: Page, email: string, password: string) {
 
 export async function openBookingModal(page: Page) {
   await page.goto("/");
-  await page.getByRole("button", { name: "Book a Session" }).first().click();
+  // on phones the header button lives inside the collapsed menu, as for a real visitor
+  // (retried: a tap before hydration does nothing)
+  const menuButton = page.locator(".menu-button");
+  if (await menuButton.isVisible()) {
+    await expect(async () => {
+      if ((await menuButton.getAttribute("aria-expanded")) !== "true") await menuButton.click();
+      await expect(menuButton).toHaveAttribute("aria-expanded", "true", { timeout: 1000 });
+    }).toPass({ timeout: 15000 });
+  }
+  await page.locator(".header").getByRole("button", { name: "Book a Session" }).click();
   await expect(page.locator("#modal-container .reader-list").first()).toBeVisible();
 }

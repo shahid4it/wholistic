@@ -4,8 +4,26 @@ import { RESOURCES_SLUG_QUERY } from "@/queries/resource-slug";
 import { StrapiImage } from "@/app/components/StrapiImage";
 import Markdown from "react-markdown";
 import Hero from "@/app/components/hero";
+import { getSessionUserId } from "@/utils/session";
+import { MembersOnly } from "@/app/components/MembersOnly";
 
 export default async function Page({ params: { slug } }) {
+  // members only: logged-out visitors get the gate (no title or audio link)
+  if (!getSessionUserId()) {
+    return (
+      <article>
+        <section className="resources-page">
+          <div className="resources-banner">
+            <div className="container">
+              <h1>Resources - Podcast</h1>
+            </div>
+          </div>
+          <MembersOnly next={`/resources/podcast/${encodeURIComponent(slug)}`} what="this podcast" />
+        </section>
+      </article>
+    );
+  }
+
   const [blog] = asList(
     await fetchStrapi({
       query: RESOURCES_SLUG_QUERY(slug),
@@ -32,7 +50,11 @@ export default async function Page({ params: { slug } }) {
             </time>
             <div>
               <audio
-                src={blog.resourceUrl || blog.resource?.url}
+                src={
+                  blog.resourceUrl ||
+                  (blog.resource?.url &&
+                    `${process.env.NEXT_PUBLIC_STRAPI_URL}${blog.resource.url}`)
+                }
                 controls
                 muted
               ></audio>

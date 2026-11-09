@@ -23,15 +23,31 @@ test.describe("Booking", () => {
 
   test("TC-30 [BUG-07] submitting sends a request and confirms", async ({ page }) => {
     await pickFirstReader(page);
-    const posted = page.waitForRequest((r) => r.method() === "POST" && !r.url().includes("/graphql"), {
-      timeout: 5000,
-    });
     await modal(page).locator('input[name="fullname"]').fill("Qa Tester");
     await modal(page).locator('input[name="email"]').fill("qa@example.com");
     await modal(page).locator('input[name="contact"]').fill("5551234567");
-    // no time slot or service is preselected
-    // (earlier runs book real slots, so take the first one still free)
-    await modal(page).locator(".time-slot:not(.is-taken):not(.is-past)").first().click();
+    // No time slot is preselected. Today's may have passed and every run books
+    // a real slot, so walk forward from tomorrow to the first day with a free one.
+    const free = modal(page).locator(".time-slot:not(.is-taken):not(.is-past)");
+    let found = false;
+    for (let step = 0; step < 60 && !found; step++) {
+      // next selectable day after the selected one, across week rows
+      const days = modal(page).locator(".calendar button.day");
+      const selected = await days.evaluateAll((els: Element[]) => els.findIndex((el) => el.classList.contains("selected")));
+      if (selected + 1 < (await days.count())) await days.nth(selected + 1).click();
+      else {
+        await modal(page).getByRole("button", { name: "Next month" }).click();
+        await modal(page).locator(".calendar button.day").first().click();
+      }
+      await expect(modal(page).locator(".time-slots__list, .time-slots__note").first()).toBeVisible();
+      await expect(modal(page).getByText("Loading time slots…")).toHaveCount(0);
+      found = (await free.count()) > 0;
+    }
+    expect(found, "a day with a free slot in the next 60 days").toBe(true);
+    await free.first().click();
+    const posted = page.waitForRequest((r) => r.method() === "POST" && !r.url().includes("/graphql"), {
+      timeout: 5000,
+    });
     await modal(page).locator('select[name="service"]').selectOption({ index: 1 });
     await modal(page).getByRole("button", { name: "Book a Session" }).click();
     await posted;

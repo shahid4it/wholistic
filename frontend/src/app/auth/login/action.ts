@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { setSession } from "@/utils/session";
+import { safeNext } from "@/utils/safeNext";
 
 export async function Subscribe(
   prevState: unknown,
@@ -81,5 +82,5 @@ export async function Subscribe(
 
   const { id } = await res.json();
   setSession(id);
-  return redirect("/");
+  return redirect(safeNext(formdata.get("next")));
 }

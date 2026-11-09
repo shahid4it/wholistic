@@ -4,7 +4,11 @@
  * subscriber controller
  */
 
-const { scryptSync, timingSafeEqual } = require('crypto');
+const { scrypt, timingSafeEqual } = require('crypto');
+const { promisify } = require('util');
+
+// async so a login doesn't block every other Strapi request while hashing
+const scryptAsync = promisify(scrypt);
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::subscriber.subscriber', ({ strapi }) => ({
@@ -21,7 +25,7 @@ module.exports = createCoreController('api::subscriber.subscriber', ({ strapi })
     // Stored format is "<salt>:<hex scrypt hash>". Hash even when the user is missing so timing doesn't reveal it.
     const [salt = '', hash = ''] = (user?.password ?? '').split(':');
     const expected = Buffer.from(hash, 'hex');
-    const actual = scryptSync(password, salt, 32);
+    const actual = await scryptAsync(password, salt, 32);
     const valid = !!user && !!salt && expected.length === actual.length && timingSafeEqual(expected, actual);
 
     if (!valid) {

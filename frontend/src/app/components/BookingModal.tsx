@@ -32,7 +32,11 @@ export function BookingModal({ children, open, onClose, title }) {
             </svg>
           </button>
         </div>
-        <div className="modal_content">{children}</div>
+        {/* scrolls on its own when taller than the screen; data-lenis-prevent
+            hands mouse-wheel scrolling here instead of the page's smooth scroll */}
+        <div className="modal_content" data-lenis-prevent>
+          {children}
+        </div>
       </div>
     </article>
   );

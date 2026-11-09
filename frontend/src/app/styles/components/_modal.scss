@@ -59,6 +59,15 @@
         background: $white;
         border-radius: scale(8);
         overflow: hidden;
+        // never taller than the screen: the title stays put and .modal_content
+        // scrolls, so a long form (booking on a phone) can reach its buttons
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        @include md {
+            width: calc(100% - 32px);
+        }
 
         &.modal_main--video {
             max-width: scale(1200);
@@ -81,8 +90,15 @@
         }
     }
 
+    &_title {
+        flex-shrink: 0;
+    }
+
     &_content {
         padding: scale(24);
+        overflow-y: auto;
+        overscroll-behavior: contain; // don't scroll the page behind at the ends
+        -webkit-overflow-scrolling: touch;
     }
 
     &_iframe {

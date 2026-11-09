@@ -1,5 +1,7 @@
 import { RESOURCES_QUERY } from "@/queries/resources";
-import { fetchStrapi } from "@/utils/strapi";
+import { asList, fetchStrapi } from "@/utils/strapi";
+import { getSessionUserId } from "@/utils/session";
+import { MembersOnly } from "../../components/MembersOnly";
 import { StrapiImage } from "../../components/StrapiImage";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,10 +24,12 @@ const months = [
 ];
 
 export default async function Page() {
-  const videos = await fetchStrapi({
-    query: RESOURCES_QUERY("video"),
-    key: "blogs",
-  })();
+  // members only: logged-out visitors get the gate, and the videos (and their
+  // links) are never fetched or sent to them
+  const loggedIn = !!getSessionUserId();
+  const videos = loggedIn
+    ? asList(await fetchStrapi({ query: RESOURCES_QUERY("video"), key: "blogs" })())
+    : [];
 
   return (
     <>
@@ -38,6 +42,9 @@ export default async function Page() {
             </h1>
           </div>
         </div>
+        {!loggedIn ? (
+          <MembersOnly next="/resources/video" what="our videos" />
+        ) : (
         <section className="section resources__content">
           <div className="container">
             <ul className="videos">
@@ -91,10 +98,13 @@ export default async function Page() {
             </ul>
           </div>
         </section>
+        )}
       </section>
-      <Suspense>
-        <VideoModal />
-      </Suspense>
+      {loggedIn && (
+        <Suspense>
+          <VideoModal />
+        </Suspense>
+      )}
     </>
   );
 }

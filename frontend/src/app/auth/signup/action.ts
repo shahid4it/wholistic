@@ -2,7 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { setSession } from "@/utils/session";
-import { randomBytes, scryptSync } from "crypto";
+import { safeNext } from "@/utils/safeNext";
+import { randomBytes, scrypt } from "crypto";
+import { promisify } from "util";
+
+// async scrypt runs on the libuv thread pool; scryptSync blocked the whole
+// Next server for every signup, so concurrent signups stalled other requests
+const scryptAsync = promisify(scrypt) as (password: string, salt: string, keylen: number) => Promise<Buffer>;
 
 export async function Subscribe(
   prevState: unknown,
@@ -91,7 +97,7 @@ export async function Subscribe(
           firstName,
           lastName,
           email,
-          password: `${salt}:${scryptSync(password as string, salt, 32).toString("hex")}`,
+          password: `${salt}:${(await scryptAsync(password as string, salt, 32)).toString("hex")}`,
         },
       }),
     }
@@ -101,7 +107,7 @@ export async function Subscribe(
       data: { id },
     } = await res.json();
     setSession(id);
-    return redirect("/");
+    return redirect(safeNext(formdata.get("next")));
   } else {
     const message = (await res.json().catch(() => null))?.error?.message;
     const duplicate = /unique/i.test(message ?? "");

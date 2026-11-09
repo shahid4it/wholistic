@@ -20,6 +20,12 @@ const nextConfig = {
         destination: "/resources/horoscope/Aries",
         permanent: true,
       },
+      // the CMS menu links "Online Classes" to /lecture, but the category is "online-classes"
+      {
+        source: "/resources/lecture",
+        destination: "/resources/online-classes",
+        permanent: false,
+      },
       // the Resources menu item is a link too, but has no page of its own
       {
         source: "/resources",

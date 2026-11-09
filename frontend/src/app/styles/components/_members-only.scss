@@ -1,0 +1,44 @@
+// gate shown on members-only pages (podcasts, videos) to logged-out visitors
+.members-only {
+  &__card {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: scale(48, 28px) scale(40, 20px);
+    border-radius: scale(16, 12px);
+    background: $lightest-peach;
+    border: 1px solid $peach;
+    text-align: center;
+  }
+  &__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid $peach;
+    color: $burgundy;
+  }
+  &__title {
+    margin-top: scale(20, 16px);
+    font-size: scale(40, 28px, 44px);
+    font-weight: 500;
+    color: $burgundy;
+  }
+  &__text {
+    margin: scale(12, 8px) auto 0;
+    max-width: 420px;
+    color: $black;
+    line-height: 1.6;
+  }
+  &__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: scale(32, 24px);
+    .button {
+      width: auto;
+      min-width: 150px;
+    }
+  }
+}

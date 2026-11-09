@@ -7,7 +7,10 @@ import { useState } from "react";
 import Recaptcha from "react-google-recaptcha";
 import Link from "next/link";
 
-export default function Page() {
+export default function Page({ searchParams }: { searchParams?: { next?: string } }) {
+  // page to return to afterwards (e.g. a members-only podcast); checked in the action
+  const next = typeof searchParams?.next === "string" ? searchParams.next : "";
+  const q = next ? `?next=${encodeURIComponent(next)}` : "";
   const [formState, dispatch] = useFormState(Subscribe, {
     error: null,
     success: false,
@@ -20,6 +23,7 @@ export default function Page() {
       <Script src="https://www.google.com/recaptcha/api.js" async defer />
       <div className="section container">
         <form action={dispatch} className="signup">
+          {next && <input type="hidden" name="next" value={next} />}
           <label>
             <span>Email</span>
             <input type="email" name="email" />
@@ -52,7 +56,7 @@ export default function Page() {
           </button>
           <small>
             Not a member yet? Your missing out.{" "}
-            <Link href="/auth/signup">Sign up</Link> Now!
+            <Link href={`/auth/signup${q}`}>Sign up</Link> Now!
           </small>
         </form>
       </div>

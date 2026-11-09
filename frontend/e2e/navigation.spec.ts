@@ -50,9 +50,11 @@ test.describe("Navigation and content", () => {
 
   test("TC-05 [BUG-19] lowercase sign returns the same content", async ({ page }) => {
     await page.goto("/resources/horoscope/Aries");
+    // compare innerText on both sides: toHaveText reads textContent, which drops
+    // the breaks between paragraphs, so multi-paragraph horoscopes never matched
     const expected = await page.locator(".horoscope-description").innerText();
     await page.goto("/resources/horoscope/aries");
-    await expect(page.locator(".horoscope-description")).toHaveText(expected);
+    expect(await page.locator(".horoscope-description").innerText()).toBe(expected);
   });
 
   test("TC-06 [BUG-06] unknown reader gives a 404, not a crash", async ({ page }) => {
