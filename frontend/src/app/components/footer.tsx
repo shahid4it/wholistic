@@ -1,4 +1,4 @@
-import { fetchStrapi } from "@/utils/strapi";
+import { asList, fetchStrapi } from "@/utils/strapi";
 import { FOOTER_QUERY } from "@/queries/footer";
 import Link from "next/link";
 import Image from "next/image";
@@ -56,10 +56,12 @@ const SOCIALS = {
 
 export default async function Footer() {
   const data = await fetchStrapi({ query: FOOTER_QUERY, key: "footer" })();
-  const List = await fetchStrapi({
-    query: SERVICES_LIST_QUERY,
-    key: "services",
-  })();
+  const List = asList(
+    await fetchStrapi({
+      query: SERVICES_LIST_QUERY,
+      key: "services",
+    })()
+  );
   return (
     <footer className="footer">
       <div className="container">
