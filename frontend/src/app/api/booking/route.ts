@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 
   let res: Response;
   try {
-    res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/bookings`, {
+    res = await fetch(`${process.env.STRAPI_URL}/api/bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

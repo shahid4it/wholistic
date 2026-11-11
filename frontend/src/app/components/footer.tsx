@@ -60,7 +60,7 @@ export default async function Footer() {
     await fetchStrapi({
       query: SERVICES_LIST_QUERY,
       key: "services",
-    })()
+    })(),
   );
   return (
     <footer className="footer">
@@ -71,7 +71,7 @@ export default async function Footer() {
               <Image
                 src={
                   data.logo?.url
-                    ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.logo.url}`
+                    ? `${process.env.STRAPI_URL}${data.logo.url}`
                     : "/images/logo.svg"
                 }
                 width={193}

@@ -17,7 +17,7 @@ export default async function Header() {
             <Image
               src={
                 data.logo?.url
-                  ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.logo.url}`
+                  ? `${process.env.STRAPI_URL}${data.logo.url}`
                   : "/images/logo.svg"
               }
               width={193}
@@ -40,7 +40,9 @@ export default async function Header() {
                 </li>
               ) : (
                 <li key={id} className="dropdown">
-                  <Link className="dropdown-toggle" href={href || "#"}>{title}</Link>
+                  <Link className="dropdown-toggle" href={href || "#"}>
+                    {title}
+                  </Link>
                   <ul className="dropdown-menu">
                     {links.map(({ id: subId, title, href: subhref }) => (
                       <li key={subId}>
@@ -49,7 +51,7 @@ export default async function Header() {
                     ))}
                   </ul>
                 </li>
-              )
+              ),
             )}
             <li>
               <UserMenu />

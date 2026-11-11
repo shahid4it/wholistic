@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   try {
     // "contact" is a Strapi singleType (the Contact page's layout) and can't
     // receive REST creates; submissions are stored as their own collection.
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contact-messages`, {
+    const res = await fetch(`${process.env.STRAPI_URL}/api/contact-messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

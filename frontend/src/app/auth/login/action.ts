@@ -52,7 +52,7 @@ export async function Subscribe(
   // }
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers/login`,
+    `${process.env.STRAPI_URL}/api/subscribers/login`,
     {
       method: "POST",
       headers: {

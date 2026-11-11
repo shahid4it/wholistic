@@ -38,7 +38,11 @@ const nextConfig = {
     return [
       {
         source: "/graphql",
-        destination: process.env.STRAPI_GRAPHQL_URL,
+        destination: `${process.env.STRAPI_URL}/graphql`,
+      },
+      {
+        source: "/strapi/:path*",
+        destination: `${process.env.STRAPI_URL}/:path*`,
       },
     ];
   },

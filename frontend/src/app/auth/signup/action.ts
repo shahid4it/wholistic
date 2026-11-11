@@ -85,7 +85,7 @@ export async function Subscribe(
   const salt = randomBytes(32).toString("hex");
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers`,
+    `${process.env.STRAPI_URL}/api/subscribers`,
     {
       method: "POST",
       headers: {

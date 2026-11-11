@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
   let res: Response;
   try {
-    res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers`, {
+    res = await fetch(`${process.env.STRAPI_URL}/api/subscribers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

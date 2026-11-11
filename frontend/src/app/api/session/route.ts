@@ -9,7 +9,7 @@ export async function GET() {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/subscribers?filters[id][$eq]=${userId}&fields[0]=firstName&fields[1]=lastName`,
+      `${process.env.STRAPI_URL}/api/subscribers?filters[id][$eq]=${userId}&fields[0]=firstName&fields[1]=lastName`,
       {
         headers: { authorization: `bearer ${process.env.STRAPI_SUBSCRIBE_TOKEN}` },
       }

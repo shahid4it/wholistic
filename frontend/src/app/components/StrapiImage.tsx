@@ -4,11 +4,7 @@ export function StrapiImage(props: Parameters<typeof Image>[0]) {
   return (
     <Image
       {...props}
-      src={
-        props.src
-          ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${props.src}`
-          : "/favicon.ico"
-      }
+      src={props.src ? `/strapi${props.src}` : "/favicon.ico"}
     />
   );
 }

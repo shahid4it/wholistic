@@ -8,7 +8,10 @@ export const asList = (value) => (Array.isArray(value) ? value : []);
 export const tagNames = ({ tagList, tags } = {}) =>
   asList(tagList).length
     ? asList(tagList).map((t) => t.name)
-    : String(tags ?? "").split(",").map((t) => t.trim()).filter(Boolean);
+    : String(tags ?? "")
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
 
 /** Tag filters from a `tag` search param (one or repeated), trimmed, de-duplicated ignoring case. */
 export const parseTags = (value) => {
@@ -29,15 +32,27 @@ export const parseTags = (value) => {
  * scroll: false; ScrollToReaders brings the list into view instead of a #hash.
  */
 export const tagsHref = (tags) => {
-  const query = asList(tags).map((t) => `tag=${encodeURIComponent(t)}`).join("&");
+  const query = asList(tags)
+    .map((t) => `tag=${encodeURIComponent(t)}`)
+    .join("&");
   return `/readers${query ? `?${query}` : ""}`;
 };
 
 export function fetchStrapi({ query = "", key = "" }) {
   return async (variables = {}) => {
     try {
+      console.log(
+        typeof window,
+        typeof window === "undefined",
+        process.env[
+          typeof window === "undefined"
+            ? "STRAPI_URL"
+            : "NEXT_PUBLIC_LANDING_URL"
+        ],
+        `${process.env[typeof window === "undefined" ? "STRAPI_URL" : "NEXT_PUBLIC_LANDING_URL"]}/graphql`,
+      );
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_LANDING_URL}/graphql`,
+        `${typeof window === "undefined" ? process.env.STRAPI_URL : process.env.NEXT_PUBLIC_LANDING_URL}/graphql`,
         {
           method: "POST",
           headers: {

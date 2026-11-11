@@ -18,7 +18,10 @@ export default async function Page({ params: { slug } }) {
               <h1>Resources - Podcast</h1>
             </div>
           </div>
-          <MembersOnly next={`/resources/podcast/${encodeURIComponent(slug)}`} what="this podcast" />
+          <MembersOnly
+            next={`/resources/podcast/${encodeURIComponent(slug)}`}
+            what="this podcast"
+          />
         </section>
       </article>
     );
@@ -28,7 +31,7 @@ export default async function Page({ params: { slug } }) {
     await fetchStrapi({
       query: RESOURCES_SLUG_QUERY(slug),
       key: "blogs",
-    })()
+    })(),
   );
 
   if (!blog) notFound();
@@ -53,7 +56,7 @@ export default async function Page({ params: { slug } }) {
                 src={
                   blog.resourceUrl ||
                   (blog.resource?.url &&
-                    `${process.env.NEXT_PUBLIC_STRAPI_URL}${blog.resource.url}`)
+                    `${process.env.STRAPI_URL}${blog.resource.url}`)
                 }
                 controls
                 muted

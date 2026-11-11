@@ -11,7 +11,7 @@ export async function getAvailability(reader: string, date: string): Promise<Ava
   if (!reader || !DATE_RE.test(date)) return null;
   const qs = new URLSearchParams({ reader, date });
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/bookings/availability?${qs}`, {
+    const res = await fetch(`${process.env.STRAPI_URL}/api/bookings/availability?${qs}`, {
       cache: "no-store",
     });
     if (!res.ok) return null;
