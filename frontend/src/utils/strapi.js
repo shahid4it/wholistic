@@ -41,16 +41,6 @@ export const tagsHref = (tags) => {
 export function fetchStrapi({ query = "", key = "" }) {
   return async (variables = {}) => {
     try {
-      console.log(
-        typeof window,
-        typeof window === "undefined",
-        process.env[
-          typeof window === "undefined"
-            ? "STRAPI_URL"
-            : "NEXT_PUBLIC_LANDING_URL"
-        ],
-        `${process.env[typeof window === "undefined" ? "STRAPI_URL" : "NEXT_PUBLIC_LANDING_URL"]}/graphql`,
-      );
       const res = await fetch(
         `${typeof window === "undefined" ? process.env.STRAPI_URL : process.env.NEXT_PUBLIC_LANDING_URL}/graphql`,
         {
